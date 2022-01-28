@@ -1,0 +1,50 @@
+
+
+<div class="container">
+    <form #stockForm="ngForm" (ngSubmit)="onSubmit(stockForm)">
+        <p>Get the open, close and afterhours prices of a stock symbol on a certain date.
+
+        </p>
+      <h2>Search Stock</h2>
+      <div class="input-field">
+        <label for="symbol">Stock Symbol: </label>
+        <input
+          type="string"
+          name="symbol"
+          [(ngModel)]="stockForm.value.symbol"
+          placeholder="Stock Symbol"
+        />
+      </div>
+      <p class="input-field">
+        <label for="Year">Date: </label>
+        <input type="date"
+        name="date"
+        [(ngModel)] = "stockForm.value.date"
+        placeholder="Please select date"
+        />
+      </p>
+ 
+      <input type="submit" id="submit" value="Find Stock" />
+    </form>
+    <div *ngIf="stockSearched">
+        <br>
+        Symbol:{{stockSearched.symbol}}
+        <br>
+        date = {{stockSearched.from}}
+        <br>
+        Opening price:{{stockSearched.ope}}
+        <br>
+        Premarket price:{{stockSearched.preMarket}}
+        <br>
+        closing price = {{stockSearched.close}}
+        <br>
+        Highest price of the day:{{stockSearched.high}}
+        <br>
+        Lowest price of the day:{{stockSearched.low}}
+        <br>
+        Volume traded: {{stockSearched.volume}}
+        <br>
+    </div>
+  </div>
+  
+
