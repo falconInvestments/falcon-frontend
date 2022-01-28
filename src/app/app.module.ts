@@ -17,9 +17,10 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { CookieService } from 'ngx-cookie-service';
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { StocksComponent } from './stocks/stocks.component';
 
 @NgModule({
-  declarations: [AppComponent, SignupComponent, SigninComponent, HomeComponent, DashboardComponent],
+  declarations: [AppComponent, SignupComponent, SigninComponent, HomeComponent, DashboardComponent, StocksComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

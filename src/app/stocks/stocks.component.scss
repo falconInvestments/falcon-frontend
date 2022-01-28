@@ -1,0 +1,40 @@
+
+.container {
+    display: flex;
+    justify-content: center;
+    form {
+        display: flex;
+        flex-direction: column;
+        min-width: 20vw;
+        padding: 20px;
+        background-color: #FDCD93;
+        border: 1px solid black;
+        border-radius: 5px;
+        margin: 40px;
+        h2 {
+            text-align: center;
+        }
+        .input-field {
+            position: relative;
+            margin-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            input, label {
+                padding: 0.8rem;
+            }
+        }
+        .input-field:first-child {
+            margin-bottom: 1.5rem;
+        }
+        #submit{
+            background: linear-gradient(to left, #4776E6, #8e54e9);
+            color: white;
+            border-radius: 4px;
+            margin-top: 2rem;
+            padding: 0.4rem;
+        }
+        #submit:hover{
+            background: linear-gradient(to left, #4777e6d4, #8e54e9d4);
+        }
+    }
+}
