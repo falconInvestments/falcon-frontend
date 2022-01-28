@@ -1,0 +1,106 @@
+.welcome {
+  display: flex;
+  min-height: 400px;
+  background-color: #ede7d0;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+  img {
+    max-width: 600px;
+    border: 1px solid black;
+    border-radius: 15px;
+  }
+}
+
+.accounts {
+  min-height: 400px;
+  background-color: #549369;
+  padding: 10px 20px 40px 20px;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  h2 {
+    padding: 20px;
+    font-size: 36px;
+    margin-left: 30px;
+  }
+  div {
+    display: flex;
+    justify-content: space-evenly;
+    .ira {
+      border-right: 1px solid black;
+    }
+    aside {
+      padding: 5px 60px 30px 60px;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      li {
+        text-align: left;
+      }
+      a {
+        text-decoration: none;
+        color: white;
+        background-color: #1d3557;
+        padding: 7px;
+        border-radius: 5px;
+        width: 130px;
+        text-align: center;
+      }
+      a:hover {
+        background-color: #3336908e;
+      }
+    }
+  }
+}
+
+.investments {
+  min-height: 400px;
+  background-color: #ede7d0;
+  padding: 10px 20px 40px 20px;
+  h2 {
+    padding: 20px;
+    font-size: 36px;
+    margin-left: 30px;
+  }
+  div {
+    display: flex;
+    justify-content: space-evenly;
+    .mutual-funds {
+      border-right: 1px solid black;
+      border-left: 1px solid black;
+    }
+    aside {
+      padding: 40px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      a {
+        text-decoration: none;
+        color: white;
+        background-color: #1d3557;
+        padding: 7px;
+        border-radius: 5px;
+      }
+      a:hover {
+        background-color: #3336908e;
+      }
+    }
+  }
+}
+
+h2 {
+  font-size: 34px;
+  font-family: "Merriweather", serif;
+}
+
+h3 {
+  font-size: 24px;
+  font-family: "Playfair Display", serif;
+}
+
+mat-icon {
+  margin: 20px auto 30px auto;
+  font-size: 30px;
+}

@@ -1,0 +1,26 @@
+<div class="wrapper">
+  <div class="container">
+    <form #signinForm="ngForm" (ngSubmit)="onSubmit(signinForm)">
+      <h2>Login</h2>
+      <div class="input-field">
+        <label for="email">Email: </label>
+        <input
+          type="email"
+          name="email"
+          [(ngModel)]="signinForm.value.email"
+          placeholder="Email address"
+        />
+      </div>
+      <div class="input-field">
+        <label for="password">Password: </label>
+        <input
+          type="password"
+          name="password"
+          [(ngModel)]="signinForm.value.password"
+          placeholder="Password"
+        />
+      </div>
+      <input type="submit" id="submit" value="Sign in to your account" />
+    </form>
+  </div>
+</div>

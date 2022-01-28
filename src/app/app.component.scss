@@ -1,0 +1,46 @@
+mat-toolbar {
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  background-color: #034f39;
+  color: white;
+  mat-toolbar-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .left-bar h1 {
+      display: inline-block;
+      font-size: 30px;
+    }
+    a {
+      font-size: 16px;
+      font-family: "Montserrat", sans-serif;
+    }
+  }
+}
+
+mat-sidenav-content {
+  background-color: #ede7d0;
+}
+
+.container {
+  min-height: 100px;
+  border-top: 1px solid black;
+  text-align: center;
+  p {
+    display: block;
+    margin: 20px;
+  }
+  a {
+    padding: 0 10px;
+    color: black;
+  }
+  a:hover {
+    color: navy;
+  }
+}
+
+h1 {
+  margin: 10px;
+  font-family: "Montserrat", sans-serif;
+}
