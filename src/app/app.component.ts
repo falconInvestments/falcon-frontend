@@ -21,9 +21,8 @@ export class AppComponent implements OnInit {
     this.userStore.currentUser$.subscribe((user) => {
       if (!user) {
         let cookie = this.cookieService.get('falcon.sid');
-        let userInCookie = JSON.parse(cookie).userId;
-        if (userInCookie) {
-          this.userService.fetchUserDetails(userInCookie);
+        if (cookie) {
+          this.userService.fetchUserDetails(JSON.parse(cookie).userId);
         }
       }
     });
