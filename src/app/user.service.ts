@@ -37,4 +37,7 @@ export class UserService {
         }
       });
   }
+  getUsers(): Observable<any> {
+    return this.http.get(baseUrl + '/users')
+  }
 }

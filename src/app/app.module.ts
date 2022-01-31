@@ -13,6 +13,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import {MatCardModule} from '@angular/material/card';
 import { LayoutModule } from '@angular/cdk/layout';
 import { CookieService } from 'ngx-cookie-service';
 import { HomeComponent } from './home/home.component';
@@ -37,6 +38,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatListModule,
     MatButtonModule,
     LayoutModule,
+    MatCardModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule
