@@ -1,0 +1,51 @@
+.wrapper {
+    //background-color: #457b9dbf;
+    h1 {
+        padding: 20px;
+        font-size: 36px;
+        text-align: center;
+        font-family: 'Playfair Display', 'serif';
+    }
+}
+.container {
+    padding: 20px;
+    min-height: 80vh;
+    display: flex;
+    justify-content: space-around;
+
+    mat-card {
+        margin: 10px auto;
+        display: inline-block;
+        padding: 20px;
+        text-align: center;
+    }
+    .info {
+        th {
+            padding: 5px 15px;
+        }
+    }
+    .investments {
+            margin: auto;
+            font-size: 16px;
+            td {
+                padding: 5px 15px;
+            }
+            th {
+                padding: 10px 15px;
+                border-bottom: 1px solid black;
+            }
+
+        }
+
+}
+a {
+    text-decoration: none;
+    color: white;
+    background-color: #1d3557;
+    padding: 7px;
+    border-radius: 5px;
+    width: 130px;
+    text-align: center;
+    display: inline-block;
+    margin: 30px;
+}

@@ -25,4 +25,7 @@ export class UserService {
   }): Observable<any> {
     return this.http.post(baseUrl + '/signin', formValues);
   }
+  getUsers(): Observable<any> {
+    return this.http.get(baseUrl + '/users')
+  }
 }

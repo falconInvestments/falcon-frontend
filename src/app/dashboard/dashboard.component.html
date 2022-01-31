@@ -1,1 +1,65 @@
-<p>dashboard works!</p>
+<div class="wrapper">
+    <h1>Welcome {{users[0].firstName | titlecase}}!</h1>
+    <div class="container">
+      <div>
+        <mat-card>
+          <h2>User info</h2>
+          <div class="info">
+            <table >
+              <tr>
+                <th>Name:</th><td>{{users[0].firstName | titlecase}} {{users[0].lastName | titlecase}}</td>
+              </tr>
+              <tr>
+                <th>Age:</th><td></td>
+              </tr>
+              <tr>
+                <th>Email:</th><td>{{users[0].email}}</td>
+              </tr>
+              <ng-container >
+                <tr>
+                  <th>Account Type:</th><td>{{accounts[1].label}}</td>
+                </tr>
+                <tr>
+                  <th>Balance:</th><td>{{accounts[1].balance | currency}}</td>
+                </tr>
+                <tr>
+                  <th>Annual Contribution:</th><td>{{accounts[1].annualContribution | currency}}</td>
+                </tr>
+                <tr>
+                  <th>Account Date:</th><td>{{accounts[1].createdAt |  date}}</td>
+                </tr>
+              </ng-container>
+          </table>
+        </div>
+      </mat-card>
+      </div>
+      <div>
+        <mat-card
+          ><h2>Investment Portfolio</h2>
+          <table class="investments">
+            <th>Investment Name</th>
+            <th>Symbol</th>
+            <th>Investment Type</th>
+            <th>Expense Ratio</th>
+            <th>NAV</th>
+            <th>Date Created</th>
+            <th>Delete</th>
+  
+            <tr *ngFor="let investment of investments, let i = index">
+              <td>{{ investment.name }}</td>
+              <td>{{ investment.symbol }}</td>
+              <td>{{ investment.type }}</td>
+              <td>{{ investment.expenseRatio }}</td>
+              <td>{{ investment.nAV | currency }}</td>
+              <td>{{ investment.inceptionDate | date }}</td>
+              <button (click)="deleteInvestment(investment.id, i)" mat-mini-fab color="primary" aria-label="icon button with a plus icon">
+                <mat-icon>delete</mat-icon>
+            </button>
+            </tr>
+          </table>
+          <a routerLink="/investments">Add Investments</a>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  
