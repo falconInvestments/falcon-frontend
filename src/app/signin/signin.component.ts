@@ -9,6 +9,8 @@ import { UserService } from '../user.service';
   styleUrls: ['./signin.component.scss'],
 })
 export class SigninComponent implements OnInit {
+  currentUserId: number = NaN;
+
   constructor(
     private userService: UserService,
     private cookieService: CookieService
@@ -17,8 +19,14 @@ export class SigninComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(form: NgForm) {
-    this.userService.submitSignin(form.value).subscribe((response) => {
-      this.cookieService.set('falcon.sid', JSON.stringify(response));
-    });
+    const signinSubscription = this.userService
+      .submitSignin(form.value)
+      .subscribe((response) => {
+        this.cookieService.set('falcon.sid', JSON.stringify(response));
+        if (response.userId) {
+          this.userService.fetchUserDetails(response.userId);
+          signinSubscription.unsubscribe();
+        }
+      });
   }
 }

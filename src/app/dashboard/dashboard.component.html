@@ -1,5 +1,8 @@
+
 <div class="wrapper">
-    <h1>Welcome {{users[0].firstName | titlecase}}!</h1>
+    <div *ngIf="userToGreet">
+      <h1>Welcome, {{ userToGreet.firstName }}!</h1>
+    </div>
     <div class="container">
       <div>
         <mat-card>

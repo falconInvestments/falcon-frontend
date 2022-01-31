@@ -1,0 +1,27 @@
+.mutual-funds  {
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+    align-items: center;
+}
+
+// .mat-table {
+
+//     max-height: 600px;
+// }
+
+table {
+    width: 100%;
+}
+
+.mat-column-fundName {
+    flex: 0 0 16%;
+}
+
+.mat-column-inceptionDate, .mat-column-inceptionRate, .mat-column-expenseRatio {
+    flex: 0 0 9%;
+}
+
+.mat-column-symbol, .mat-column-yTD, .mat-column-yearOne, .mat-column-yearThree, .mat-column-yearFive, .mat-column-yearTen, .mat-column-nAV, .mat-column-risk, .mat-column-minimum{
+    flex: 0 0 6%;
+}
