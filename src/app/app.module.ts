@@ -18,9 +18,10 @@ import { CookieService } from 'ngx-cookie-service';
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { StocksComponent } from './stocks/stocks.component';
+import { SignoutButtonComponent } from './signout-button/signout-button.component';
 
 @NgModule({
-  declarations: [AppComponent, SignupComponent, SigninComponent, HomeComponent, DashboardComponent, StocksComponent],
+  declarations: [AppComponent, SignupComponent, SigninComponent, HomeComponent, DashboardComponent, StocksComponent, SignoutButtonComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
