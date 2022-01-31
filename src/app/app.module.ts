@@ -22,9 +22,10 @@ import { MutualFundsComponent } from './mutual-funds/mutual-funds.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { CertificatesComponent } from './certificates/certificates.component';
 
 @NgModule({
-  declarations: [AppComponent, SignupComponent, SigninComponent, HomeComponent, DashboardComponent, StocksComponent, MutualFundsComponent],
+  declarations: [AppComponent, SignupComponent, SigninComponent, HomeComponent, DashboardComponent, StocksComponent, MutualFundsComponent, CertificatesComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
