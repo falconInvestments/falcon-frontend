@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { UserStoreService } from '../user-store.service';
 import { UserService } from '../user.service';
@@ -14,13 +15,21 @@ export class SignoutButtonComponent implements OnInit {
   constructor(
     private userService: UserService,
     private userStore: UserStoreService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    if (this.cookieService.get('falcon.sid')) {
-      this.isVisible = true;
-    }
+    const signedInSubscription = this.userStore.currentUser$.subscribe(
+      // Necessary to unsubscribe?
+      (response) => {
+        if (response && response.email) {
+          this.isVisible = true;
+        } else {
+          this.isVisible = false;
+        }
+      }
+    );
   }
 
   signOut(): void {
@@ -31,6 +40,7 @@ export class SignoutButtonComponent implements OnInit {
         this.userStore.clearCurrentUser();
         // Navigate to home
         signoutSubscription.unsubscribe();
+        this.router.navigate(['/']);
       }
     });
   }
