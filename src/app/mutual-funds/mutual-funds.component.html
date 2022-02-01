@@ -3,7 +3,48 @@
 
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort (matSortChange)="announceSortChange($event)">
 
-        <ng-container *ngFor="let column of columns, let i = index" [matColumnDef]="column.columnDef">
+    <ng-container matColumnDef="fundName">
+        <th mat-header-cell *matHeaderCellDef>Fund Name</th>
+        <td mat-cell *matCellDef="let columns"><a routerLink="">{{columns.fundName}}</a></td>
+    </ng-container>
+    
+    <ng-container matColumnDef="symbol">
+        <th mat-header-cell *matHeaderCellDef>Symbol</th>
+        <td mat-cell *matCellDef="let columns">{{columns.symbol}}</td>
+    </ng-container>
+    
+    <ng-container matColumnDef="inceptionDate">
+        <th mat-header-cell *matHeaderCellDef>YTD</th>
+        <td mat-cell *matCellDef="let columns">{{columns.inceptionDate}}</td>
+    </ng-container>
+    
+    <ng-container matColumnDef="expenseRatio">
+        <th mat-header-cell *matHeaderCellDef>Expense Ratio</th>
+        <td mat-cell *matCellDef="let columns">{{columns.expenseRatio}}</td>
+    </ng-container>
+    
+    <ng-container matColumnDef="naV">
+        <th mat-header-cell *matHeaderCellDef>NAV</th>
+        <td mat-cell *matCellDef="let columns">{{columns.nAV}}</td>
+    </ng-container>
+    
+    <ng-container matColumnDef="action" >
+        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <td mat-cell *matCellDef="let columns; let i = index;">
+            <div *ngIf="newArr[i]==null">
+                <button (click)="addInvestment(i)" mat-mini-fab color="primary" aria-label="icon button with a plus icon">
+                    <mat-icon>add</mat-icon>
+                </button>
+                </div>
+                <div *ngIf="newArr[i]==true">
+                    <button mat-mini-fab disabled color="primary">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </div>
+        </td>
+    </ng-container> 
+
+        <!-- <ng-container *ngFor="let column of columns, let i = index" [matColumnDef]="column.columnDef">
             <tr>
             <th mat-header-cell *matHeaderCellDef
                 mat-sort-header 
@@ -13,8 +54,8 @@
             <td mat-cell *matCellDef="let row"> {{column.cell(row)}}</td>
         <td mat-cell *matCellDef="let row"><button>Text</button></td>
         </tr>
-        </ng-container>
-        <tr mat-cell *matCellDef="let row"><button>Text</button></tr>
+        </ng-container> -->
+
             <!-- <td>
                 <div *ngIf="newArr[i]==null">
                     <button (click)="addInvestment(i)" mat-mini-fab color="primary" aria-label="icon button with a plus icon">
@@ -28,8 +69,8 @@
                     </div>
             </td> -->
     
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 
     <mat-paginator [pageSizeOptions]="[5, 10, 25]" 
