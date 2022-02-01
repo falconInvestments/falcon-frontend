@@ -12,6 +12,7 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
   styleUrls: ['./mutual-funds.component.scss']
 })
 export class MutualFundsComponent implements OnInit {
+  newArr: any[] = [];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatPaginator) dataSource!: MatTableDataSource<MutualFund>;
@@ -45,6 +46,9 @@ export class MutualFundsComponent implements OnInit {
     {columnDef: 'nAV', header: 'NAV', sortBy: 'Sort by nAV',  cell: (element: any) => `${element.nAV}`},
     {columnDef: 'risk', header: 'Risk', sortBy: 'Sort by risk',  cell: (element: any) => `${element.risk}`},
     {columnDef: 'minimum', header: 'Minimum', sortBy: 'Sort by minimum',  cell: (element: any) => `$ ${element.minimum}`},
+    //{columnDef: 'action', header: 'Minimum', sortBy: 'Sort by minimum',  cell: () => `<button>Text</button>`},
+
+
   ];
 
   displayedColumns = this.columns.map(c => c.columnDef);
@@ -56,5 +60,8 @@ export class MutualFundsComponent implements OnInit {
     } else {
       this._liveAnncouncer.announce('Sorting cleared');
     }
+  }
+  addInvestment(index: number) {
+
   }
 }
