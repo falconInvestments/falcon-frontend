@@ -1,0 +1,9 @@
+<h3>Certificates of deposit</h3>
+<div *ngFor="let certificate of userCertificates">
+  <h4>{{ certificate.name ? certificate.name : "Unnamed CD" }}</h4>
+  <h5>
+    {{ certificate.initialAmount }} on
+    {{ certificate.startDate | date: "medium" }}
+  </h5>
+  <br />
+</div>
