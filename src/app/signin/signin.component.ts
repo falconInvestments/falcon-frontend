@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { UserService } from '../user.service';
 
@@ -13,7 +14,8 @@ export class SigninComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
@@ -26,6 +28,7 @@ export class SigninComponent implements OnInit {
         if (response.userId) {
           this.userService.fetchUserDetails(response.userId);
           signinSubscription.unsubscribe();
+          this.router.navigate(['/dashboard']);
         }
       });
   }

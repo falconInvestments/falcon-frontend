@@ -37,7 +37,12 @@ export class UserService {
         }
       });
   }
+
+  signUserOut(): Observable<any> {
+    return this.http.get(baseUrl + '/signout');
+  }
+
   getUsers(): Observable<any> {
-    return this.http.get(baseUrl + '/users')
+    return this.http.get(baseUrl + '/users');
   }
 }

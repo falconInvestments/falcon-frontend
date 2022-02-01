@@ -14,13 +14,14 @@ import { CookieService } from 'ngx-cookie-service';
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { StocksComponent } from './stocks/stocks.component';
+import { SignoutButtonComponent } from './signout-button/signout-button.component';
 import { MutualFundsComponent } from './mutual-funds/mutual-funds.component';
 import { CertificatesComponent } from './certificates/certificates.component';
 import { EtfsComponent } from './etfs/etfs.component';
 
-
 @NgModule({
-  declarations: [AppComponent, SignupComponent, SigninComponent, HomeComponent, DashboardComponent, StocksComponent, MutualFundsComponent, CertificatesComponent, EtfsComponent],
+  declarations: [AppComponent, SignupComponent, SigninComponent, HomeComponent, DashboardComponent, StocksComponent, SignoutButtonComponent, MutualFundsComponent, CertificatesComponent, EtfsComponent],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
