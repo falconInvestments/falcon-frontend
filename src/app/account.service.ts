@@ -24,4 +24,9 @@ export class AccountService {
   deleteInvestment(id: number | undefined): Observable<any> {
     return this.http.delete(this.url + 'investments/' + id)
   }
+
+  createInvestment(newInvestment: Object): Observable<any>{
+    return this.http.post<any>(this.url + 'investments/', newInvestment);
+  }
+  
 }
