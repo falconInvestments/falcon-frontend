@@ -1,13 +1,8 @@
-export interface Stocks {
-    afterhours: number,
-    close: number,
-    from: Date,
-    high: number,
-    low: number,
-    ope: number,
-    preMarket: number,
-    status: string,
+export interface Stock {
+    stock_id: number,
+    name: string,
     symbol: string,
-    volume: number
+    price: number,
+    investorId?: number
   }
   

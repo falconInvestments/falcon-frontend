@@ -1,22 +1,35 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Stock } from "./stock.model"
 
-
+const baseURL = "https://vg-express-router.herokuapp.com/api/stocks";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class StockService {
-  constructor(private http: HttpClient) {}
+export class StocksService {
 
-  findStock(formValues: any): Observable<any> {
-    const stock = {
-      symbol: formValues.symbol,
-      date: formValues.date,
+  constructor(private http: HttpClient) { }
 
-    };
+  getStocks(): Observable<any> {
+    return this.http.get(`${baseURL}`);
+  }
 
-    return this.http.get(`https://api.polygon.io/v1/open-close/${stock.symbol}/${stock.date}?adjusted=true&apiKey=lMnC0fGVROfB2pPYLnH97iyDxzqtlD8z`);
-}
+  getStock(stock_id: number): Observable<any> {
+    return this.http.get(`${baseURL}/${stock_id}`);
+  }
+  
+  createStock(newStock: Stock): Observable<any>{
+    return this.http.post(`${baseURL}/`, newStock);
+  }
+
+  
+  deleteStock(stock_id: number): Observable<any> {
+    return this.http.delete(`${baseURL}/${stock_id}`);
+  }
+
+  updateStock(stock: Stock): Observable<any>{
+    return this.http.put(`${baseURL}/${stock.stock_id}`, stock);
+  }
 }
