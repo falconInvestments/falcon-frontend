@@ -38,7 +38,7 @@ accounts: Account[] = [];
       })})
     this.accountService.getAccounts().subscribe(payload =>{
       this.accounts = payload;
-      this.investments = payload[0].investments;
+      this.investments = payload[1].investments;
     })
   }
 
