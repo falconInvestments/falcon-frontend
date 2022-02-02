@@ -1,0 +1,57 @@
+<div class="article-container">
+    <mat-card class="article-card" *ngFor="let article of articles">
+        <mat-card-title-group>
+          <mat-card-title>{{article.title}}</mat-card-title>
+          <!-- <mat-card-subtitle>Small</mat-card-subtitle> -->
+          <img mat-card-md-image src="{{article.image_url}}" >
+        </mat-card-title-group>
+        <mat-card-content>
+            {{article.description}}
+        </mat-card-content>
+        <a href="{{article.url}}">
+            <button mat-button>Read Article</button>
+        </a>
+    </mat-card>
+</div>
+
+<!-- <div class="article-container">
+    <mat-card class="article-card">
+        <mat-card-title-group>
+          <mat-card-title>Shiba Inu</mat-card-title>
+          <img mat-card-md-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
+        </mat-card-title-group>
+        <mat-card-content>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores minus, veritatis error quia recusandae perferendis corrupti deleniti non possimus nam similique ipsum eum? Fugiat necessitatibus omnis explicabo enim praesentium perspiciatis.
+        </mat-card-content>
+        <a href="">
+            <button mat-button>Read Article</button>
+        </a>
+    </mat-card>
+
+    <mat-card class="article-card">
+        <mat-card-title-group>
+          <mat-card-title>Shiba Inu</mat-card-title>
+          <img mat-card-md-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
+        </mat-card-title-group>
+        <mat-card-content>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores minus, veritatis error quia recusandae perferendis corrupti deleniti non possimus nam similique ipsum eum? Fugiat necessitatibus omnis explicabo enim praesentium perspiciatis.
+        </mat-card-content>
+        <a href="">
+            <button mat-button>Read Article</button>
+        </a>
+    </mat-card>
+
+    <mat-card class="article-card">
+        <mat-card-title-group>
+          <mat-card-title>Shiba Inu</mat-card-title>
+          <img mat-card-md-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
+        </mat-card-title-group>
+        <mat-card-content>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores minus, veritatis error quia recusandae perferendis corrupti deleniti non possimus nam similique ipsum eum? Fugiat necessitatibus omnis explicabo enim praesentium perspiciatis.
+        </mat-card-content>
+        <a href="">
+            <button mat-button>Read Article</button>
+        </a>
+    </mat-card>
+</div> -->
+
