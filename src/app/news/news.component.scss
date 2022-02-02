@@ -1,0 +1,30 @@
+mat-card {
+    max-width: 20rem; 
+    height: 250px;
+}
+
+mat-card-header {
+    width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+// .truncate {
+//     width: 250px;
+//     white-space: nowrap;
+//     overflow: hidden;
+//     text-overflow: ellipsis;
+// }
+  
+
+
+.article-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-top: 2px solid black;
+    border-bottom: black 2px solid;
+    height: 20rem;
+}

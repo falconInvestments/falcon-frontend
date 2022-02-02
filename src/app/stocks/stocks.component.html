@@ -1,50 +1,33 @@
+<div class="stocks">
+  <h1>Falcon Investments Stocks</h1>
+<mat-table [dataSource]="dataSource">
+  <!-- User name Definition -->
+  <ng-container matColumnDef="stockname">
+    <mat-header-cell *matHeaderCellDef> Stock name</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+  </ng-container>
+
+  <!-- Age Definition -->
+  <ng-container matColumnDef="sybol">
+    <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.symbol}} </mat-cell>
+  </ng-container>
+
+  <!-- Title Definition -->
+  <ng-container matColumnDef="price">
+    <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+    <mat-cell *matCellDef="let row"> ${{row.price}} </mat-cell>
+  </ng-container>
+
+  <!-- Header and Row Declarations -->
+  <mat-header-row *matHeaderRowDef="['stockname', 'sybol', 'price']"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: ['stockname', 'sybol', 'price']"></mat-row>
+</mat-table>
 
 
-<div class="container">
-    <form #stockForm="ngForm" (ngSubmit)="onSubmit(stockForm)">
-        <p>Get the open, close and afterhours prices of a stock symbol on a certain date.
-
-        </p>
-      <h2>Search Stock</h2>
-      <div class="input-field">
-        <label for="symbol">Stock Symbol: </label>
-        <input
-          type="string"
-          name="symbol"
-          [(ngModel)]="stockForm.value.symbol"
-          placeholder="Stock Symbol"
-        />
-      </div>
-      <p class="input-field">
-        <label for="Year">Date: </label>
-        <input type="date"
-        name="date"
-        [(ngModel)] = "stockForm.value.date"
-        placeholder="Please select date"
-        />
-      </p>
- 
-      <input type="submit" id="submit" value="Find Stock" />
-    </form>
-    <div *ngIf="stockSearched">
-        <br>
-        Symbol:{{stockSearched.symbol}}
-        <br>
-        date = {{stockSearched.from}}
-        <br>
-        Opening price:{{stockSearched.ope}}
-        <br>
-        Premarket price:{{stockSearched.preMarket}}
-        <br>
-        closing price = {{stockSearched.close}}
-        <br>
-        Highest price of the day:{{stockSearched.high}}
-        <br>
-        Lowest price of the day:{{stockSearched.low}}
-        <br>
-        Volume traded: {{stockSearched.volume}}
-        <br>
-    </div>
-  </div>
-  
+<mat-paginator [pageSizeOptions]="[5, 10, 25]" 
+                 showFirstLastButtons
+                 aria-label="Select page of stocks">
+  </mat-paginator>
+</div>
 

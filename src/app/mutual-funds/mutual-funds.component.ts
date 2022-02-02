@@ -5,6 +5,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { FilteredFund } from '../filtered-fund.model';
+import { AccountService } from '../account.service';
+import { Investment } from '../investment.model';
 
 @Component({
   selector: 'app-mutual-funds',
@@ -12,43 +15,58 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
   styleUrls: ['./mutual-funds.component.scss']
 })
 export class MutualFundsComponent implements OnInit {
+  filteredFunds: any[] = [];
+  filteredFund: any = {mf_id: 0, fundName: '', symbol: '', inceptionDate: '', expenseRatio: 0, nAV: 0, isUsed: false }
+  dataSource!: MatTableDataSource<FilteredFund[]>;
+  investments:any[] = [];
+  newInvestment: Investment = {name: '', type: 'Mutual Fund', symbol: '', expenseRatio: 0, nAV: 0, inceptionDate: '', accountId: 2};
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatPaginator) dataSource!: MatTableDataSource<MutualFund>;
+  //@ViewChild(MatPaginator) dataSource!: MatTableDataSource<FilteredFund[]>;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private mutualFundService: MutualFundsService,
+              private accountService: AccountService,
               private _liveAnncouncer: LiveAnnouncer) {}
 
-  mutualFunds:MutualFund[] = [];
+  mutualFunds:any[] = [];
 
   ngOnInit(): void {
+    this.getInvestments();
     this.mutualFundService.getMutualFunds().subscribe(payload => {
-      // this.mutualFunds = payload;
-      this.dataSource = new MatTableDataSource(payload);
+      this.mutualFunds = payload;
+      for (let i = 0; i < this.mutualFunds.length; i++) {
+        this.filteredFund = {mf_id: 0, fundName: '', symbol: '', inceptionDate: '', expenseRatio: 0, nAV: 0, isUsed: false }
+        for (let key in this.mutualFunds[i]) {
+          if (this.filteredFund.hasOwnProperty(key)) {
+            this.filteredFund[key] = this.mutualFunds[i][key]
+          }
+        }
+        for (let j = 0; j < this.investments.length; j++){
+          if(this.mutualFunds[i].fundName == this.investments[j].name) {
+            this.filteredFund.isUsed = true;
+          } 
+        }
+        this.filteredFunds.push(this.filteredFund)
+      }
+
+      this.dataSource = new MatTableDataSource(this.filteredFunds);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     })
   }
 
-  columns = [
-    {columnDef: 'fundName', header: 'Mutual Fund Name', sortBy: 'Sort by header', cell: (element: any) => `${element.fundName}`},
-    {columnDef: 'symbol', header: 'Symbol', sortBy: 'Sort by symbol', cell: (element: any) => `${element.symbol}`},
-    {columnDef: 'yTD', header: 'YTD',  sortBy: 'Sort by yTD', cell: (element: any) => `${element.yTD}`},
-    {columnDef: 'yearOne', header: 'Year 1', sortBy: 'Sort by yearOne',  cell: (element: any) => `${element.yearOne}`},
-    {columnDef: 'yearThree', header: 'Year 3', sortBy: 'Sort by yearThree',  cell: (element: any) => `${element.yearThree}`},
-    {columnDef: 'yearFive', header: 'Year 5', sortBy: 'Sort by yearFive',  cell: (element: any) => `${element.yearThree}`},
-    {columnDef: 'yearTen', header: 'Year 10', sortBy: 'Sort by yearTen',  cell: (element: any) => `${element.yearTen}`},
-    {columnDef: 'inceptionDate', header: 'Inception Date', sortBy: 'Sort by inceptionDate',  cell: (element: any) => `${element.inceptionDate}`},
-    {columnDef: 'inceptionRate', header: 'Inception Rate', sortBy: 'Sort by inceptionRate',  cell: (element: any) => `${element.inceptionRate}`},
-    {columnDef: 'expenseRatio', header: 'Expense Ratio', sortBy: 'Sort by expenseRatio',  cell: (element: any) => `${element.expenseRatio}`},
-    {columnDef: 'nAV', header: 'NAV', sortBy: 'Sort by nAV',  cell: (element: any) => `${element.nAV}`},
-    {columnDef: 'risk', header: 'Risk', sortBy: 'Sort by risk',  cell: (element: any) => `${element.risk}`},
-    {columnDef: 'minimum', header: 'Minimum', sortBy: 'Sort by minimum',  cell: (element: any) => `$ ${element.minimum}`},
-  ];
+  displayedColumns: string[] = ['fundName', 'symbol', 'inceptionDate', 'expenseRatio', "nAV", "isUsed"];
+  
+  getInvestments(): void {
+    this.accountService.getAccounts().subscribe(payload =>{
+      this.investments = payload[1].investments;
+    });
+  }
 
-  displayedColumns = this.columns.map(c => c.columnDef);
-  // dataSource = this.mutualFunds;
+  ngAfterViewInit(): void {
+    this.dataSource.sort = this.sort;
+  }
 
   announceSortChange(sortState: Sort) {
     if (sortState.direction) {
@@ -56,5 +74,32 @@ export class MutualFundsComponent implements OnInit {
     } else {
       this._liveAnncouncer.announce('Sorting cleared');
     }
+  }
+  addInvestment(fundId: number) {
+    for (let [key, value] of Object.entries(this.filteredFunds.find(x => x.mf_id === fundId))) {
+      switch (key){
+        case 'fundName':
+          this.newInvestment.name = String(value);
+          break;
+        case 'symbol':
+          this.newInvestment.symbol = String(value);
+          break;
+        case 'expenseRatio':
+          this.newInvestment.expenseRatio = Number(value);
+          break;
+        case 'nAV':
+          this.newInvestment.nAV = Number(value);
+          break;
+        case 'inceptionDate':
+          this.newInvestment.inceptionDate = String(value);
+          break;
+      }
+    }
+    this.filteredFunds.find(x => x.mf_id === fundId).isUsed = true;
+    this.accountService.createInvestment(this.newInvestment).subscribe(data => {
+      if(data) {
+        console.log(data);
+      }
+    })
   }
 }

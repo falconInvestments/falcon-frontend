@@ -8,7 +8,7 @@ export interface MutualFund {
     yearTen?: number,
     inceptionDate?: string,
     inceptionRate?: number,
-    expenseRation?: number,
+    expenseRatio?: number,
     nAV?: number,
     risk?: number,
     minimum?: number
