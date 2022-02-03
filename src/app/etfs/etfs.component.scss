@@ -1,0 +1,29 @@
+.mat-column-name {
+    flex: 0 0 15%;
+
+}
+
+.mat-column-ticker {
+    flex: 0 0 9%;
+}
+
+.mat-column-asset {
+    flex: 0 0 15%;
+}
+
+
+.mat-column-price, .mat-column-portfolio {
+    flex: 0 0 12%;
+}
+
+mat-cell {
+    border-bottom-style: none
+}
+
+td.mat-cell {
+    border-bottom-style: none;
+}
+
+th.mat-header-cell {
+    border-bottom-style: none
+}
