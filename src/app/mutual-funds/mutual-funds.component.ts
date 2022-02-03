@@ -8,6 +8,10 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { FilteredFund } from '../filtered-fund.model';
 import { AccountService } from '../account.service';
 import { Investment } from '../investment.model';
+import { UserStoreService } from '../user-store.service';
+import { User } from '../user.model';
+import { Account } from '../account.model';
+
 
 @Component({
   selector: 'app-mutual-funds',
@@ -20,12 +24,15 @@ export class MutualFundsComponent implements OnInit {
   dataSource!: MatTableDataSource<FilteredFund[]>;
   investments:any[] = [];
   newInvestment: Investment = {name: '', type: 'Mutual Fund', symbol: '', expenseRatio: 0, nAV: 0, inceptionDate: '', accountId: 2};
+  userToGreet: User | null= null; 
+  accounts: Account[] | any = [];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   //@ViewChild(MatPaginator) dataSource!: MatTableDataSource<FilteredFund[]>;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private mutualFundService: MutualFundsService,
+  constructor(private userStore: UserStoreService,
+              private mutualFundService: MutualFundsService,
               private accountService: AccountService,
               private _liveAnncouncer: LiveAnnouncer) {}
 
@@ -59,9 +66,14 @@ export class MutualFundsComponent implements OnInit {
   displayedColumns: string[] = ['fundName', 'symbol', 'inceptionDate', 'expenseRatio', "nAV", "isUsed"];
   
   getInvestments(): void {
-    this.accountService.getAccounts().subscribe(payload =>{
-      this.investments = payload[1].investments;
+    this.userStore.currentUser$.subscribe((response) => {
+       this.userToGreet = response;
     });
+    this.accountService.getAccounts().subscribe(payload =>{
+      this.accounts = payload.find((acc: { newUserId: number; }) => this.userToGreet ? acc.newUserId == this.userToGreet.id : acc.newUserId == 99);
+      this.investments = this.accounts.investments;
+    })
+
   }
 
   ngAfterViewInit(): void {
