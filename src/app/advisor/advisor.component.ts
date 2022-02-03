@@ -22,10 +22,10 @@ export class AdvisorComponent implements OnInit {
     })
   }
 
-  show_topics():void{
-    this.advisorService.getTopics().subscribe(payload => {
-      console.log("showing topics...", payload.data)
-      this.topics = payload;
-    })
-  }
+  // show_topics():void{
+  //   this.advisorService.getTopics().subscribe(payload => {
+  //     console.log("showing topics...", payload.data)
+  //     this.topics = payload;
+  //   })
+  // }
 }
