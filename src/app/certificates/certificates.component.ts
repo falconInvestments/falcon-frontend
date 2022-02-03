@@ -1,6 +1,7 @@
 import { formatPercent } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Certificate } from '../certificate.model';
 import { CertificateService } from '../certificate.service';
 import { UserStoreService } from '../user-store.service';
@@ -12,7 +13,7 @@ const { DateTime } = require('luxon');
   templateUrl: './certificates.component.html',
   styleUrls: ['./certificates.component.scss'],
 })
-export class CertificatesComponent implements OnInit {
+export class CertificatesComponent implements OnInit, OnDestroy {
   today = new FormControl(new Date());
   certificateName: string = '';
   initialAmount: number = 1000;
@@ -23,28 +24,37 @@ export class CertificatesComponent implements OnInit {
 
   constructor(
     private userStore: UserStoreService,
-    private certificateService: CertificateService
+    private certificateService: CertificateService,
+    private router: Router
   ) {}
+
+  private getCertificatesSubscription: any;
 
   ngOnInit(): void {
     if (this.userStore.currentUser && this.userStore.currentUser.id) {
       let userId = this.userStore.currentUser.id;
-      const certificateSubscription = this.certificateService
+      this.getCertificatesSubscription = this.certificateService
         .getUserCertificates()
         .subscribe((response) => {
           if (Array.isArray(response)) {
             this.userCertificates = response.filter(
               (certificate) => certificate.userId === userId
             );
-            console.log(this.userCertificates);
-            certificateSubscription.unsubscribe();
           }
         });
     }
   }
 
+  ngOnDestroy(): void {
+    this.getCertificatesSubscription.unsubscribe();
+  }
+
+  // Must be refactored for less repetition
   buyCD(): void {
     // Confirmation before submission
+
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
 
     const maturityDate = DateTime.local(
       this.today.value.getFullYear(),
@@ -54,7 +64,7 @@ export class CertificatesComponent implements OnInit {
 
     if (this.userStore.currentUser && this.userStore.currentUser.id) {
       if (this.certificateName) {
-        this.certificateService
+        const newCertificateSubscription = this.certificateService
           .addCertificate(
             this.initialAmount,
             this.APY,
@@ -63,9 +73,12 @@ export class CertificatesComponent implements OnInit {
             this.userStore.currentUser.id,
             this.certificateName
           )
-          .subscribe();
+          .subscribe((response) => {
+            newCertificateSubscription.unsubscribe();
+            this.router.navigate(['/certificates']);
+          });
       } else {
-        this.certificateService
+        const newCertificateSubscription = this.certificateService
           .addCertificate(
             this.initialAmount,
             this.APY,
@@ -73,7 +86,10 @@ export class CertificatesComponent implements OnInit {
             maturityDate,
             this.userStore.currentUser.id
           )
-          .subscribe();
+          .subscribe((response) => {
+            newCertificateSubscription.unsubscribe();
+            this.router.navigate(['/certificates']);
+          });
       }
     } else {
       // Error; should be logged in on this component
