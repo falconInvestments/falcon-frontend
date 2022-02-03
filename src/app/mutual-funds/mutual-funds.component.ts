@@ -26,6 +26,7 @@ export class MutualFundsComponent implements OnInit {
   newInvestment: Investment = {name: '', type: 'Mutual Fund', symbol: '', expenseRatio: 0, nAV: 0, inceptionDate: '', accountId: 2};
   userToGreet: User | null= null; 
   accounts: Account[] | any = [];
+  accountId: number = 0;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   //@ViewChild(MatPaginator) dataSource!: MatTableDataSource<FilteredFund[]>;
@@ -71,6 +72,7 @@ export class MutualFundsComponent implements OnInit {
     });
     this.accountService.getAccounts().subscribe(payload =>{
       this.accounts = payload.find((acc: { newUserId: number; }) => this.userToGreet ? acc.newUserId == this.userToGreet.id : acc.newUserId == 99);
+      this.accountId = this.accounts.id;
       this.investments = this.accounts.investments;
     })
 
@@ -88,6 +90,7 @@ export class MutualFundsComponent implements OnInit {
     }
   }
   addInvestment(fundId: number) {
+    this.newInvestment.accountId = this.accountId;
     for (let [key, value] of Object.entries(this.filteredFunds.find(x => x.mf_id === fundId))) {
       switch (key){
         case 'fundName':
