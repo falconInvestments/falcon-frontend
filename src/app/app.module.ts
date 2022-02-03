@@ -18,9 +18,10 @@ import { SignoutButtonComponent } from './signout-button/signout-button.componen
 import { MutualFundsComponent } from './mutual-funds/mutual-funds.component';
 import { CertificatesComponent } from './certificates/certificates.component';
 import { EtfsComponent } from './etfs/etfs.component';
+import { AdvisorComponent } from './advisor/advisor.component';
 
 @NgModule({
-  declarations: [AppComponent, SignupComponent, SigninComponent, HomeComponent, DashboardComponent, StocksComponent, SignoutButtonComponent, MutualFundsComponent, CertificatesComponent, EtfsComponent],
+  declarations: [AppComponent, SignupComponent, SigninComponent, HomeComponent, DashboardComponent, StocksComponent, SignoutButtonComponent, MutualFundsComponent, CertificatesComponent, EtfsComponent, AdvisorComponent],
 
   imports: [
     BrowserModule,
