@@ -1,4 +1,4 @@
-<mat-accordion multi="true" *ngFor="let etf of etfs">
+<!-- <mat-accordion multi="true" *ngFor="let etf of etfs">
     <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -13,5 +13,45 @@
             <button mat-button color="primary" (click)="nextStep()">Next</button>
         </mat-action-row>
     </mat-expansion-panel>
-</mat-accordion>
+</mat-accordion> -->
+
+<div class="etf-table">
+  <h1>List of ETFs </h1>
+
+  <mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let etf"> {{etf.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="ticker">
+      <th mat-header-cell *matHeaderCellDef> Ticker </th>
+      <td mat-cell *matCellDef="let etf"> {{etf.ticker}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="asset">
+      <th mat-header-cell *matHeaderCellDef> Asset </th>
+      <td mat-cell *matCellDef="let etf"> {{etf.asset}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef> Price </th>
+      <td mat-cell *matCellDef="let etf"> {{etf.price}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="portfolio">
+      <th mat-header-cell *matHeaderCellDef> Portfolio </th>
+      <td mat-cell *matCellDef="let etf"> {{etf.portfolio}} </td>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[3, 9, 12]" 
+                 showFirstLastButtons
+                 aria-label="Select page of etfs">
+  </mat-paginator>
+
+</div>
 
