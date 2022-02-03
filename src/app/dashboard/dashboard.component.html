@@ -17,7 +17,7 @@
               </tr>
               <ng-container >
                 <tr>
-                  <th>Account Type:</th><td>{{accounts.label}}</td>
+                  <th>Account Type:</th><td>{{accounts ? accounts.label : 'type'}}</td>
                 </tr>
                 <tr>
                   <th>Balance:</th><td>{{accounts.balance | currency}}</td>
