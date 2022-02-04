@@ -92,6 +92,15 @@ export class CertificatesComponent implements OnInit, OnDestroy {
     }
   }
 
+  calcTimeRemaining(end: Date) {
+    const startDate = DateTime.fromJSDate(new Date());
+    const endDate = DateTime.fromISO(end);
+
+    return endDate
+      .diff(startDate, ['years', 'months'])
+      .toHuman({ floor: true });
+  }
+
   updateInterest(): void {
     if (this.lengthOfCd >= 1 && this.lengthOfCd < 4) {
       this.APY = 0.001;

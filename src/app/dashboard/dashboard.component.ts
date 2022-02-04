@@ -7,6 +7,8 @@ import { User } from '../user.model';
 import { Certificate } from '../certificate.model';
 import { CertificateService } from '../certificate.service';
 
+const { DateTime } = require('luxon');
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -58,5 +60,20 @@ export class DashboardComponent implements OnInit {
   deleteInvestment(id: number | undefined, index: number) {
     this.accountService.deleteInvestment(id).subscribe();
     this.investments.splice(index, 1);
+  }
+
+  convertDatesToMonths(start: Date, end: Date) {
+    const startDate = DateTime.fromISO(start);
+    const endDate = DateTime.fromISO(end);
+    return endDate.diff(startDate, 'months').values.months;
+  }
+
+  calcTimeRemaining(end: Date) {
+    const startDate = DateTime.fromJSDate(new Date());
+    const endDate = DateTime.fromISO(end);
+
+    return endDate
+      .diff(startDate, ['years', 'months'])
+      .toHuman({ floor: true });
   }
 }

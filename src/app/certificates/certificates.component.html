@@ -13,8 +13,10 @@
         {{ certificate.initialAmount | currency: "USD" }} on
         {{ certificate.startDate | date: "mediumDate" }}
       </h5>
-      Maturity: {{ certificate.maturityDate | date: "mediumDate" }}<br />
-      <!-- Calculate time from now? -->
+      Maturity: {{ certificate.maturityDate | date: "mediumDate" }} ({{
+        calcTimeRemaining(certificate.maturityDate)
+      }}
+      from now)<br />
     </mat-card>
   </mat-tab>
 
