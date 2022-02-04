@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Account } from './account.model';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, delay } from 'rxjs';
 
 
 @Injectable({
@@ -29,4 +29,11 @@ export class AccountService {
     return this.http.post<any>(this.url + 'investments/', newInvestment);
   }
   
+  createUser(accountUser: Object): Observable<any>{
+    return this.http.post<any>(this.url + 'users/', accountUser).pipe(delay(1500));
+  }
+
+  createAccount(newAccount: Object): Observable<any>{
+    return this.http.post<any>(this.url + 'accounts/', newAccount).pipe(delay(1000));
+  }
 }

@@ -1,12 +1,17 @@
 .container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  mat-horizontal-stepper {
+    max-width: 40vw;
+  }
   form {
     display: flex;
     flex-direction: column;
-    min-width: 20vw;
+    
     padding: 20px;
-    background-color: #fdcd93;
+    //background-color: #fdcd93;
     border: 1px solid black;
     border-radius: 5px;
     margin: 40px;
@@ -37,4 +42,12 @@
       background: linear-gradient(to left, #4777e6d4, #8e54e9d4);
     }
   }
+}
+
+.mat-stepper-horizontal {
+  margin-top: 8px;
+}
+
+.mat-form-field {
+  margin-top: 16px;
 }

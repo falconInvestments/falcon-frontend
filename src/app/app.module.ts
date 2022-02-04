@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AngularMaterialModule } from './angular-material.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -18,15 +18,29 @@ import { SignoutButtonComponent } from './signout-button/signout-button.componen
 import { MutualFundsComponent } from './mutual-funds/mutual-funds.component';
 import { CertificatesComponent } from './certificates/certificates.component';
 import { EtfsComponent } from './etfs/etfs.component';
+
 import { CartComponent } from './cart/cart.component';
+import { NewsComponent } from './news/news.component';
 
 @NgModule({
-  declarations: [AppComponent, SignupComponent, SigninComponent, HomeComponent, DashboardComponent, StocksComponent, SignoutButtonComponent, MutualFundsComponent, CertificatesComponent, EtfsComponent, CartComponent],
+  declarations: [AppComponent, 
+  SignupComponent, 
+  SigninComponent, 
+  HomeComponent, 
+  DashboardComponent, 
+  StocksComponent, 
+  SignoutButtonComponent, 
+  MutualFundsComponent, 
+  CertificatesComponent, 
+  EtfsComponent, 
+  NewsComponent,
+  CartComponent],
 
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
+    FormsModule, 
+    ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     AngularMaterialModule,

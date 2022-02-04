@@ -10,26 +10,23 @@
           <div class="info">
             <table >
               <tr>
-                <th>Name:</th><td>{{users[0].firstName | titlecase}} {{users[0].lastName | titlecase}}</td>
+                <th>Name:</th><td>{{userToGreet ? userToGreet.firstName : 'User'}} {{userToGreet ? userToGreet.lastName : 'User'}}</td>
               </tr>
               <tr>
-                <th>Age:</th><td></td>
-              </tr>
-              <tr>
-                <th>Email:</th><td>{{users[0].email}}</td>
+                <th>Email:</th><td>{{userToGreet ? userToGreet.email : 'Email'}}</td>
               </tr>
               <ng-container >
                 <tr>
-                  <th>Account Type:</th><td>{{accounts[1].label}}</td>
+                  <th>Account Type:</th><td>{{accounts ? accounts.label : 'type'}}</td>
                 </tr>
                 <tr>
-                  <th>Balance:</th><td>{{accounts[1].balance | currency}}</td>
+                  <th>Balance:</th><td>{{accounts.balance | currency}}</td>
                 </tr>
                 <tr>
-                  <th>Annual Contribution:</th><td>{{accounts[1].annualContribution | currency}}</td>
+                  <th>Annual Contribution:</th><td>{{accounts.annualContribution | currency}}</td>
                 </tr>
                 <tr>
-                  <th>Account Date:</th><td>{{accounts[1].createdAt |  date}}</td>
+                  <th>Account Date:</th><td>{{accounts.createdAt |  date}}</td>
                 </tr>
               </ng-container>
           </table>
@@ -60,9 +57,12 @@
             </button>
             </tr>
           </table>
-          <a routerLink="/mutualfunds">Add Investments</a>
+          <a routerLink="/mutualfunds">Add Mutual Funds</a>
+          <a routerLink="/etfs">Add ETFs</a>
         </mat-card>
       </div>
     </div>
   </div>
+
+<!-- <app-news></app-news> -->
   

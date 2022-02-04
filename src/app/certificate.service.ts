@@ -14,4 +14,15 @@ export class CertificateService {
   getUserCertificates(): Observable<any> {
     return this.http.get(certificatesUrl);
   }
+
+  addCertificate(newCertObj: {
+    name: string | null;
+    initialAmount: number;
+    interestRate: number;
+    startDate: Date;
+    maturityDate: Date;
+    userId: number;
+  }): Observable<any> {
+    return this.http.post(certificatesUrl, newCertObj);
+  }
 }

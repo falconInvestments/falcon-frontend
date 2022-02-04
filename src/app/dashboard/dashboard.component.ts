@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../user.service';
 import { AccountService } from '../account.service';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Account } from '../account.model';
 import { Investment } from '../investment.model';
 import { UserStoreService } from '../user-store.service';
@@ -14,31 +12,23 @@ import { User } from '../user.model';
 })
 export class DashboardComponent implements OnInit {
 
-userToGreet: User | null = null;  
-accounts: Account[] = [];
+userToGreet: User | null= null;  
+accounts: Account[] | any = [];
   investments: Investment[] = [];
   users: User[] = [];
 
   constructor(
     private userStore: UserStoreService,
-    private route:ActivatedRoute,
-    private router: Router,
     private accountService: AccountService,
-    private userService: UserService
   ) { }
 
   ngOnInit(): void {
     this.userStore.currentUser$.subscribe((response) => {
       this.userToGreet = response;
     });
-    this.route.params.subscribe(params=>{
-      const myid = +params['id'];
-      this.userService.getUsers().subscribe(payload => {
-        this.users = payload;
-      })})
     this.accountService.getAccounts().subscribe(payload =>{
-      this.accounts = payload;
-      this.investments = payload[1].investments;
+      this.accounts = payload.find((acc: { newUserId: number; }) => this.userToGreet ? acc.newUserId == this.userToGreet.id : acc.newUserId == 99);
+      this.investments = this.accounts.investments;
     })
   }
 
