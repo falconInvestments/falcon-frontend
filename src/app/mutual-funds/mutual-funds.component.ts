@@ -19,6 +19,8 @@ import { Account } from '../account.model';
   styleUrls: ['./mutual-funds.component.scss']
 })
 export class MutualFundsComponent implements OnInit {
+
+  
   filteredFunds: any[] = [];
   filteredFund: any = {mf_id: 0, fundName: '', symbol: '', inceptionDate: '', expenseRatio: 0, nAV: 0, isUsed: false }
   dataSource!: MatTableDataSource<FilteredFund[]>;

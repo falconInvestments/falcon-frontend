@@ -1,0 +1,49 @@
+.stocks  {
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+    align-items: center;
+}
+
+mat-table {
+    min-width: 60%;
+    margin: auto;
+}
+.mat-column-stockname {
+    flex: 0 0 50%;
+}
+
+.mat-column-price, .mat-column-isUsed {
+    flex: 0 0 15%;
+}
+.mat-column-isUsed {
+    flex: 0 0 25%;
+    padding: 10px;
+}
+
+.mat-column-symbol {
+    flex: 0 0 20%;
+}
+mat-paginator {
+    width: 60%;
+    margin: auto;
+}
+ng-container{
+    margin: auto;
+}
+#cart-button {
+    margin: 20px auto;
+    display: block;
+}
+
+.columns{
+    margin: 0 auto;
+    display : flex;
+}
+
+mat-cell {
+    font-size: 16px;
+}
+mat-header-cell {
+    font-size: 14px;
+}
