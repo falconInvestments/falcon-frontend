@@ -6,6 +6,7 @@ import { UserStoreService } from '../user-store.service';
 import { User } from '../user.model';
 import { Certificate } from '../certificate.model';
 import { CertificateService } from '../certificate.service';
+import { Router } from '@angular/router';
 
 const { DateTime } = require('luxon');
 
@@ -14,7 +15,7 @@ const { DateTime } = require('luxon');
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
   isLoadingUser: boolean = false;
   isLoadingAccounts: boolean = false;
   isLoadingCertificates: boolean = false;
@@ -27,7 +28,8 @@ export class DashboardComponent implements OnInit {
   constructor(
     private userStore: UserStoreService,
     private accountService: AccountService,
-    private certificateService: CertificateService
+    private certificateService: CertificateService,
+    private router: Router
   ) {}
 
   private stateCertsSubscription: any;
@@ -59,7 +61,14 @@ export class DashboardComponent implements OnInit {
           this.stateCertsSubscription.unsubscribe();
           this.isLoadingCertificates = false;
         }
+        if (!this.userToGreet) {
+          this.isLoadingCertificates = false;
+          this.isLoadingUser = false;
+        }
       });
+    if (!this.userToGreet && !this.isLoadingUser) {
+      this.router.navigate(['/signin']);
+    }
   }
 
   ngOnDestroy(): void {
