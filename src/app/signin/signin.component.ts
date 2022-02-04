@@ -10,6 +10,7 @@ import { UserService } from '../user.service';
   styleUrls: ['./signin.component.scss'],
 })
 export class SigninComponent implements OnInit {
+  isLoadingAuth: boolean = false;
   currentUserId: number = NaN;
 
   constructor(
@@ -28,7 +29,8 @@ export class SigninComponent implements OnInit {
         if (response.userId) {
           this.userService.fetchUserDetails(response.userId);
           signinSubscription.unsubscribe();
-          this.router.navigate(['/dashboard']);
+          this.isLoadingAuth = true;
+          setTimeout(() => this.router.navigate(['/dashboard']), 1000); // Timeout to prevent automatic re-redirection to /signin
         }
       });
   }
