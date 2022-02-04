@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { StocksService } from "../stock.service";
+import { StocksService } from '../stock.service';
 import { Stock } from '../stock.model';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -13,9 +13,10 @@ import { User } from '../user.model';
 @Component({
   selector: 'app-stocks',
   templateUrl: './stocks.component.html',
-  styleUrls: ['./stocks.component.scss']
+  styleUrls: ['./stocks.component.scss'],
 })
 export class StocksComponent implements OnInit {
+  isLoadingStocks: boolean = false;
 
   stocks:any[] = [];
   // userStocks: any[] =[];
@@ -32,7 +33,7 @@ export class StocksComponent implements OnInit {
   //@ViewChild(MatPaginator) dataSource!: MatTableDataSource<Stock>;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private stockService: StocksService,
+constructor(private stockService: StocksService,
               private _liveAnncouncer: LiveAnnouncer,
               private cartService: CartService,
               private accountService: AccountService,
@@ -42,6 +43,7 @@ export class StocksComponent implements OnInit {
   ngOnInit(): void {
    this.getAccountId();
     this.stockService.getStocks().subscribe(payload => {
+      this.isLoadingStocks = true;
       this.stocks = payload;
       for (let i = 0; i < this.stocks.length; i++) {
         this.filteredStock = {id: 0, name: '', symbol: '', price: 0, isUsed: false }
@@ -56,10 +58,11 @@ export class StocksComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.filteredStocks);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-    })
+      this.isLoadingStocks = false;
+    });
   }
 
-  displayedColumns: string[] = ['stockname', 'symbol', 'price', "isUsed"];
+displayedColumns: string[] = ['stockname', 'symbol', 'price', "isUsed"];
 
   getAccountId(): void {
     this.userStore.currentUser$.subscribe((response) => {
@@ -81,7 +84,7 @@ export class StocksComponent implements OnInit {
     }
   }
 
-  addToCart(id: number) {
+addToCart(id: number) {
     this.newStock.accountId = id;
     for (let [key, value] of Object.entries(this.filteredStocks.find(stock => stock.id === id))) {
       switch (key){
