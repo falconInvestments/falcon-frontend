@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Stock } from "./stock.model"
 
-const baseURL = "https://vg-express-router.herokuapp.com/api/stocks";
+const baseURL = "https://vg-express-router.herokuapp.com/api";
 
 @Injectable({
   providedIn: 'root'
@@ -13,23 +13,27 @@ export class StocksService {
   constructor(private http: HttpClient) { }
 
   getStocks(): Observable<any> {
-    return this.http.get(`${baseURL}`);
+    return this.http.get(`${baseURL}/stocks/`);
   }
 
-  getStock(stock_id: number): Observable<any> {
-    return this.http.get(`${baseURL}/${stock_id}`);
+  getStock(id: number): Observable<any> {
+    return this.http.get(`${baseURL}/stocks/${id}`);
+  }
+
+  getUserStocks(): Observable<any> {
+    return this.http.get(`${baseURL}/userStocks/`);
   }
   
-  createStock(newStock: Stock): Observable<any>{
-    return this.http.post(`${baseURL}/`, newStock);
+  createUserStock(newStock: Stock): Observable<any>{
+    return this.http.post(`${baseURL}/userStocks/new`, newStock);
   }
 
   
-  deleteStock(stock_id: number): Observable<any> {
-    return this.http.delete(`${baseURL}/${stock_id}`);
+  deleteUserStock(id: number): Observable<any> {
+    return this.http.delete(`${baseURL}/userStocks/${id}`);
   }
 
-  updateStock(stock: Stock): Observable<any>{
-    return this.http.put(`${baseURL}/${stock.stock_id}`, stock);
+  updateUserStock(stock: Stock): Observable<any>{
+    return this.http.put(`${baseURL}/userStocks/${stock.id}`, stock);
   }
 }

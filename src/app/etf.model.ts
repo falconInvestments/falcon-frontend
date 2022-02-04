@@ -5,5 +5,7 @@ export interface Etf {
     asset: string
     price: number,
     portfolio: string,
+    expenseRatio: number,
+    inceptionDate: string,
     userId?: number
 }

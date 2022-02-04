@@ -1,8 +1,7 @@
 export interface Stock {
-    stock_id: number,
+    id: number,
     name: string,
     symbol: string,
-    price: number,
-    investorId?: number
+    price: number
   }
   
