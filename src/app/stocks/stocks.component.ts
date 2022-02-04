@@ -1,5 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { StocksService } from '../stock.service';
+
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { StocksService } from "../stock.service";
+
 import { Stock } from '../stock.model';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -17,7 +19,8 @@ import { User } from '../user.model';
 })
 export class StocksComponent implements OnInit {
   isLoadingStocks: boolean = false;
-
+  @Input()
+  cartData:any[] =[]
   stocks:any[] = [];
   // userStocks: any[] =[];
   newStock: any = {id: 0, name: '', symbol: '',price: 0, accountId: 0};
@@ -103,6 +106,8 @@ addToCart(id: number) {
     this.stockService.createUserStock(this.newStock).subscribe(data => {
       if(data) {
         console.log(data);
+        this.cartData.push(data)
+        console.log(this.cartData)
       }
     })
   }
