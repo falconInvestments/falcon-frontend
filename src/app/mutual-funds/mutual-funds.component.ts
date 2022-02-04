@@ -19,6 +19,7 @@ import { Account } from '../account.model';
 })
 export class MutualFundsComponent implements OnInit {
   isLoadingFunds: boolean = false;
+
   filteredFunds: any[] = [];
   filteredFund: any = {
     mf_id: 0,

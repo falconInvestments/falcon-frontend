@@ -8,6 +8,7 @@ import { StocksComponent } from './stocks/stocks.component';
 import { MutualFundsComponent } from './mutual-funds/mutual-funds.component';
 import { CertificatesComponent } from './certificates/certificates.component';
 import { EtfsComponent } from './etfs/etfs.component';
+import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [
   {path: "", redirectTo: 'home', pathMatch: 'full'},
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'stocks', component: StocksComponent },
   { path: 'mutualfunds', component: MutualFundsComponent },
-  { path: 'etfs', component: EtfsComponent}
+  { path: 'etfs', component: EtfsComponent},
+  { path: "cart", component: CartComponent}
 ];
 
 @NgModule({

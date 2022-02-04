@@ -18,6 +18,8 @@ import { SignoutButtonComponent } from './signout-button/signout-button.componen
 import { MutualFundsComponent } from './mutual-funds/mutual-funds.component';
 import { CertificatesComponent } from './certificates/certificates.component';
 import { EtfsComponent } from './etfs/etfs.component';
+
+import { CartComponent } from './cart/cart.component';
 import { NewsComponent } from './news/news.component';
 
 @NgModule({
@@ -31,7 +33,8 @@ import { NewsComponent } from './news/news.component';
   MutualFundsComponent, 
   CertificatesComponent, 
   EtfsComponent, 
-  NewsComponent],
+  NewsComponent,
+  CartComponent],
 
   imports: [
     BrowserModule,
