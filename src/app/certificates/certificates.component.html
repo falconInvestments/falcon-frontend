@@ -13,9 +13,7 @@
         {{ certificate.initialAmount | currency: "USD" }} on
         {{ certificate.startDate | date: "mediumDate" }}
       </h5>
-      Maturity: {{ certificate.maturityDate | date: "mediumDate" }} ({{
-        certificate.maturityDate
-      }})<br />
+      Maturity: {{ certificate.maturityDate | date: "mediumDate" }}<br />
       <!-- Calculate time from now? -->
     </mat-card>
   </mat-tab>
@@ -77,11 +75,8 @@
         <input disabled [value]="rateToDisplay" /> APY:
       </p>
       <p>
-        Expected value at maturity:
-        {{
-          initialAmount + initialAmount * APY * (lengthOfCd / 12)
-            | currency: "USD"
-        }}
+        Interest to be paid upon maturity:
+        {{ initialAmount * APY * (lengthOfCd / 12) | currency: "USD" }}
       </p>
       <button mat-raised-button color="primary" (click)="buyCD()">
         Purchase

@@ -18,8 +18,8 @@ export class CertificatesComponent implements OnInit, OnDestroy {
   certificateName: string = '';
   initialAmount: number = 1000;
   lengthOfCd: number = 1;
-  APY: number = 0.05;
-  rateToDisplay: string = '0.05%';
+  APY: number = 0.001;
+  rateToDisplay: string = '0.10%';
   userCertificates: Certificate[] = [];
 
   constructor(
@@ -98,25 +98,25 @@ export class CertificatesComponent implements OnInit, OnDestroy {
 
   updateInterest(): void {
     if (this.lengthOfCd >= 1 && this.lengthOfCd < 4) {
-      this.APY = 0.0005;
-    } else if (this.lengthOfCd >= 4 && this.lengthOfCd < 10) {
       this.APY = 0.001;
-    } else if (this.lengthOfCd >= 10 && this.lengthOfCd < 13) {
-      this.APY = 0.0015;
-    } else if (this.lengthOfCd >= 13 && this.lengthOfCd < 24) {
+    } else if (this.lengthOfCd >= 4 && this.lengthOfCd < 7) {
       this.APY = 0.0025;
-    } else if (this.lengthOfCd >= 24 && this.lengthOfCd < 36) {
-      this.APY = 0.0045;
-    } else if (this.lengthOfCd >= 36 && this.lengthOfCd < 48) {
-      this.APY = 0.007;
-    } else if (this.lengthOfCd >= 48 && this.lengthOfCd < 60) {
+    } else if (this.lengthOfCd >= 7 && this.lengthOfCd < 10) {
+      this.APY = 0.004;
+    } else if (this.lengthOfCd >= 10 && this.lengthOfCd < 13) {
+      this.APY = 0.005;
+    } else if (this.lengthOfCd >= 13 && this.lengthOfCd < 24) {
       this.APY = 0.0075;
-    } else if (this.lengthOfCd >= 60 && this.lengthOfCd < 84) {
+    } else if (this.lengthOfCd >= 24 && this.lengthOfCd < 36) {
       this.APY = 0.011;
-    } else if (this.lengthOfCd >= 84 && this.lengthOfCd < 120) {
-      this.APY = 0.0095;
+    } else if (this.lengthOfCd >= 36 && this.lengthOfCd < 48) {
+      this.APY = 0.014;
+    } else if (this.lengthOfCd >= 48 && this.lengthOfCd < 60) {
+      this.APY = 0.016;
+    } else if (this.lengthOfCd >= 60 && this.lengthOfCd < 120) {
+      this.APY = 0.017;
     } else if (this.lengthOfCd >= 120) {
-      this.APY = 0.0185;
+      this.APY = 0.021;
     } /* else {
       // This would be an error
     }
