@@ -31,17 +31,16 @@ export class CertificatesComponent implements OnInit, OnDestroy {
   private getCertificatesSubscription: any;
 
   ngOnInit(): void {
+    this.getCertificatesSubscription =
+      this.certificateService.userCertificates$.subscribe((certificates) => {
+        if (certificates.length > 0) {
+          this.userCertificates = certificates;
+          this.getCertificatesSubscription.unsubscribe();
+        }
+      });
     if (this.userStore.currentUser && this.userStore.currentUser.id) {
       let userId = this.userStore.currentUser.id;
-      this.getCertificatesSubscription = this.certificateService
-        .getUserCertificates()
-        .subscribe((response) => {
-          if (Array.isArray(response)) {
-            this.userCertificates = response.filter(
-              (certificate) => certificate.userId === userId
-            );
-          }
-        });
+      this.certificateService.fetchUserCertificates(userId);
     }
   }
 

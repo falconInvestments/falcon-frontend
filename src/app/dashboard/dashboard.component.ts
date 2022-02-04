@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AccountService } from '../account.service';
 import { Account } from '../account.model';
 import { Investment } from '../investment.model';
 import { UserStoreService } from '../user-store.service';
 import { User } from '../user.model';
+import { Certificate } from '../certificate.model';
+import { CertificateService } from '../certificate.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,31 +13,50 @@ import { User } from '../user.model';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-
-userToGreet: User | null= null;  
-accounts: Account[] | any = [];
+  userToGreet: User | null = null;
+  accounts: Account[] | any = [];
   investments: Investment[] = [];
   users: User[] = [];
+  certificates: Certificate[] = [];
 
   constructor(
     private userStore: UserStoreService,
     private accountService: AccountService,
-  ) { }
+    private certificateService: CertificateService
+  ) {}
+
+  private stateCertsSubscription: any;
 
   ngOnInit(): void {
     this.userStore.currentUser$.subscribe((response) => {
-      this.userToGreet = response;
+      if (response) {
+        this.userToGreet = response;
+        this.certificateService.fetchUserCertificates(response.id);
+      }
     });
-    this.accountService.getAccounts().subscribe(payload =>{
-      this.accounts = payload.find((acc: { newUserId: number; }) => this.userToGreet ? acc.newUserId == this.userToGreet.id : acc.newUserId == 99);
+    this.accountService.getAccounts().subscribe((payload) => {
+      this.accounts = payload.find((acc: { newUserId: number }) =>
+        this.userToGreet
+          ? acc.newUserId == this.userToGreet.id
+          : acc.newUserId == 99
+      );
       this.investments = this.accounts.investments;
-    })
+    });
+    this.stateCertsSubscription =
+      this.certificateService.userCertificates$.subscribe((certificates) => {
+        if (certificates.length > 0) {
+          this.certificates = certificates;
+          this.stateCertsSubscription.unsubscribe();
+        }
+      });
   }
 
+  ngOnDestroy(): void {
+    this.stateCertsSubscription.unsubscribe();
+  }
 
   deleteInvestment(id: number | undefined, index: number) {
     this.accountService.deleteInvestment(id).subscribe();
     this.investments.splice(index, 1);
   }
-
 }
