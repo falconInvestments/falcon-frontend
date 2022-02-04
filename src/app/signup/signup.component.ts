@@ -6,6 +6,8 @@ import { AccountService } from '../account.service';
 import { User } from '../user.model';
 import { Account } from '../account.model';
 import { switchMap, timer } from 'rxjs';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -28,7 +30,8 @@ export class SignupComponent implements OnInit {
   constructor(
     private userService: UserService,
     private accountService: AccountService,
-    private _formBuilder: FormBuilder
+    private _formBuilder: FormBuilder,
+    private router: Router
     ) {}
 
   ngOnInit(): void {
@@ -44,7 +47,6 @@ export class SignupComponent implements OnInit {
       confirmPassword: ['', Validators.required]
     });
     this.secondFormGroup = this._formBuilder.group({
-      //userId: ['', Validators.required],
       label: ['', Validators.required],
       balance: ['', Validators.required],
       annualContribution: ['', Validators.required]
@@ -60,11 +62,11 @@ export class SignupComponent implements OnInit {
       this.userService.createUser(this.newUser).subscribe(payload => {
         console.log(payload);
       })
-
- console.log(this.newAccount)
       this.accountService.createAccount(this.newAccount).subscribe(payload => {
         console.log(payload);
       });
+    
+    this.router.navigate(['/signin']);
   }
 
 }
