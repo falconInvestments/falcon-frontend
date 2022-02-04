@@ -15,31 +15,14 @@ export class CertificateService {
     return this.http.get(certificatesUrl);
   }
 
-  addCertificate(
-    initialAmount: number,
-    interestRate: number,
-    startDate: Date,
-    maturityDate: Date,
-    userId: number,
-    name?: string
-  ): Observable<any> {
-    if (name) {
-      return this.http.post(certificatesUrl, {
-        name,
-        initialAmount: initialAmount,
-        interestRate: interestRate,
-        startDate: startDate,
-        maturityDate: maturityDate,
-        userId,
-      });
-    } else {
-      return this.http.post(certificatesUrl, {
-        initialAmount: initialAmount,
-        interestRate: interestRate,
-        startDate: startDate,
-        maturityDate: maturityDate,
-        userId,
-      });
-    }
+  addCertificate(newCertObj: {
+    name: string | null;
+    initialAmount: number;
+    interestRate: number;
+    startDate: Date;
+    maturityDate: Date;
+    userId: number;
+  }): Observable<any> {
+    return this.http.post(certificatesUrl, newCertObj);
   }
 }

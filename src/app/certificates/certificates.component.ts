@@ -15,7 +15,7 @@ const { DateTime } = require('luxon');
 })
 export class CertificatesComponent implements OnInit, OnDestroy {
   today = new FormControl(new Date());
-  certificateName: string = '';
+  certificateName: string | null = null;
   initialAmount: number = 1000;
   lengthOfCd: number = 1;
   APY: number = 0.001;
@@ -49,48 +49,45 @@ export class CertificatesComponent implements OnInit, OnDestroy {
     this.getCertificatesSubscription.unsubscribe();
   }
 
-  // Must be refactored for less repetition
   buyCD(): void {
     // Confirmation before submission
 
     this.router.onSameUrlNavigation = 'reload';
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
 
+    if (this.certificateName === '') {
+      this.certificateName = null;
+    }
+
     const maturityDate = DateTime.local(
       this.today.value.getFullYear(),
-      this.today.value.getMonth(),
+      this.today.value.getMonth() + 1,
       this.today.value.getDate()
     ).plus({ months: this.lengthOfCd });
 
     if (this.userStore.currentUser && this.userStore.currentUser.id) {
-      if (this.certificateName) {
-        const newCertificateSubscription = this.certificateService
-          .addCertificate(
-            this.initialAmount,
-            this.APY,
-            this.today.value,
-            maturityDate,
-            this.userStore.currentUser.id,
-            this.certificateName
-          )
-          .subscribe((response) => {
-            newCertificateSubscription.unsubscribe();
-            this.router.navigate(['/certificates']);
-          });
-      } else {
-        const newCertificateSubscription = this.certificateService
-          .addCertificate(
-            this.initialAmount,
-            this.APY,
-            this.today.value,
-            maturityDate,
-            this.userStore.currentUser.id
-          )
-          .subscribe((response) => {
-            newCertificateSubscription.unsubscribe();
-            this.router.navigate(['/certificates']);
-          });
-      }
+      const newCertObj: {
+        name: string | null;
+        initialAmount: number;
+        interestRate: number;
+        startDate: Date;
+        maturityDate: Date;
+        userId: number;
+      } = {
+        name: this.certificateName,
+        initialAmount: this.initialAmount,
+        interestRate: this.APY,
+        startDate: this.today.value,
+        maturityDate: maturityDate,
+        userId: this.userStore.currentUser.id,
+      };
+
+      const newCertificateSubscription = this.certificateService
+        .addCertificate(newCertObj)
+        .subscribe((response) => {
+          newCertificateSubscription.unsubscribe();
+          this.router.navigate(['/certificates']);
+        });
     } else {
       // Error; should be logged in on this component
     }
