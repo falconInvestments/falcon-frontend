@@ -1,29 +1,28 @@
-.mat-column-name {
-    flex: 0 0 15%;
+.etf-table  {
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+    align-items: center;
+}
 
+mat-table {
+    width: 60%;
+
+}
+
+.mat-column-name  {
+    flex: 0 0 20%;
 }
 
 .mat-column-ticker {
     flex: 0 0 9%;
 }
 
-.mat-column-asset {
-    flex: 0 0 15%;
-}
 
-
-.mat-column-price, .mat-column-portfolio {
+.mat-column-price, .mat-column-expenseRatio, .mat-column-inceptionDate {
     flex: 0 0 12%;
 }
 
-mat-cell {
-    border-bottom-style: none
-}
-
-td.mat-cell {
-    border-bottom-style: none;
-}
-
-th.mat-header-cell {
+mat-cell, td.mat-cell, th.mat-header-cell {
     border-bottom-style: none
 }

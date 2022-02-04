@@ -10,7 +10,7 @@ import { Investment } from '../investment.model';
 import { UserStoreService } from '../user-store.service';
 import { User } from '../user.model';
 import { Account } from '../account.model';
-import { FilteredFund } from '../filtered-fund.model';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 
 
 @Component({
@@ -26,41 +26,40 @@ export class EtfsComponent implements OnInit {
   userToGreet: User | null= null; 
   accounts: Account[] | any = [];
   accountId: number = 0;
+  etfs: any[] = [];
 
-
-  dataSource = new MatTableDataSource<FilteredFund[]>();
+  dataSource = new MatTableDataSource<any[]>();
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
 
-  etfs: any[] = [];
-  displayedColumns: string[] = ['name', 'ticker', 'asset', 'price', 'portfolio' ]
+  
+  displayedColumns: string[] = ['name', 'ticker', 'inceptionDate', 'expenseRatio', 'price', 'isUsed' ]
 
 
   constructor(private eftService: EtfService,
               private userStore: UserStoreService,
-              private accountService: AccountService) { }
+              private accountService: AccountService,
+              private _liveAnncouncer: LiveAnnouncer) { }
 
   ngOnInit(): void {
     this.getInvestments();
     this.eftService.getEtfs().subscribe((res) => {
       this.etfs = res;
       for (let i = 0; i < this.etfs.length; i++) {
-        this.filteredFund = {id: 0, fundName: '', symbol: '', inceptionDate: '', expenseRatio: 0, nAV: 0, isUsed: false }
+        this.filteredFund = {id: 0, name: '', ticker: '', price: 0, inceptionDate: '', expenseRatio: 0, isUsed: false }
         for (let key in this.etfs[i]) {
           if (this.filteredFund.hasOwnProperty(key)) {
             this.filteredFund[key] = this.etfs[i][key]
           }
         }
         for (let j = 0; j < this.investments.length; j++){
-          if(this.etfs[i].fundName == this.investments[j].name) {
+          if(this.etfs[i].name == this.investments[j].name) {
             this.filteredFund.isUsed = true;
           } 
         }
         this.filteredFunds.push(this.filteredFund)
       }
-      
-      
-      // this.etfs = res;
+      console.log(this.filteredFunds)
       this.dataSource = new MatTableDataSource(this.filteredFunds);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -83,21 +82,28 @@ export class EtfsComponent implements OnInit {
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
   }
+  announceSortChange(sortState: Sort) {
+    if (sortState.direction) {
+      this._liveAnncouncer.announce(`Sorted${sortState.direction}ending`);
+    } else {
+      this._liveAnncouncer.announce('Sorting cleared');
+    }
+  }
 
   addInvestment(fundId: number) {
     this.newInvestment.accountId = this.accountId;
     for (let [key, value] of Object.entries(this.filteredFunds.find(x => x.id === fundId))) {
       switch (key){
-        case 'fundName':
+        case 'name':
           this.newInvestment.name = String(value);
           break;
-        case 'symbol':
+        case 'ticker':
           this.newInvestment.symbol = String(value);
           break;
         case 'expenseRatio':
           this.newInvestment.expenseRatio = Number(value);
           break;
-        case 'nAV':
+        case 'price':
           this.newInvestment.nAV = Number(value);
           break;
         case 'inceptionDate':
@@ -105,7 +111,7 @@ export class EtfsComponent implements OnInit {
           break;
       }
     }
-    this.filteredFunds.find(x => x.mf_id === fundId).isUsed = true;
+    this.filteredFunds.find(x => x.id === fundId).isUsed = true;
     this.accountService.createInvestment(this.newInvestment).subscribe(data => {
       if(data) {
         console.log(data);
