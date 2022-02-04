@@ -12,19 +12,35 @@ import { UserStoreService } from '../user-store.service';
 import { User } from '../user.model';
 import { Account } from '../account.model';
 
-
 @Component({
   selector: 'app-mutual-funds',
   templateUrl: './mutual-funds.component.html',
-  styleUrls: ['./mutual-funds.component.scss']
+  styleUrls: ['./mutual-funds.component.scss'],
 })
 export class MutualFundsComponent implements OnInit {
+  isLoadingFunds: boolean = false;
   filteredFunds: any[] = [];
-  filteredFund: any = {mf_id: 0, fundName: '', symbol: '', inceptionDate: '', expenseRatio: 0, nAV: 0, isUsed: false }
+  filteredFund: any = {
+    mf_id: 0,
+    fundName: '',
+    symbol: '',
+    inceptionDate: '',
+    expenseRatio: 0,
+    nAV: 0,
+    isUsed: false,
+  };
   dataSource!: MatTableDataSource<FilteredFund[]>;
-  investments:any[] = [];
-  newInvestment: Investment = {name: '', type: 'Mutual Fund', symbol: '', expenseRatio: 0, nAV: 0, inceptionDate: '', accountId: 2};
-  userToGreet: User | null= null; 
+  investments: any[] = [];
+  newInvestment: Investment = {
+    name: '',
+    type: 'Mutual Fund',
+    symbol: '',
+    expenseRatio: 0,
+    nAV: 0,
+    inceptionDate: '',
+    accountId: 2,
+  };
+  userToGreet: User | null = null;
   accounts: Account[] | any = [];
   accountId: number = 0;
 
@@ -32,50 +48,72 @@ export class MutualFundsComponent implements OnInit {
   //@ViewChild(MatPaginator) dataSource!: MatTableDataSource<FilteredFund[]>;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private userStore: UserStoreService,
-              private mutualFundService: MutualFundsService,
-              private accountService: AccountService,
-              private _liveAnncouncer: LiveAnnouncer) {}
+  constructor(
+    private userStore: UserStoreService,
+    private mutualFundService: MutualFundsService,
+    private accountService: AccountService,
+    private _liveAnncouncer: LiveAnnouncer
+  ) {}
 
-  mutualFunds:any[] = [];
+  mutualFunds: any[] = [];
 
   ngOnInit(): void {
     this.getInvestments();
-    this.mutualFundService.getMutualFunds().subscribe(payload => {
+    this.isLoadingFunds = true;
+    this.mutualFundService.getMutualFunds().subscribe((payload) => {
       this.mutualFunds = payload;
       for (let i = 0; i < this.mutualFunds.length; i++) {
-        this.filteredFund = {mf_id: 0, fundName: '', symbol: '', inceptionDate: '', expenseRatio: 0, nAV: 0, isUsed: false }
+        this.filteredFund = {
+          mf_id: 0,
+          fundName: '',
+          symbol: '',
+          inceptionDate: '',
+          expenseRatio: 0,
+          nAV: 0,
+          isUsed: false,
+        };
         for (let key in this.mutualFunds[i]) {
           if (this.filteredFund.hasOwnProperty(key)) {
-            this.filteredFund[key] = this.mutualFunds[i][key]
+            this.filteredFund[key] = this.mutualFunds[i][key];
           }
         }
-        for (let j = 0; j < this.investments.length; j++){
-          if(this.mutualFunds[i].fundName == this.investments[j].name) {
+        for (let j = 0; j < this.investments.length; j++) {
+          if (this.mutualFunds[i].fundName == this.investments[j].name) {
             this.filteredFund.isUsed = true;
-          } 
+          }
         }
-        this.filteredFunds.push(this.filteredFund)
+        this.filteredFunds.push(this.filteredFund);
+        this.isLoadingFunds = false;
       }
 
       this.dataSource = new MatTableDataSource(this.filteredFunds);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-    })
+    });
   }
 
-  displayedColumns: string[] = ['fundName', 'symbol', 'inceptionDate', 'expenseRatio', "nAV", "isUsed"];
-  
+  displayedColumns: string[] = [
+    'fundName',
+    'symbol',
+    'inceptionDate',
+    'expenseRatio',
+    'nAV',
+    'isUsed',
+  ];
+
   getInvestments(): void {
     this.userStore.currentUser$.subscribe((response) => {
-       this.userToGreet = response;
+      this.userToGreet = response;
     });
-    this.accountService.getAccounts().subscribe(payload =>{
-      this.accounts = payload.find((acc: { newUserId: number; }) => this.userToGreet ? acc.newUserId == this.userToGreet.id : acc.newUserId == 99);
+    this.accountService.getAccounts().subscribe((payload) => {
+      this.accounts = payload.find((acc: { newUserId: number }) =>
+        this.userToGreet
+          ? acc.newUserId == this.userToGreet.id
+          : acc.newUserId == 99
+      );
       this.accountId = this.accounts.id;
       this.investments = this.accounts.investments;
-    })
-
+    });
   }
 
   ngAfterViewInit(): void {
@@ -91,8 +129,10 @@ export class MutualFundsComponent implements OnInit {
   }
   addInvestment(fundId: number) {
     this.newInvestment.accountId = this.accountId;
-    for (let [key, value] of Object.entries(this.filteredFunds.find(x => x.mf_id === fundId))) {
-      switch (key){
+    for (let [key, value] of Object.entries(
+      this.filteredFunds.find((x) => x.mf_id === fundId)
+    )) {
+      switch (key) {
         case 'fundName':
           this.newInvestment.name = String(value);
           break;
@@ -110,11 +150,13 @@ export class MutualFundsComponent implements OnInit {
           break;
       }
     }
-    this.filteredFunds.find(x => x.mf_id === fundId).isUsed = true;
-    this.accountService.createInvestment(this.newInvestment).subscribe(data => {
-      if(data) {
-        console.log(data);
-      }
-    })
+    this.filteredFunds.find((x) => x.mf_id === fundId).isUsed = true;
+    this.accountService
+      .createInvestment(this.newInvestment)
+      .subscribe((data) => {
+        if (data) {
+          console.log(data);
+        }
+      });
   }
 }

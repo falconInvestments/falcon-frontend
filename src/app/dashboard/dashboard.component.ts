@@ -15,6 +15,9 @@ const { DateTime } = require('luxon');
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
+  isLoadingUser: boolean = false;
+  isLoadingAccounts: boolean = false;
+  isLoadingCertificates: boolean = false;
   userToGreet: User | null = null;
   accounts: Account[] | any = [];
   investments: Investment[] = [];
@@ -31,24 +34,30 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.userStore.currentUser$.subscribe((response) => {
+      this.isLoadingUser = true;
       if (response) {
         this.userToGreet = response;
         this.certificateService.fetchUserCertificates(response.id);
+        this.isLoadingUser = false;
       }
     });
     this.accountService.getAccounts().subscribe((payload) => {
+      this.isLoadingAccounts = true;
       this.accounts = payload.find((acc: { newUserId: number }) =>
         this.userToGreet
           ? acc.newUserId == this.userToGreet.id
           : acc.newUserId == 99
       );
       this.investments = this.accounts.investments;
+      this.isLoadingAccounts = false;
     });
     this.stateCertsSubscription =
       this.certificateService.userCertificates$.subscribe((certificates) => {
+        this.isLoadingCertificates = true;
         if (certificates.length > 0) {
           this.certificates = certificates;
           this.stateCertsSubscription.unsubscribe();
+          this.isLoadingCertificates = false;
         }
       });
   }

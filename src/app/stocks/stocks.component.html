@@ -1,33 +1,38 @@
 <div class="stocks">
   <h1>Falcon Investments Stocks</h1>
-<mat-table [dataSource]="dataSource">
-  <!-- User name Definition -->
-  <ng-container matColumnDef="stockname">
-    <mat-header-cell *matHeaderCellDef> Stock name</mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
-  </ng-container>
+  <mat-spinner *ngIf="isLoadingStocks"></mat-spinner>
+  <mat-table [dataSource]="dataSource">
+    <!-- User name Definition -->
+    <ng-container matColumnDef="stockname">
+      <mat-header-cell *matHeaderCellDef> Stock name</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.name }} </mat-cell>
+    </ng-container>
 
-  <!-- Age Definition -->
-  <ng-container matColumnDef="sybol">
-    <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{row.symbol}} </mat-cell>
-  </ng-container>
+    <!-- Age Definition -->
+    <ng-container matColumnDef="sybol">
+      <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.symbol }} </mat-cell>
+    </ng-container>
 
-  <!-- Title Definition -->
-  <ng-container matColumnDef="price">
-    <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
-    <mat-cell *matCellDef="let row"> ${{row.price}} </mat-cell>
-  </ng-container>
+    <!-- Title Definition -->
+    <ng-container matColumnDef="price">
+      <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+      <mat-cell *matCellDef="let row"> ${{ row.price }} </mat-cell>
+    </ng-container>
 
-  <!-- Header and Row Declarations -->
-  <mat-header-row *matHeaderRowDef="['stockname', 'sybol', 'price']"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: ['stockname', 'sybol', 'price']"></mat-row>
-</mat-table>
+    <!-- Header and Row Declarations -->
+    <mat-header-row
+      *matHeaderRowDef="['stockname', 'sybol', 'price']"
+    ></mat-header-row>
+    <mat-row
+      *matRowDef="let row; columns: ['stockname', 'sybol', 'price']"
+    ></mat-row>
+  </mat-table>
 
-
-<mat-paginator [pageSizeOptions]="[5, 10, 25]" 
-                 showFirstLastButtons
-                 aria-label="Select page of stocks">
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 25]"
+    showFirstLastButtons
+    aria-label="Select page of stocks"
+  >
   </mat-paginator>
 </div>
-

@@ -2,7 +2,7 @@
 
 <mat-tab-group>
   <mat-tab label="My CDs">
-    <!-- Use a loading indicator and/or a message if none to display -->
+    <mat-spinner *ngIf="isLoadingCertificates"></mat-spinner>
     <mat-card *ngFor="let certificate of userCertificates">
       <mat-card-title
         ><h4>
