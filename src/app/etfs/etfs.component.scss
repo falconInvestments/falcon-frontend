@@ -1,0 +1,37 @@
+.etf-table  {
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+mat-table {
+    width: 60%;
+}
+
+th, td {
+    font-size: 16px
+}
+
+.mat-column-name  {
+    flex: 0 0 30%;
+}
+
+.mat-column-ticker {
+    flex: 0 0 9%;
+}
+
+
+.mat-column-price, .mat-column-expenseRatio, .mat-column-inceptionDate {
+    flex: 0 0 15%;
+}
+
+mat-cell, td.mat-cell, th.mat-header-cell {
+    border-bottom-style: none
+}
+
+mat-paginator {
+    width: 60%;
+    text-align: center;
+}

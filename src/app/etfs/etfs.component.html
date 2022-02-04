@@ -1,17 +1,72 @@
-<mat-accordion multi="true" *ngFor="let etf of etfs">
-    <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <p>{{etf.name}}</p>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <p>Ticker: {{etf.ticker}}</p>
-        <p>Asset: {{etf.asset}}</p>
-        <p>Price: {{etf.price}}</p>
-        <p>Portfolio: {{etf.portfolio}}</p>
-        <mat-action-row>
-            <button mat-button color="primary" (click)="nextStep()">Next</button>
-        </mat-action-row>
-    </mat-expansion-panel>
-</mat-accordion>
+<div class="etf-table">
+  <h1>List of ETFs</h1>
 
+  <mat-spinner *ngIf="isLoadingETFs"></mat-spinner>
+
+  <mat-table
+    [dataSource]="dataSource"
+    class="mat-elevation-z8"
+    matSort
+    (matSortChange)="announceSortChange($event)"
+  >
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Fund Name</th>
+      <td mat-cell *matCellDef="let filteredFund">{{ filteredFund.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="ticker">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Symbol</th>
+      <td mat-cell *matCellDef="let filteredFund">{{ filteredFund.ticker }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="inceptionDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Inception Date</th>
+      <td mat-cell *matCellDef="let filteredFund">
+        {{ filteredFund.inceptionDate }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="expenseRatio">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Expense Ratio</th>
+      <td mat-cell *matCellDef="let filteredFund">
+        {{ filteredFund.expenseRatio }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>NAV</th>
+      <td mat-cell *matCellDef="let filteredFund">{{ filteredFund.price }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="isUsed">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+      <td mat-cell *matCellDef="let filteredFund">
+        <div *ngIf="filteredFund.isUsed == false">
+          <button
+            (click)="addInvestment(filteredFund.id)"
+            mat-mini-fab
+            color="primary"
+            aria-label="icon button with a plus icon"
+          >
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+        <div *ngIf="filteredFund.isUsed == true">
+          <button mat-mini-fab disabled color="primary">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </td>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 15]"
+    showFirstLastButtons
+    aria-label="Select page of etfs"
+  >
+  </mat-paginator>
+</div>

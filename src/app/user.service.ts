@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { delay, Observable } from 'rxjs';
 import { UserStoreService } from './user-store.service';
+import { User } from './user.model';
 
 const baseUrl = 'https://falconinvestments.herokuapp.com';
 
@@ -11,13 +12,8 @@ const baseUrl = 'https://falconinvestments.herokuapp.com';
 export class UserService {
   constructor(private http: HttpClient, private userStore: UserStoreService) {}
 
-  submitSignup(formValues: {
-    firstName: string;
-    lastName: string;
-    email: string;
-    password: string;
-  }): Observable<any> {
-    return this.http.post(baseUrl + '/signup', formValues);
+  createUser(newUser: User): Observable<User> {
+    return this.http.post<User>(baseUrl + '/signup', newUser);
   }
 
   submitSignin(formValues: {
@@ -43,6 +39,9 @@ export class UserService {
   }
 
   getUsers(): Observable<any> {
+    return this.http.get(baseUrl + '/users');
+  }
+  loadUsers(): Observable<any> {
     return this.http.get(baseUrl + '/users');
   }
 }

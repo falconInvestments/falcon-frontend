@@ -1,13 +1,24 @@
 mat-card {
     max-width: 20rem; 
     height: 250px;
+    background-color: #ede7d0;
 }
+
 
 mat-card-header {
     width: 250px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 20px;
+}
+
+mat-card-title {
+    font-size: 15px;
+}
+
+mat-card-content {
+    margin-top: 15px;
 }
 
 
@@ -24,7 +35,9 @@ mat-card-header {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    border-top: 2px solid black;
-    border-bottom: black 2px solid;
+    border-top: 1px solid black;
+    margin-top: 2rem;
+    // border-bottom: black 1px solid;
     height: 20rem;
+    background-color: #549369;
 }
