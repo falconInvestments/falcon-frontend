@@ -1,7 +1,7 @@
+<div id="grayedOut" *ngIf="isLoadingAuth"></div>
 <div class="wrapper">
   <div class="container">
     <form #signinForm="ngForm" (ngSubmit)="onSubmit(signinForm)">
-      <div id="grayed-out" *ngIf="isLoadingAuth"></div>
       <h2>Login</h2>
       <div class="input-field">
         <label for="email">Email: </label>
