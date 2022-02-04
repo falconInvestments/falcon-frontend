@@ -18,6 +18,7 @@
   padding: 10px 20px 40px 20px;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
+  margin-bottom: 3rem;
   h2 {
     padding: 20px;
     font-size: 36px;
@@ -103,4 +104,75 @@ h3 {
 mat-icon {
   margin: 20px auto 30px auto;
   font-size: 30px;
+}
+
+
+
+
+
+#inv-prod {
+  margin-left: 4rem;
+}
+
+
+mat-tab-group {
+  height: 500px;
+  margin: 0 50px 1rem;
+  mat-tab {
+      width: 80%;
+    }
+  .investment {
+    height: 100%;
+    margin: 0;
+    // width: 500px;
+
+  }
+  .investment p {
+    width: 600px;
+    margin: 20px auto 30px auto;
+  }
+}
+.investment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inv-container {
+  flex: 50%;
+  height: auto;
+}
+
+
+
+::ng-deep mat-tab-body {
+  text-align: center;
+}
+
+
+
+
+// a {
+//   text-decoration: none;
+//   color: white;
+//   background-color: #1d3557;
+//   padding: 7px;
+//   border-radius: 5px;
+// }
+// a:hover {
+//   background-color: #3336908e;
+// }
+
+button {
+  background-color: #1d3557;
+  color: white;
+  font-family: serif;
+  text-align: center;
+  // padding: 3px 5px;
+  width: 130px;
+  font-size: 19px;
+}
+
+button:hover {
+  background-color: #3336908e;
 }
