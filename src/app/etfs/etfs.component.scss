@@ -6,12 +6,12 @@
 }
 
 mat-table {
-    width: 60%;
+    width: 50%;
 
 }
 
 .mat-column-name  {
-    flex: 0 0 20%;
+    flex: 0 0 30%;
 }
 
 .mat-column-ticker {
@@ -20,7 +20,7 @@ mat-table {
 
 
 .mat-column-price, .mat-column-expenseRatio, .mat-column-inceptionDate {
-    flex: 0 0 12%;
+    flex: 0 0 15%;
 }
 
 mat-cell, td.mat-cell, th.mat-header-cell {
