@@ -10,6 +10,7 @@ import { CertificatesComponent } from './certificates/certificates.component';
 import { EtfsComponent } from './etfs/etfs.component';
 
 const routes: Routes = [
+  {path: "", redirectTo: 'home', pathMatch: 'full'},
   { path: 'home', component: HomeComponent },
   { path: 'certificates', component: CertificatesComponent },
   { path: 'dashboard', component: DashboardComponent },
