@@ -21,7 +21,7 @@ userToGreet: User | null= null;
 accounts: Account[] | any = [];
   stocks: Stock[] = [];
   users: User[] = [];
-
+  
   constructor(
     private userStore: UserStoreService,
     private accountService: AccountService,

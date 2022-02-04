@@ -40,17 +40,19 @@
             <th>Stock Name</th>
             <th>Symbol</th>
             <th>Price</th>
+            <p>hello</p>
+
             <tr *ngFor="let stock of stocks, let i = index">
+              
               <td>{{ stock.name }}</td>
               <td>{{ stock.symbol }}</td>
                <td>{{ stock.price }}</td>
-             
                <button (click)="deleteStock(stock.id, i)" mat-mini-fab color="primary" aria-label="icon button with a plus icon">
                  <mat-icon>delete</mat-icon>
                 </button>
               </tr>
             </table>
-            <app-counter [count]="initialCount"></app-counter>
+            <app-counter [init]="initialCount"></app-counter>
           <a routerLink="/stocks">Add Stocks </a>
         </mat-card>
       </div>

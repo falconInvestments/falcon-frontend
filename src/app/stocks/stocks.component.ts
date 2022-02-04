@@ -19,7 +19,7 @@ import { User } from '../user.model';
 })
 export class StocksComponent implements OnInit {
   isLoadingStocks: boolean = false;
-  @Input()
+  @Input('cartData')
   cartData:any[] =[]
   stocks:any[] = [];
   // userStocks: any[] =[];
