@@ -36,7 +36,7 @@ export class SignupComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.loadUsers().subscribe(payload => {
-      this.newUserId = payload.length + 2;
+      this.newUserId = payload.length + 1;
       console.log(this.newUserId)
     })
     this.firstFormGroup = this._formBuilder.group({
