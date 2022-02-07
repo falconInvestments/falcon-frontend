@@ -113,7 +113,7 @@ export class CertificatesComponent implements OnInit, OnDestroy {
     const endDate = DateTime.fromISO(end);
 
     return endDate
-      .diff(startDate, ['years', 'months'])
+      .diff(startDate, ['years', 'months', 'days'])
       .toHuman({ floor: true });
   }
 
