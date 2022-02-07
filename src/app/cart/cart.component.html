@@ -34,27 +34,36 @@
       </mat-card>
       </div>
       <div>
-        <mat-card
-          ><h2>Stocks Portfolio</h2>
+        <mat-card>
+          <h2>Stocks Portfolio</h2>
           <table class="stocks">
             <th>Stock Name</th>
             <th>Symbol</th>
             <th>Price</th>
-            <p>hello</p>
-
+            <th>Add more?</th>
+            <th>Remove</th>
             <tr *ngFor="let stock of stocks, let i = index">
-              
-              <td>{{ stock.name }}</td>
+              <td >{{ stock.name }}</td>
               <td>{{ stock.symbol }}</td>
-               <td>{{ stock.price }}</td>
-               <button (click)="deleteStock(stock.id, i)" mat-mini-fab color="primary" aria-label="icon button with a plus icon">
-                 <mat-icon>delete</mat-icon>
-                </button>
-              </tr>
+              <td>{{ stock.price | currency}}</td>
+              <app-counter [init]="initialCount">
+            </app-counter>
+              <td class = "remover" (click)="deleteStock(stock.id, i)" mat-mini-fab color="primary" aria-label="icon button with a plus icon">
+               <mat-icon>delete</mat-icon>
+              </td>
+            </tr>
+
             </table>
-            <app-counter [init]="initialCount"></app-counter>
-          <a routerLink="/stocks">Add Stocks </a>
-        </mat-card>
+            <a routerLink="/stocks">Need another stock? </a>
+            <div class ="calculate">
+              <h2>
+                Total at checkout: {{calculateTotal() | currency}}
+              </h2>
+              <!-- <h2>{{removeDuplicates()}}</h2> -->
+              <button >Confirm purchase</button>
+            </div>
+          </mat-card>
+        
+        </div>
       </div>
     </div>
-  </div>
