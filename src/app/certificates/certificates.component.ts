@@ -41,7 +41,10 @@ export class CertificatesComponent implements OnInit, OnDestroy {
     this.getCertificatesSubscription =
       this.certificateService.userCertificates$.subscribe((certificates) => {
         this.isLoadingCertificates = true;
-        if (certificates.length > 0) {
+        if (certificates.length === 0) {
+          this.isLoadingCertificates = false;
+          this.getCertificatesSubscription.unsubscribe();
+        } else if (certificates.length > 0) {
           this.userCertificates = certificates;
           this.getCertificatesSubscription.unsubscribe();
           this.isLoadingCertificates = false;
