@@ -18,7 +18,10 @@ mat-toolbar {
     }
   }
 }
+.logo:hover{
+  cursor: pointer
 
+}
 mat-sidenav-content {
   background-color: #ede7d0;
 }
@@ -44,3 +47,4 @@ h1 {
   margin: 10px;
   font-family: "Montserrat", sans-serif;
 }
+

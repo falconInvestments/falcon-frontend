@@ -21,9 +21,15 @@ import { EtfsComponent } from './etfs/etfs.component';
 
 import { CartComponent } from './cart/cart.component';
 import { NewsComponent } from './news/news.component';
+import { MutualfundComponent } from './mutualfund/mutualfund.component';
+
+
+import { PurchaseConfirmationDialogComponent } from './purchase-confirmation-dialog/purchase-confirmation-dialog.component';
+
 
 @NgModule({
-  declarations: [AppComponent, 
+  declarations: [
+    AppComponent, 
   SignupComponent, 
   SigninComponent, 
   HomeComponent, 
@@ -34,8 +40,9 @@ import { NewsComponent } from './news/news.component';
   CertificatesComponent, 
   EtfsComponent, 
   NewsComponent,
-  CartComponent],
-
+  CartComponent,
+  PurchaseConfirmationDialogComponent
+],
   imports: [
     BrowserModule,
     AppRoutingModule,

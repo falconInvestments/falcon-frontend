@@ -1,12 +1,16 @@
 import { formatPercent } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Certificate } from '../certificate.model';
 import { CertificateService } from '../certificate.service';
+import { PurchaseConfirmationDialogComponent } from '../purchase-confirmation-dialog/purchase-confirmation-dialog.component';
 import { UserStoreService } from '../user-store.service';
 
 const { DateTime } = require('luxon');
+
+/* Possible issue with calculating & displaying with local timezone? */
 
 @Component({
   selector: 'app-certificates',
@@ -14,6 +18,8 @@ const { DateTime } = require('luxon');
   styleUrls: ['./certificates.component.scss'],
 })
 export class CertificatesComponent implements OnInit, OnDestroy {
+  isSignedIn: boolean = false;
+  isLoadingCertificates: boolean = false;
   today = new FormControl(new Date());
   certificateName: string | null = null;
   initialAmount: number = 1000;
@@ -25,23 +31,32 @@ export class CertificatesComponent implements OnInit, OnDestroy {
   constructor(
     private userStore: UserStoreService,
     private certificateService: CertificateService,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) {}
 
   private getCertificatesSubscription: any;
 
   ngOnInit(): void {
+    this.getCertificatesSubscription =
+      this.certificateService.userCertificates$.subscribe((certificates) => {
+        this.isLoadingCertificates = true;
+        if (certificates.length === 0) {
+          this.isLoadingCertificates = false;
+          this.getCertificatesSubscription.unsubscribe();
+        } else if (certificates.length > 0) {
+          this.userCertificates = certificates;
+          this.getCertificatesSubscription.unsubscribe();
+          this.isLoadingCertificates = false;
+        }
+      });
     if (this.userStore.currentUser && this.userStore.currentUser.id) {
+      this.isSignedIn = true;
       let userId = this.userStore.currentUser.id;
-      this.getCertificatesSubscription = this.certificateService
-        .getUserCertificates()
-        .subscribe((response) => {
-          if (Array.isArray(response)) {
-            this.userCertificates = response.filter(
-              (certificate) => certificate.userId === userId
-            );
-          }
-        });
+      this.certificateService.fetchUserCertificates(userId);
+    } else {
+      this.isLoadingCertificates = false;
+      this.isSignedIn = false;
     }
   }
 
@@ -50,8 +65,6 @@ export class CertificatesComponent implements OnInit, OnDestroy {
   }
 
   buyCD(): void {
-    // Confirmation before submission
-
     this.router.onSameUrlNavigation = 'reload';
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
 
@@ -65,32 +78,46 @@ export class CertificatesComponent implements OnInit, OnDestroy {
       this.today.value.getDate()
     ).plus({ months: this.lengthOfCd });
 
-    if (this.userStore.currentUser && this.userStore.currentUser.id) {
-      const newCertObj: {
-        name: string | null;
-        initialAmount: number;
-        interestRate: number;
-        startDate: Date;
-        maturityDate: Date;
-        userId: number;
-      } = {
-        name: this.certificateName,
-        initialAmount: this.initialAmount,
-        interestRate: this.APY,
-        startDate: this.today.value,
-        maturityDate: maturityDate,
-        userId: this.userStore.currentUser.id,
-      };
+    const dialogRef = this.dialog.open(PurchaseConfirmationDialogComponent);
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === true) {
+        if (this.userStore.currentUser && this.userStore.currentUser.id) {
+          const newCertObj: {
+            name: string | null;
+            initialAmount: number;
+            interestRate: number;
+            startDate: Date;
+            maturityDate: Date;
+            userId: number;
+          } = {
+            name: this.certificateName,
+            initialAmount: this.initialAmount,
+            interestRate: this.APY,
+            startDate: this.today.value,
+            maturityDate: maturityDate,
+            userId: this.userStore.currentUser.id,
+          };
 
-      const newCertificateSubscription = this.certificateService
-        .addCertificate(newCertObj)
-        .subscribe((response) => {
-          newCertificateSubscription.unsubscribe();
-          this.router.navigate(['/certificates']);
-        });
-    } else {
-      // Error; should be logged in on this component
-    }
+          const newCertificateSubscription = this.certificateService
+            .addCertificate(newCertObj)
+            .subscribe((response) => {
+              newCertificateSubscription.unsubscribe();
+              this.router.navigate(['/certificates']);
+            });
+        } else {
+          alert('You must be signed in to make this purchase.');
+        }
+      }
+    });
+  }
+
+  calcTimeRemaining(end: Date) {
+    const startDate = DateTime.fromJSDate(new Date());
+    const endDate = DateTime.fromISO(end);
+
+    return endDate
+      .diff(startDate, ['years', 'months', 'days'])
+      .toHuman({ floor: true });
   }
 
   updateInterest(): void {

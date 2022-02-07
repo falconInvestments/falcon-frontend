@@ -1,6 +1,6 @@
 <div class="stocks">
   <h1>Falcon Investments Stocks</h1>
-  
+  <mat-spinner *ngIf="isLoadingStocks"></mat-spinner>
   <mat-table [dataSource]="dataSource">
     <!-- User name Definition -->
     <ng-container matColumnDef="stockname" class="columns">
@@ -54,5 +54,3 @@
   <button mat-raised-button color="primary" routerLink="/cart" id="cart-button">
     <mat-icon>shopping_cart</mat-icon> Checkout
   </button>
-
-

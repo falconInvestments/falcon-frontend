@@ -11,20 +11,38 @@
     padding: 20px;
     min-height: 80vh;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items:flex-start;
+    .user-info {
+        width: 30vw;
+        margin-left: 50px;
+        th {
+            padding: 10px 15px;
+        }
+    }
 
     mat-card {
-        margin: 10px auto;
+        margin: auto;
         display: inline-block;
         padding: 20px;
         text-align: center;
     }
-    .info {
-        th {
-            padding: 5px 15px;
-        }
+
+    .investment-card {
+        width: 50vw;
+        margin: 0 90px 0 40px;
+        //padding-right: 50px;
     }
-    .investments {
+    .cd-card {
+        width: 50vw;
+        margin: 20px 90px 0 40px;
+       // padding-right: 50px;
+    }
+    .spacer {
+        width: 20vw;
+    }
+    .investments, .certificates {
             margin: auto;
             font-size: 16px;
             td {
@@ -48,4 +66,49 @@ a {
     text-align: center;
     display: inline-block;
     margin: 30px;
+}
+
+@media only screen and (max-width: 1450px) {
+    .user-info {
+        width: 20vw;
+        margin-left: 30px;
+        font-size: 14px;
+    }
+    .investment-card, .cd-card {
+        max-width: 40vw;
+        margin: 0 40px;
+        th, td {
+            font-size: 12px;
+        }
+    }
+}
+
+@media only screen and (max-width: 1150px) {
+    .container {
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: nowrap;
+    }
+    .user-info {
+        width: 30vw;
+        margin-left: 0px;
+        font-size: 14px;
+    }
+
+    .investment, .cd {
+        margin: auto;
+        padding: 20px;
+        
+    }
+    .investment-card, .cd-card {
+        min-width: 60vw;
+        margin: 20px auto;
+        th, td {
+            font-size: 12px;
+        }
+    }
+    .spacer {
+        width: 0;
+    }
 }

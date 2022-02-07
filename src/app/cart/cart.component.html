@@ -1,6 +1,76 @@
-<h3>Cart</h3>
 
-<div class="cart-item" *ngFor="let item of items">
-  <!-- <span>{{ item.name }}</span>
-  <span>{{ item.price | currency }}</span> -->
-</div>
+<div class="wrapper">
+    <div *ngIf="userToGreet">
+      <h1>Welcome, {{ userToGreet.firstName }}!</h1>
+    </div>
+    <div class="container">
+      <div>
+        <mat-card>
+          <h2>User info</h2>
+          <div class="info">
+            <table >
+              <tr>
+                <th>Name:</th><td>{{userToGreet ? userToGreet.firstName : 'User'}} {{userToGreet ? userToGreet.lastName : 'User'}}</td>
+              </tr>
+              <tr>
+                <th>Email:</th><td>{{userToGreet ? userToGreet.email : 'Email'}}</td>
+              </tr>
+              <ng-container >
+                <tr>
+                  <th>Account Type:</th><td>{{stocks ? accounts.label : 'type'}}</td>
+                </tr>
+                <tr>
+                  <th>Balance:</th><td>{{accounts.balance | currency}}</td>
+                </tr>
+                <tr>
+                  <th>Annual Contribution:</th><td>{{accounts.annualContribution | currency}}</td>
+                </tr>
+                <tr>
+                  <th>Account Date:</th><td>{{accounts.createdAt |  date}}</td>
+                </tr>
+              </ng-container>
+          </table>
+        </div>
+      </mat-card>
+      </div>
+      <div>
+        <mat-card>
+          <h2>Stocks Portfolio</h2>
+          <table class="stocks">
+            <th>Stock Name</th>
+            <th>Symbol</th>
+            <th>Price</th>
+            <th>Add more?</th>
+            <th>Remove</th>
+            <tr *ngFor="let stock of stocks, let i = index">
+              <td >{{ stock.name }}</td>
+              <td>{{ stock.symbol }}</td>
+              <td>{{ stock.price | currency}}</td>
+              <md-input-container>
+                <input
+                    mdInput
+                    type="number"
+                    class="count"
+                    value=1
+                    [(ngModel)]="counter[i]"
+                />
+            </md-input-container>
+              <td class = "remover" (click)="deleteStock(stock.id, i)" mat-mini-fab color="primary" aria-label="icon button with a plus icon">
+               <mat-icon>delete</mat-icon>
+              </td>
+            </tr>
+
+            </table>
+            <a routerLink="/stocks"> Buy more </a>
+            <div class ="calculate">
+              <h2>
+                Total at checkout: {{calculateTotal() | currency}}
+              </h2>
+              <!-- <h2>{{removeDuplicates()}}</h2> -->
+              <button (click)="purchase()" >Confirm purchase</button>
+            </div>
+          </mat-card>
+        
+        </div>
+      </div>
+    </div>

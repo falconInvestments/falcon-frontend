@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { delay, Observable } from 'rxjs';
 import { Stock } from "./stock.model"
 
 const baseURL = "https://vg-express-router.herokuapp.com/api";
@@ -20,8 +20,11 @@ export class StocksService {
     return this.http.get(`${baseURL}/stocks/${id}`);
   }
 
+
+  
+
   getUserStocks(): Observable<any> {
-    return this.http.get(`${baseURL}/userStocks/`);
+    return this.http.get(`${baseURL}/userStocks/`).pipe(delay(500));
   }
   
   createUserStock(newStock: Stock): Observable<any>{
@@ -29,11 +32,11 @@ export class StocksService {
   }
 
   
-  deleteUserStock(id: number): Observable<any> {
-    return this.http.delete(`${baseURL}/userStocks/${id}`);
+  deleteUserStock(id: number | undefined): Observable<any> {
+    return this.http.delete(`${baseURL}/userStocks/delete/${id}`);
   }
 
   updateUserStock(stock: Stock): Observable<any>{
-    return this.http.put(`${baseURL}/userStocks/${stock.id}`, stock);
+    return this.http.put(`${baseURL}/userStocks/update/${stock.id}`, stock);
   }
 }

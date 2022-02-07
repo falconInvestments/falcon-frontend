@@ -2,7 +2,7 @@
 <mat-toolbar>
   <mat-toolbar-row>
     <div class="left-bar">
-      <h1>Falcon Investments</h1>
+      <h1 class="logo" routerLink="home">Falcon Investments</h1>
     </div>
     <span class="menu-spacer"></span>
     <div>
@@ -22,16 +22,12 @@
 <mat-sidenav-container>
   <mat-sidenav #sidenav position="end">
     <mat-nav-list>
-      <a mat-list-item> Accounts </a>
       <a mat-list-item routerLink="/stocks"> Stocks </a>
       <a mat-list-item routerLink="/mutualfunds"> Mutual Funds </a>
       <a mat-list-item routerLink="/certificates"> Certificates of Deposit </a>
       <a mat-list-item routerLink="/etfs"> ETFs </a>
       <a mat-list-item> Feedback </a>
-      <a mat-list-item> Retirement Calculator </a>
-      <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item
-        >Close</a
-      >
+      <!-- <a mat-list-item> Retirement Calculator </a> -->
       <app-signout-button></app-signout-button>
     </mat-nav-list>
   </mat-sidenav>
@@ -48,7 +44,8 @@
             <a routerLink="/signin">Login</a>
             <a routerLink="/signup">Create Account</a>
           </div>
-        </div>
+        </div>     
+     
       </footer>
     </div>
   </mat-sidenav-content>
