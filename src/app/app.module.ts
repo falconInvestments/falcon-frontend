@@ -23,7 +23,6 @@ import { CartComponent } from './cart/cart.component';
 import { NewsComponent } from './news/news.component';
 import { MutualfundComponent } from './mutualfund/mutualfund.component';
 
-import { CounterComponent } from './counter/counter.component';
 
 import { PurchaseConfirmationDialogComponent } from './purchase-confirmation-dialog/purchase-confirmation-dialog.component';
 
@@ -31,21 +30,19 @@ import { PurchaseConfirmationDialogComponent } from './purchase-confirmation-dia
 @NgModule({
   declarations: [
     AppComponent, 
-    SignupComponent, 
-    SigninComponent, 
-    HomeComponent, 
-    DashboardComponent, 
-    StocksComponent, 
-    SignoutButtonComponent, 
-    MutualFundsComponent, 
-    CertificatesComponent, 
-    EtfsComponent, 
-    NewsComponent,
-    CartComponent,
-    MutualfundComponent,
-    CounterComponent,
-    PurchaseConfirmationDialogComponent
-  ],
+  SignupComponent, 
+  SigninComponent, 
+  HomeComponent, 
+  DashboardComponent, 
+  StocksComponent, 
+  SignoutButtonComponent, 
+  MutualFundsComponent, 
+  CertificatesComponent, 
+  EtfsComponent, 
+  NewsComponent,
+  CartComponent,
+  PurchaseConfirmationDialogComponent
+],
   imports: [
     BrowserModule,
     AppRoutingModule,
