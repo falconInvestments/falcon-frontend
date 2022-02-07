@@ -111,6 +111,13 @@ export class CertificatesComponent implements OnInit, OnDestroy {
     });
   }
 
+  numMonths(start: Date, end: Date) {
+    const startDate = DateTime.fromISO(start);
+    const endDate = DateTime.fromISO(end);
+
+    return endDate.diff(startDate, ['months']).toObject().months;
+  }
+
   calcTimeRemaining(end: Date) {
     const startDate = DateTime.fromJSDate(new Date());
     const endDate = DateTime.fromISO(end);
