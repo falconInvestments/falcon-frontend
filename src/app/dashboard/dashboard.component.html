@@ -42,7 +42,7 @@
         </div>
       </mat-card>
     </div>
-    <div>
+    <div class="investment">
       <mat-card class="investment-card">
         <mat-spinner *ngIf="isLoadingAccounts"></mat-spinner>
         <h2>Investment Portfolio</h2>
@@ -103,14 +103,14 @@
       </mat-card>
     </div>
     <div class="spacer"></div>
-    <div>
+    <div class="cd">
       <mat-card class="cd-card">
         <mat-spinner *ngIf="isLoadingCertificates"></mat-spinner>
         <h2>CD Holdings</h2>
         <table class="certificates">
           <th>Certificate</th>
           <th>Beginning Date</th>
-          <th>Remaining Time Until Maturity</th>
+          <th>Time Until Maturity</th>
           <th>Amount</th>
           <th>APY</th>
           <th>Yield at Maturity</th>
