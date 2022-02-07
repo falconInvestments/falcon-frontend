@@ -22,20 +22,20 @@ export class StocksComponent implements OnInit {
   stocks:any[] = [];
   name:any;
   // userStocks: any[] =[];
-  newStock: any = {id: 0, name: '', symbol: '',price: 0, accountId: 0};
+  newStock: any = {id: 0, name: '', symbol: '',price: 0, accountId: 0, sessionId: 0};
   filteredStocks: any[] = []
   filteredStock: any = {id: 0, name: '', symbol: '',price: 0, isUsed: false};
   dataSource!: MatTableDataSource<any[]>;
   accountId: number = 0;
   userToGreet: User | null= null; 
   account: any = {}
-
+  sessionId: number = 0;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   //@ViewChild(MatPaginator) dataSource!: MatTableDataSource<Stock>;
   @ViewChild(MatSort) sort!: MatSort;
 
-constructor(private stockService: StocksService,
+constructor(private stocksService: StocksService,
               private _liveAnncouncer: LiveAnnouncer,
               private accountService: AccountService,
               private userStore: UserStoreService,
@@ -44,7 +44,8 @@ constructor(private stockService: StocksService,
 
   ngOnInit(): void {
    this.getAccountId();
-    this.stockService.getStocks().subscribe(payload => {
+   this.getSessionId();
+    this.stocksService.getStocks().subscribe(payload => {
       this.isLoadingStocks = true;
       this.stocks = payload;
       for (let i = 0; i < this.stocks.length; i++) {
@@ -56,7 +57,7 @@ constructor(private stockService: StocksService,
         }
         this.filteredStocks.push(this.filteredStock)
       }
-      console.log(this.filteredStocks)
+      // console.log(this.filteredStocks)
       this.dataSource = new MatTableDataSource(this.filteredStocks);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -66,8 +67,21 @@ constructor(private stockService: StocksService,
   
   displayedColumns: string[] = ['stockname', 'symbol', 'price', "isUsed"];
   
+  getSessionId(): void {
+    this.stocksService.getUserStocks().subscribe((payload) => {
+
+      payload = payload
+      .filter( (x: { accountId: number; }) => x.accountId === this.accountId )
+      .reduce((prev: { sessionId: number; }, current: { sessionId: number; }) => (prev.sessionId > current.sessionId) ? prev : current, 0)
+      this.sessionId = payload.sessionId + 1
+      console.log(payload)
+    })
+  }
+
+
   getAccountId(): void {
     this.userStore.currentUser$.subscribe((response) => {
+      // console.log(response)
        this.userToGreet = response;
     });
     this.accountService.getAccounts().subscribe(payload =>{
@@ -89,8 +103,12 @@ constructor(private stockService: StocksService,
   //adding to cart makes a this.stocks if value[i].name already exists on this.stocks, just continue, else, add it in
   
   addToCart(id: number) {
-    this.newStock.id = id;
-    console.log(this.newStock)
+
+    //check if this.stock.name exists on userStock db, if it does. alert "cannot add to cart as it is alread yin cart"
+    //do a get request
+    this.newStock.accountId = this.accountId
+    this.newStock.sessionId = this.sessionId;
+    // console.log(this.newStock)
     for (let [key, value] of Object.entries(this.filteredStocks.find(stock => stock.id === id ))) {
       switch (key){
         case 'name':
@@ -105,10 +123,9 @@ constructor(private stockService: StocksService,
             }
           }
           this.filteredStocks.find(stock => stock.id === id).isUsed = true;
-          this.stockService.createUserStock(this.newStock).subscribe(data => {
-            this.cartData.push(data)
+          this.stocksService.createUserStock(this.newStock).subscribe(data => {
+          console.log(data)
           })
-          console.log(this.cartData)
         }
         
 }

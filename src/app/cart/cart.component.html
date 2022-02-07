@@ -46,21 +46,28 @@
               <td >{{ stock.name }}</td>
               <td>{{ stock.symbol }}</td>
               <td>{{ stock.price | currency}}</td>
-              <app-counter [init]="initialCount">
-            </app-counter>
+              <md-input-container>
+                <input
+                    mdInput
+                    type="number"
+                    class="count"
+                    value=1
+                    [(ngModel)]="counter[i]"
+                />
+            </md-input-container>
               <td class = "remover" (click)="deleteStock(stock.id, i)" mat-mini-fab color="primary" aria-label="icon button with a plus icon">
                <mat-icon>delete</mat-icon>
               </td>
             </tr>
 
             </table>
-            <a routerLink="/stocks">Need another stock? </a>
+            <a routerLink="/stocks"> Buy more </a>
             <div class ="calculate">
               <h2>
                 Total at checkout: {{calculateTotal() | currency}}
               </h2>
               <!-- <h2>{{removeDuplicates()}}</h2> -->
-              <button >Confirm purchase</button>
+              <button (click)="purchase()" >Confirm purchase</button>
             </div>
           </mat-card>
         

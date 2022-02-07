@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { delay, Observable } from 'rxjs';
 import { Stock } from "./stock.model"
 
 const baseURL = "https://vg-express-router.herokuapp.com/api";
@@ -24,7 +24,7 @@ export class StocksService {
   
 
   getUserStocks(): Observable<any> {
-    return this.http.get(`${baseURL}/userStocks/`);
+    return this.http.get(`${baseURL}/userStocks/`).pipe(delay(500));
   }
   
   createUserStock(newStock: Stock): Observable<any>{
