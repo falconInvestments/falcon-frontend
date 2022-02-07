@@ -3,6 +3,7 @@ export interface userStock {
     name: string,
     symbol: string,
     price: number,
-    accountId: string
+    accountId: number,
+    sessionId: number
   }
   
