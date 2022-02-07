@@ -21,6 +21,7 @@ import { EtfsComponent } from './etfs/etfs.component';
 
 import { CartComponent } from './cart/cart.component';
 import { NewsComponent } from './news/news.component';
+import { MutualfundComponent } from './mutualfund/mutualfund.component';
 
 @NgModule({
   declarations: [AppComponent, 
@@ -34,7 +35,8 @@ import { NewsComponent } from './news/news.component';
   CertificatesComponent, 
   EtfsComponent, 
   NewsComponent,
-  CartComponent],
+  CartComponent,
+  MutualfundComponent],
 
   imports: [
     BrowserModule,
