@@ -3,7 +3,7 @@
     <h1>Welcome, {{ userToGreet.firstName }}!</h1>
   </div>
   <div class="container">
-    <div>
+    <div class="user-info">
       <mat-card>
         <mat-spinner *ngIf="isLoadingUser"></mat-spinner>
         <h2>User info</h2>
@@ -43,39 +43,68 @@
       </mat-card>
     </div>
     <div>
-      <mat-card>
+      <mat-card class="investment-card">
         <mat-spinner *ngIf="isLoadingAccounts"></mat-spinner>
         <h2>Investment Portfolio</h2>
-        <table class="investments">
-          <th>Investment Name</th>
-          <th>Symbol</th>
-          <th>Investment Type</th>
-          <th>Expense Ratio</th>
-          <th>NAV</th>
-          <th>Date Created</th>
-          <th>Delete</th>
+        <mat-tab-group dynamicHeight animationDuration="1000ms">
+          <mat-tab label="Investments">
+            <table class="investments">
+              <th>Name</th>
+              <th>Symbol</th>
+              <th>Investment Type</th>
+              <th>Expense Ratio</th>
+              <th>NAV</th>
+              <th>Date Created</th>
+              <th>Delete</th>
 
-          <tr *ngFor="let investment of investments; let i = index">
-            <td>{{ investment.name }}</td>
-            <td>{{ investment.symbol }}</td>
-            <td>{{ investment.type }}</td>
-            <td>{{ investment.expenseRatio }}</td>
-            <td>{{ investment.nAV | currency }}</td>
-            <td>{{ investment.inceptionDate | date }}</td>
-            <button
-              (click)="deleteInvestment(investment.id, i)"
-              mat-mini-fab
-              color="primary"
-              aria-label="icon button with a plus icon"
-            >
-              <mat-icon>delete</mat-icon>
-            </button>
-          </tr>
-        </table>
-        <a routerLink="/mutualfunds">Add Mutual Funds</a>
-        <a routerLink="/etfs">Add ETFs</a>
+              <tr *ngFor="let investment of investments; let i = index">
+                <td>{{ investment.name }}</td>
+                <td>{{ investment.symbol }}</td>
+                <td>{{ investment.type }}</td>
+                <td>{{ investment.expenseRatio }}</td>
+                <td>{{ investment.nAV | currency }}</td>
+                <td>{{ investment.inceptionDate | date }}</td>
+                <button
+                  (click)="deleteInvestment(investment.id, i)"
+                  mat-mini-fab
+                  color="primary"
+                  aria-label="icon button with a plus icon"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </tr>
+            </table>
+            <a routerLink="/mutualfunds">Add Mutual Funds</a>
+            <a routerLink="/etfs">Add ETFs</a>
+          </mat-tab>
+          <mat-tab label="Stocks">
+            <table class="investments">
+              <th>Stock Name</th>
+              <th>Symbol</th>
+              <th>Price</th>
+              <th>Delete</th>
+
+              <tr *ngFor="let stock of stocks; let i = index">
+                <td>{{ stock.name }}</td>
+                <td>{{ stock.symbol }}</td>
+                <td>{{ stock.type }}</td>
+                <button
+                  mat-mini-fab
+                  color="primary"
+                  aria-label="icon button with a trash icon"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </tr>
+            </table>
+            <a routerLink="/stocks">Add Stocks</a>
+          </mat-tab>
+        </mat-tab-group>
       </mat-card>
-      <mat-card>
+    </div>
+    <div class="spacer"></div>
+    <div>
+      <mat-card class="cd-card">
         <mat-spinner *ngIf="isLoadingCertificates"></mat-spinner>
         <h2>CD Holdings</h2>
         <table class="certificates">
@@ -106,6 +135,7 @@
             </td>
           </tr>
         </table>
+        <a routerLink="/certificates">Add Brokerage CD</a>
       </mat-card>
     </div>
   </div>
