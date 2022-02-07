@@ -1,3 +1,4 @@
+<div id="grayedOut" *ngIf="isLoadingAuth"></div>
 <div class="container">
   <h2>Create an Account</h2>
 
@@ -7,24 +8,51 @@
         <ng-template matStepLabel>User Info</ng-template>
         <mat-form-field>
           <mat-label>First name:</mat-label>
-          <input matInput formControlName="firstName" placeholder="First name" required/>
+          <input
+            matInput
+            formControlName="firstName"
+            placeholder="First name"
+            required
+          />
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>Last name:</mat-label>
-          <input matInput formControlName="lastName" placeholder="Last name" required/>
+          <input
+            matInput
+            formControlName="lastName"
+            placeholder="Last name"
+            required
+          />
         </mat-form-field>
         <mat-form-field>
           <mat-label>Email address:</mat-label>
-          <input matInput formControlName="email" placeholder="Email address" required/>
+          <input
+            matInput
+            formControlName="email"
+            placeholder="Email address"
+            required
+          />
         </mat-form-field>
         <mat-form-field>
           <mat-label>Password:</mat-label>
-          <input matInput type="password" formControlName="password" placeholder="Password" required/>
+          <input
+            matInput
+            type="password"
+            formControlName="password"
+            placeholder="Password"
+            required
+          />
         </mat-form-field>
         <mat-form-field>
           <mat-label>Confirm password:</mat-label>
-          <input matInput type="password" formControlName="confirmPassword" placeholder="Confirm password" required/>
+          <input
+            matInput
+            type="password"
+            formControlName="confirmPassword"
+            placeholder="Confirm password"
+            required
+          />
         </mat-form-field>
         <div>
           <button mat-button matStepperNext>Next</button>
@@ -45,40 +73,58 @@
             <mat-option value="Roth IRA">Roth IRA</mat-option>
             <mat-option value="Brokerage">Brokerage</mat-option>
           </mat-select>
-          </mat-form-field>
-          <mat-form-field appearance="fill">
-            <mat-label>Balance</mat-label>
-            <input matInput formControlName="balance" required/>
-          </mat-form-field>
-          <mat-form-field appearance="fill">
-            <mat-label>Annual Contribution</mat-label>
-            <input matInput formControlName="annualContribution" required/>
-          </mat-form-field>
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
-          </div>
-        </form>
-      </mat-step>
-      <mat-step>
-        <ng-template matStepLabel>Done</ng-template>
-        <p>You are now done.</p>
-        <mat-list>
-          <mat-list-item> <strong>First Name: </strong> {{ this.firstFormGroup.value.firstName }}</mat-list-item>
-          <mat-list-item> <strong>Last Name: </strong> {{ this.firstFormGroup.value.lastName }}</mat-list-item>
-          <mat-list-item> <strong>Email: </strong> {{ this.firstFormGroup.value.email }}</mat-list-item>
-          <!-- <mat-list-item> <strong>User Id: </strong> {{ this.secondFormGroup.value.userId }}</mat-list-item> -->
-          <mat-list-item> <strong>Account Type: </strong> {{ this.secondFormGroup.value.type }}</mat-list-item>
-          <mat-list-item> <strong>Balance: </strong> {{ this.secondFormGroup.value.balance }}</mat-list-item>
-          <mat-list-item> <strong>Annual Contribution: </strong> {{ this.secondFormGroup.value.annualContribution }}</mat-list-item>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Balance</mat-label>
+          <input matInput formControlName="balance" required />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Annual Contribution</mat-label>
+          <input matInput formControlName="annualContribution" required />
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
+      <mat-list>
+        <mat-list-item>
+          <strong>First Name: </strong>
+          {{ this.firstFormGroup.value.firstName }}</mat-list-item
+        >
+        <mat-list-item>
+          <strong>Last Name: </strong>
+          {{ this.firstFormGroup.value.lastName }}</mat-list-item
+        >
+        <mat-list-item>
+          <strong>Email: </strong>
+          {{ this.firstFormGroup.value.email }}</mat-list-item
+        >
+        <!-- <mat-list-item> <strong>User Id: </strong> {{ this.secondFormGroup.value.userId }}</mat-list-item> -->
+        <mat-list-item>
+          <strong>Account Type: </strong>
+          {{ this.secondFormGroup.value.type }}</mat-list-item
+        >
+        <mat-list-item>
+          <strong>Balance: </strong>
+          {{ this.secondFormGroup.value.balance }}</mat-list-item
+        >
+        <mat-list-item>
+          <strong>Annual Contribution: </strong>
+          {{ this.secondFormGroup.value.annualContribution }}</mat-list-item
+        >
+      </mat-list>
 
-          </mat-list>
-          
-            <div>
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button (click)="stepper.reset()">Reset</button>
-              <button mat-button (click)="submit()">Submit</button>
-            </div>
-          </mat-step>
-        </mat-horizontal-stepper>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+        <button mat-button (click)="submit()">Submit</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+  <mat-spinner *ngIf="isLoadingAuth"></mat-spinner>
 </div>

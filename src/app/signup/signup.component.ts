@@ -8,6 +8,7 @@ import { Account } from '../account.model';
 import { switchMap, timer } from 'rxjs';
 import { Router } from '@angular/router';
 import { UserStoreService } from '../user-store.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-signup',
@@ -15,6 +16,7 @@ import { UserStoreService } from '../user-store.service';
   styleUrls: ['./signup.component.scss'],
 })
 export class SignupComponent implements OnInit {
+  isLoadingAuth: boolean = false;
   userResponse: any = null;
   newUser: User = { id: 0, firstName: '', lastName: '', email: '' };
   accountUser: any = { id: 0, name: '', age: 0, password: '' };
@@ -38,7 +40,8 @@ export class SignupComponent implements OnInit {
     private accountService: AccountService,
     private _formBuilder: FormBuilder,
     private router: Router,
-    private userStore: UserStoreService
+    private userStore: UserStoreService,
+    private cookieService: CookieService
   ) {}
 
   ngOnInit(): void {
@@ -64,6 +67,7 @@ export class SignupComponent implements OnInit {
   }
 
   submit() {
+    this.isLoadingAuth = true;
     this.newUser = this.firstFormGroup.value;
     this.newAccount = this.secondFormGroup.value;
     this.newAccount.userId = 2;
@@ -71,11 +75,28 @@ export class SignupComponent implements OnInit {
 
     this.userService.createUser(this.newUser).subscribe((payload) => {
       console.log(payload);
+      if (payload.id) {
+        this.userService
+          .submitSignin({
+            email: this.firstFormGroup.value.email,
+            password: this.firstFormGroup.value.password,
+          })
+          .subscribe((response) => {
+            this.cookieService.set('falcon.sid', JSON.stringify(response));
+            if (response.userId) {
+              this.userService.fetchUserDetails(response.userId);
+              setTimeout(() => this.router.navigate(['/dashboard']), 3000);
+            }
+          });
+      } else {
+        // Error
+        this.isLoadingAuth = false;
+      }
     });
     this.accountService.createAccount(this.newAccount).subscribe((payload) => {
       console.log(payload);
     });
 
-    this.router.navigate(['/signin']);
+    // this.router.navigate(['/signin']);
   }
 }
