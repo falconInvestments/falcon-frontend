@@ -23,6 +23,7 @@ export class DashboardComponent implements OnInit {
   investments: Investment[] = [];
   users: User[] = [];
   certificates: Certificate[] = [];
+  stocks: any[]=[]
 
   constructor(
     private userStore: UserStoreService,
