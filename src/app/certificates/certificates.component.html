@@ -2,7 +2,8 @@
 
 <mat-tab-group>
   <mat-tab label="My CDs">
-    <!-- Use a loading indicator and/or a message if none to display -->
+    <mat-spinner *ngIf="isLoadingCertificates"></mat-spinner>
+    <span *ngIf="!isSignedIn">Sign in to purchase a brokered CD.</span>
     <mat-card *ngFor="let certificate of userCertificates">
       <mat-card-title
         ><h4>
@@ -13,8 +14,10 @@
         {{ certificate.initialAmount | currency: "USD" }} on
         {{ certificate.startDate | date: "mediumDate" }}
       </h5>
-      Maturity: {{ certificate.maturityDate | date: "mediumDate" }}<br />
-      <!-- Calculate time from now? -->
+      Maturity: {{ certificate.maturityDate | date: "mediumDate" }} ({{
+        calcTimeRemaining(certificate.maturityDate)
+      }}
+      from now)<br />
     </mat-card>
   </mat-tab>
 

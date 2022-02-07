@@ -20,6 +20,9 @@ export class StocksService {
     return this.http.get(`${baseURL}/stocks/${id}`);
   }
 
+
+  
+
   getUserStocks(): Observable<any> {
     return this.http.get(`${baseURL}/userStocks/`);
   }
@@ -29,11 +32,11 @@ export class StocksService {
   }
 
   
-  deleteUserStock(id: number): Observable<any> {
-    return this.http.delete(`${baseURL}/userStocks/${id}`);
+  deleteUserStock(id: number | undefined): Observable<any> {
+    return this.http.delete(`${baseURL}/userStocks/delete/${id}`);
   }
 
   updateUserStock(stock: Stock): Observable<any>{
-    return this.http.put(`${baseURL}/userStocks/${stock.id}`, stock);
+    return this.http.put(`${baseURL}/userStocks/update/${stock.id}`, stock);
   }
 }

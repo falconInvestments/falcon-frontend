@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { UserStoreService } from '../user-store.service';
 import { UserService } from '../user.service';
 
 @Component({
@@ -10,15 +11,20 @@ import { UserService } from '../user.service';
   styleUrls: ['./signin.component.scss'],
 })
 export class SigninComponent implements OnInit {
-  currentUserId: number = NaN;
+  isLoadingAuth: boolean = false;
 
   constructor(
+    private userStore: UserStoreService,
     private userService: UserService,
     private cookieService: CookieService,
     private router: Router
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.userStore.currentUser && this.userStore.currentUser.email) {
+      this.router.navigate(['/dashboard']);
+    }
+  }
 
   onSubmit(form: NgForm) {
     const signinSubscription = this.userService
@@ -28,7 +34,8 @@ export class SigninComponent implements OnInit {
         if (response.userId) {
           this.userService.fetchUserDetails(response.userId);
           signinSubscription.unsubscribe();
-          this.router.navigate(['/dashboard']);
+          this.isLoadingAuth = true;
+          setTimeout(() => this.router.navigate(['/dashboard']), 1000); // Timeout to prevent automatic re-redirection to /signin
         }
       });
   }
