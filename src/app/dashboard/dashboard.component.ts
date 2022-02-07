@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   investments: Investment[] = [];
   users: User[] = [];
   certificates: Certificate[] = [];
-  stocks: any[]=[]
+  stocks: any[] = [];
 
   constructor(
     private userStore: UserStoreService,
@@ -38,7 +38,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.userStore.currentUser$.subscribe((response) => {
       this.isLoadingUser = true;
-      if (response) {
+      if (!response) {
+        this.isLoadingUser = false;
+      } else {
         this.userToGreet = response;
         this.certificateService.fetchUserCertificates(response.id);
         this.isLoadingUser = false;
@@ -57,6 +59,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.stateCertsSubscription =
       this.certificateService.userCertificates$.subscribe((certificates) => {
         this.isLoadingCertificates = true;
+        if (certificates.length === 0) {
+          this.isLoadingCertificates = false;
+          this.stateCertsSubscription.unsubscribe();
+        }
         if (certificates.length > 0) {
           this.certificates = certificates;
           this.stateCertsSubscription.unsubscribe();

@@ -21,6 +21,7 @@ import { EtfsComponent } from './etfs/etfs.component';
 
 import { CartComponent } from './cart/cart.component';
 import { NewsComponent } from './news/news.component';
+import { MutualfundComponent } from './mutualfund/mutualfund.component';
 
 
 import { PurchaseConfirmationDialogComponent } from './purchase-confirmation-dialog/purchase-confirmation-dialog.component';
