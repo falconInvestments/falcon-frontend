@@ -3,6 +3,7 @@
 <mat-tab-group>
   <mat-tab label="My CDs">
     <mat-spinner *ngIf="isLoadingCertificates"></mat-spinner>
+    <span *ngIf="!isSignedIn">Sign in to purchase a brokered CD.</span>
     <mat-card *ngFor="let certificate of userCertificates">
       <mat-card-title
         ><h4>
