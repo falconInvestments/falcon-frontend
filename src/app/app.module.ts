@@ -22,8 +22,14 @@ import { AdvisorComponent } from './advisor/advisor.component';
 import { CartComponent } from './cart/cart.component';
 import { NewsComponent } from './news/news.component';
 
+import { CounterComponent } from './counter/counter.component';
+
+import { PurchaseConfirmationDialogComponent } from './purchase-confirmation-dialog/purchase-confirmation-dialog.component';
+
+
 @NgModule({
-  declarations: [AppComponent, 
+  declarations: [
+    AppComponent, 
   SignupComponent, 
   SigninComponent, 
   HomeComponent, 
@@ -35,8 +41,10 @@ import { NewsComponent } from './news/news.component';
   EtfsComponent,
   AdvisorComponent,
   NewsComponent,
-  CartComponent],
-
+  CartComponent,
+  CounterComponent,
+  PurchaseConfirmationDialogComponent
+],
   imports: [
     BrowserModule,
     AppRoutingModule,

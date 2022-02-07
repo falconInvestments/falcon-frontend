@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { UserStoreService } from '../user-store.service';
 import { UserService } from '../user.service';
 
 @Component({
@@ -11,15 +12,19 @@ import { UserService } from '../user.service';
 })
 export class SigninComponent implements OnInit {
   isLoadingAuth: boolean = false;
-  currentUserId: number = NaN;
 
   constructor(
+    private userStore: UserStoreService,
     private userService: UserService,
     private cookieService: CookieService,
     private router: Router
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.userStore.currentUser && this.userStore.currentUser.email) {
+      this.router.navigate(['/dashboard']);
+    }
+  }
 
   onSubmit(form: NgForm) {
     const signinSubscription = this.userService

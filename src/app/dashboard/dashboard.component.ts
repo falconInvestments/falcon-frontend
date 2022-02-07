@@ -24,6 +24,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   investments: Investment[] = [];
   users: User[] = [];
   certificates: Certificate[] = [];
+  stocks: any[]=[]
 
   constructor(
     private userStore: UserStoreService,

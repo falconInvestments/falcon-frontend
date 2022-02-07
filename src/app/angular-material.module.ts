@@ -34,6 +34,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const materialModules = [
   CdkTreeModule,
@@ -70,6 +71,7 @@ const materialModules = [
   MatDatepickerModule,
   MatTooltipModule,
   MatStepperModule,
+  MatDialogModule,
 ];
 
 @NgModule({

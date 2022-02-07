@@ -11,18 +11,37 @@
     padding: 20px;
     min-height: 80vh;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items:flex-start;
+    .user-info {
+        width: 30vw;
+        margin-left: 50px;
+    }
 
     mat-card {
-        margin: 10px auto;
+        margin: auto;
         display: inline-block;
         padding: 20px;
         text-align: center;
     }
     .info {
         th {
-            padding: 5px 15px;
+            padding: 10px 15px;
         }
+    }
+    .investment-card {
+        width: 50vw;
+        margin: 0 90px 0 40px;
+        //padding-right: 50px;
+    }
+    .cd-card {
+        width: 50vw;
+        margin: 0 90px 0 40px;
+       // padding-right: 50px;
+    }
+    .spacer {
+        width: 20vw;
     }
     .investments {
             margin: auto;
