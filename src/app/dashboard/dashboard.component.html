@@ -27,15 +27,25 @@
               </tr>
               <tr>
                 <th>Balance:</th>
-                <td>{{ accounts.balance | currency }}</td>
+                <td>
+                  {{ accounts ? (accounts.balance | currency) : "balance" }}
+                </td>
               </tr>
               <tr>
                 <th>Annual Contribution:</th>
-                <td>{{ accounts.annualContribution | currency }}</td>
+                <td>
+                  {{
+                    accounts
+                      ? (accounts.annualContribution | currency)
+                      : "annual contribution"
+                  }}
+                </td>
               </tr>
               <tr>
                 <th>Account Date:</th>
-                <td>{{ accounts.createdAt | date }}</td>
+                <td>
+                  {{ accounts ? (accounts.createdAt | date) : "account date" }}
+                </td>
               </tr>
             </ng-container>
           </table>
