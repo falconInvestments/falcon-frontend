@@ -12,6 +12,7 @@ import { UserService } from '../user.service';
   styleUrls: ['./signin.component.scss'],
 })
 export class SigninComponent implements OnInit {
+  credentialsAreValid: boolean | null = null;
   redirectMessage: string | null = null;
   isLoadingAuth: boolean = false;
   loginForm!: FormGroup;
@@ -48,14 +49,22 @@ export class SigninComponent implements OnInit {
   onSubmit() {
     const signinSubscription = this.userService
       .submitSignin(this.loginForm.value)
-      .subscribe((response) => {
-        this.cookieService.set('falcon.sid', JSON.stringify(response));
-        if (response.userId) {
-          this.userService.fetchUserDetails(response.userId);
-          signinSubscription.unsubscribe();
-          this.isLoadingAuth = true;
-          setTimeout(() => this.router.navigate(['/dashboard']), 1000); // Timeout to prevent automatic re-redirection to /signin
-        }
+      .subscribe({
+        next: (response) => {
+          this.cookieService.set('falcon.sid', JSON.stringify(response));
+          if (response.userId) {
+            this.credentialsAreValid = true;
+            this.userService.fetchUserDetails(response.userId);
+            signinSubscription.unsubscribe();
+            this.isLoadingAuth = true;
+            setTimeout(() => this.router.navigate(['/dashboard']), 1000); // Timeout to prevent automatic re-redirection to /signin
+          }
+        },
+        error: (error) => {
+          if (error.status === 400 || error.status === 404) {
+            this.credentialsAreValid = false;
+          }
+        },
       });
   }
 }
