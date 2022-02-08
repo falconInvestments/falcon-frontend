@@ -1,9 +1,11 @@
 export interface userStock {
-    stock_id: number,
+    id: number,
     name: string,
     symbol: string,
     price: number,
     accountId: number,
-    sessionId: number
+    sessionId: number,
+    quantity: number,
+    isPurchased: boolean
   }
   
