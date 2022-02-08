@@ -58,9 +58,15 @@
             </div>
         </div>
 
-        <div class="add">
-            <mat-body-2>Action</mat-body-2>
+        <div *ngIf="isUsed==true" class="add">
+            <mat-body-2>Add Fund </mat-body-2>
             <button mat-mini-fab disabled color="primary">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+        <div *ngIf="isUsed==false" class="add">
+            <mat-body-2>Add Fund </mat-body-2>
+            <button (click)="addFund()" mat-mini-fab color="primary">
                 <mat-icon>add</mat-icon>
             </button>
         </div>
