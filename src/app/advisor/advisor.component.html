@@ -1,5 +1,8 @@
-<h1>Falcon Investments Advisor</h1>
-<mat-expansion-panel>
+<div class="body">
+
+  <h1>Falcon Investments Advisor</h1>
+
+  <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title>
         Mutal Funds
@@ -13,52 +16,53 @@
             <li>{{tip.info}}</li>
         </div>
     </div>
-</mat-expansion-panel>
+  </mat-expansion-panel>
 
-<mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        ETFs
-      </mat-panel-title>
-      <mat-panel-description>
-        <!-- This is a summary of the content -->
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <div *ngFor="let tip of tips">
-        <div *ngIf="tip.label==='etf'">
-            <li>{{tip.info}}</li>
-        </div>
-    </div>
-</mat-expansion-panel>
+  <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          ETFs
+        </mat-panel-title>
+        <mat-panel-description>
+          <!-- This is a summary of the content -->
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div *ngFor="let tip of tips">
+          <div *ngIf="tip.label==='etf'">
+              <li>{{tip.info}}</li>
+          </div>
+      </div>
+  </mat-expansion-panel>
 
-<mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Stock Market
-      </mat-panel-title>
-      <mat-panel-description>
-        <!-- This is a summary of the content -->
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <div *ngFor="let tip of tips">
-        <div *ngIf="tip.label==='market'">
-            <li>{{tip.info}}</li>
-        </div>
-    </div>
-</mat-expansion-panel>
-    
-<mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Certificate of Deposits
-      </mat-panel-title>
-      <mat-panel-description>
-        <!-- This is a summary of the content -->
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <div *ngFor="let tip of tips">
-        <div *ngIf="tip.label==='cd'">
-            <li>{{tip.info}}</li>
-        </div>
-    </div>
-</mat-expansion-panel>
+  <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Stock Market
+        </mat-panel-title>
+        <mat-panel-description>
+          <!-- This is a summary of the content -->
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div *ngFor="let tip of tips">
+          <div *ngIf="tip.label==='market'">
+              <li>{{tip.info}}</li>
+          </div>
+      </div>
+  </mat-expansion-panel>
+      
+  <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Certificate of Deposits
+        </mat-panel-title>
+        <mat-panel-description>
+          <!-- This is a summary of the content -->
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div *ngFor="let tip of tips">
+          <div *ngIf="tip.label==='cd'">
+              <li>{{tip.info}}</li>
+          </div>
+      </div>
+  </mat-expansion-panel>
+</div>

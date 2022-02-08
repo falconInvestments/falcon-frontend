@@ -21,11 +21,4 @@ export class AdvisorComponent implements OnInit {
       console.log(this.tips)
     })
   }
-
-  // show_topics():void{
-  //   this.advisorService.getTopics().subscribe(payload => {
-  //     console.log("showing topics...", payload.data)
-  //     this.topics = payload;
-  //   })
-  // }
 }
