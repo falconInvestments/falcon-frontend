@@ -10,6 +10,7 @@ import { MutualfundComponent } from './mutualfund/mutualfund.component';
 import { CertificatesComponent } from './certificates/certificates.component';
 import { EtfsComponent } from './etfs/etfs.component';
 import { CartComponent } from './cart/cart.component';
+import { AdvisorComponent } from './advisor/advisor.component';
 
 const routes: Routes = [
   {path: "", redirectTo: 'home', pathMatch: 'full'},
@@ -22,7 +23,8 @@ const routes: Routes = [
   { path: 'mutualfunds', component: MutualFundsComponent },
   { path: 'mutualfunds/:filteredFund.id', component: MutualfundComponent},
   { path: 'etfs', component: EtfsComponent},
-  { path: "cart", component: CartComponent}
+  { path: "cart", component: CartComponent},
+  { path: 'advisor', component: AdvisorComponent}
 ];
 
 @NgModule({

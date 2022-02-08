@@ -18,6 +18,13 @@
         calcTimeRemaining(certificate.maturityDate)
       }}
       from now)<br />
+      Interest to be paid upon maturity:
+      {{
+        certificate.initialAmount *
+          certificate.interestRate *
+          (numMonths(certificate.startDate, certificate.maturityDate) / 12)
+          | currency: "USD"
+      }}<br />
     </mat-card>
   </mat-tab>
 
