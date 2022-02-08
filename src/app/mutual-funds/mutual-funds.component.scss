@@ -1,17 +1,27 @@
+.mfIntro {
+    display: flex;
+    min-height: 400px;
+    background-color: #ede7d0;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    img {
+      max-height: 350px;
+      border: 1px solid black;
+      border-radius: 15px;
+    }
+}
 .mutual-funds  {
     display: flex;
     flex-direction: column;
-    // justify-content: center;
     align-items: center;
     min-height: 80vh;
 }
-
-// .mat-table {
-
-//     max-height: 600px;
-// }
-
 table {
+    width: 60%;
+}
+
+mat-paginator {
     width: 60%;
 }
 
