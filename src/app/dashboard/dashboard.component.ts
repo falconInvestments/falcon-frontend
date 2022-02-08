@@ -44,6 +44,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this._snackBar.open(window.history.state.redirectMessage, 'OK', {
         verticalPosition: 'top',
         duration: 5000,
+        panelClass: ['snackbar']
       });
     }
     this.userStore.currentUser$.subscribe((response) => {

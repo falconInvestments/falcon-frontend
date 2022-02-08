@@ -37,6 +37,7 @@ export class SigninComponent implements OnInit {
       this._snackBar.open(window.history.state.redirectMessage, 'OK', {
         verticalPosition: 'top',
         duration: 5000,
+        panelClass: ['snackbar']
       });
     }
     this.loginForm = this.formBuilder.group({
