@@ -61,7 +61,7 @@
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-evenly;
-    .row3, .add {
+    .row3, .add, .back{
         display: inline;
     }
 }
@@ -73,3 +73,19 @@
 .add {
     padding: 20px 4px 20px 4px;
 }
+
+.back {
+    align-self: flex-end;
+}
+a {
+    text-decoration: none;
+    color: white;
+    background-color: #1d3557;
+    padding: 7px;
+    border-radius: 5px;
+    width: 130px;
+    text-align: center;
+  }
+  a:hover {
+    background-color: #3336908e;
+  }
