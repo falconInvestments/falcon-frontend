@@ -34,8 +34,8 @@
     </ng-container>
 
     <ng-container matColumnDef="price">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>NAV</th>
-      <td mat-cell *matCellDef="let filteredFund">{{ filteredFund.price }}</td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
+      <td mat-cell *matCellDef="let filteredFund">${{ filteredFund.price }}</td>
     </ng-container>
 
     <ng-container matColumnDef="isUsed">

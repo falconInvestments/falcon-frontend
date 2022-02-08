@@ -41,7 +41,8 @@ import { PurchaseConfirmationDialogComponent } from './purchase-confirmation-dia
   EtfsComponent, 
   NewsComponent,
   CartComponent,
-  PurchaseConfirmationDialogComponent
+  PurchaseConfirmationDialogComponent,
+  MutualfundComponent
 ],
   imports: [
     BrowserModule,
