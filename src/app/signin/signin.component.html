@@ -1,28 +1,36 @@
 <div id="grayedOut" *ngIf="isLoadingAuth"></div>
 <div class="wrapper">
   <div class="container">
-    <form #signinForm="ngForm" (ngSubmit)="onSubmit(signinForm)">
+    <mat-card>
       <h2>Login</h2>
-      <div class="input-field">
-        <label for="email">Email: </label>
-        <input
-          type="email"
-          name="email"
-          [(ngModel)]="signinForm.value.email"
-          placeholder="Email address"
-        />
+      <div class="loginform">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <mat-form-field appearance="outline">
+            <mat-label>Email:</mat-label>
+            <input
+              matInput
+              type="email"
+              formControlName="email"
+              placeholder="Email address"
+              
+            />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Password:</mat-label>
+            <input
+              matInput
+              type="password"
+              formControlName="password"
+              placeholder="Password"
+              
+            />
+          </mat-form-field>
+
+          <!-- <input type="submit" id="submit" value="Sign in" /> -->
+          <button type="submit" mat-raised-button color="primary">Sign in</button>
+        </form>
       </div>
-      <div class="input-field">
-        <label for="password">Password: </label>
-        <input
-          type="password"
-          name="password"
-          [(ngModel)]="signinForm.value.password"
-          placeholder="Password"
-        />
-      </div>
-      <input type="submit" id="submit" value="Sign in to your account" />
-    </form>
+    </mat-card>
     <mat-spinner *ngIf="isLoadingAuth"></mat-spinner>
   </div>
 </div>
