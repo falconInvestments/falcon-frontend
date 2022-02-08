@@ -6,7 +6,7 @@
 }
 
 mat-table {
-    min-width: 60%;
+    min-width: 40%;
     margin: auto;
 }
 .mat-column-stockname {
@@ -25,7 +25,7 @@ mat-table {
     flex: 0 0 20%;
 }
 mat-paginator {
-    width: 60%;
+    width: 40%;
     margin: auto;
 }
 ng-container{
@@ -46,4 +46,17 @@ mat-cell {
 }
 mat-header-cell {
     font-size: 14px;
+}
+
+.disclaimer {
+    padding: 5vh 25vh;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    color: rgb(129, 127, 127)
+}
+
+
+@media only screen and (max-width: 850px){
+
 }

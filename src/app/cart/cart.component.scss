@@ -1,7 +1,43 @@
 .remover:hover{
     cursor:pointer;
 }
+.container{
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 0px;
+}
 
-.count {
-    width: 3vw;
+
+mat-card {
+    margin-bottom: 10px;
+    max-width: 100%;
+  }
+  
+.greet {
+    display: flex;
+    justify-content: center;
+}
+.title {
+    display: flex;
+    justify-content: center;
+}
+.confirm {
+    display: flex;
+    justify-content: center;
+}
+.checkout {
+    display: flex;
+    justify-content: center;
+}
+.confirm {
+    display: flex;
+    justify-content: center;
+}
+.disclaimer {
+    padding: 5vh 25vh;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    color: rgb(129, 127, 127)
 }
