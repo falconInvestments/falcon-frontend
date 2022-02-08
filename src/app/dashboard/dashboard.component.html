@@ -92,13 +92,16 @@
               <th>Stock Name</th>
               <th>Symbol</th>
               <th>Price</th>
+              <th>Amount </th>
               <th>Delete</th>
 
               <tr *ngFor="let stock of stocks; let i = index">
                 <td>{{ stock.name }}</td>
                 <td>{{ stock.symbol }}</td>
-                <td>{{ stock.type }}</td>
+                <td>{{ stock.price }}</td> 
+                <td>{{ stock.quantity }}</td>
                 <button
+                (click)="deleteStock(stock.id, i)"
                   mat-mini-fab
                   color="primary"
                   aria-label="icon button with a trash icon"

@@ -18,14 +18,11 @@ import { SignoutButtonComponent } from './signout-button/signout-button.componen
 import { MutualFundsComponent } from './mutual-funds/mutual-funds.component';
 import { CertificatesComponent } from './certificates/certificates.component';
 import { EtfsComponent } from './etfs/etfs.component';
-
 import { CartComponent } from './cart/cart.component';
 import { NewsComponent } from './news/news.component';
 import { MutualfundComponent } from './mutualfund/mutualfund.component';
-
-
 import { PurchaseConfirmationDialogComponent } from './purchase-confirmation-dialog/purchase-confirmation-dialog.component';
-
+import { AdvisorComponent } from './advisor/advisor.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +39,8 @@ import { PurchaseConfirmationDialogComponent } from './purchase-confirmation-dia
   NewsComponent,
   CartComponent,
   PurchaseConfirmationDialogComponent,
-  MutualfundComponent
+  MutualfundComponent,
+  AdvisorComponent
 ],
   imports: [
     BrowserModule,
