@@ -18,7 +18,7 @@ export class AccountService {
   }
 
   getInvestments():Observable<any>{
-    return this.http.get(this.url + 'investments');
+    return this.http.get(this.url + 'investments').pipe(delay(100));
   }
   
   deleteInvestment(id: number | undefined): Observable<any> {
