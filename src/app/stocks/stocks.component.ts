@@ -21,8 +21,7 @@ export class StocksComponent implements OnInit {
   cartData:any[] =[];
   stocks:any[] = [];
   name:any;
-  // userStocks: any[] =[];
-  newStock: any = {id: 0, name: '', symbol: '',price: 0, accountId: 0, sessionId: 0};
+  newStock: any = {id: 0, name: '', symbol: '',price: 0, accountId: 0, sessionId: 0, quantity:0, isPurchased: false};
   filteredStocks: any[] = []
   filteredStock: any = {id: 0, name: '', symbol: '',price: 0, isUsed: false};
   dataSource!: MatTableDataSource<any[]>;
@@ -57,7 +56,7 @@ constructor(private stocksService: StocksService,
         }
         this.filteredStocks.push(this.filteredStock)
       }
-      // console.log(this.filteredStocks)
+      console.log(this.filteredStocks)
       this.dataSource = new MatTableDataSource(this.filteredStocks);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -69,11 +68,17 @@ constructor(private stocksService: StocksService,
   
   getSessionId(): void {
     this.stocksService.getUserStocks().subscribe((payload) => {
-
+      console.log(payload)
       payload = payload
       .filter( (x: { accountId: number; }) => x.accountId === this.accountId )
       .reduce((prev: { sessionId: number; }, current: { sessionId: number; }) => (prev.sessionId > current.sessionId) ? prev : current, 0)
-      this.sessionId = payload.sessionId + 1
+      if(!payload){
+        this.sessionId = 1
+      } else {
+        this.sessionId = payload.sessionId + 1  
+
+      }
+      console.log(this.sessionId)
       console.log(payload)
     })
   }
@@ -81,13 +86,15 @@ constructor(private stocksService: StocksService,
 
   getAccountId(): void {
     this.userStore.currentUser$.subscribe((response) => {
-      // console.log(response)
+      console.log(response)
        this.userToGreet = response;
     });
     this.accountService.getAccounts().subscribe(payload =>{
       this.account = payload.find((acc: { newUserId: number; }) => this.userToGreet ? acc.newUserId == this.userToGreet.id : acc.newUserId == 99);
+      console.log(this.account)
       this.accountId = this.account.id;
       console.log(this.accountId)
+      console.log(this.newStock)
     })
     
   }
@@ -106,9 +113,12 @@ constructor(private stocksService: StocksService,
 
     //check if this.stock.name exists on userStock db, if it does. alert "cannot add to cart as it is alread yin cart"
     //do a get request
-    this.newStock.accountId = this.accountId
+    this.newStock.quantity = 1;
+    this.newStock.accountId = this.accountId;
     this.newStock.sessionId = this.sessionId;
-    // console.log(this.newStock)
+    console.log(this.newStock)
+
+
     for (let [key, value] of Object.entries(this.filteredStocks.find(stock => stock.id === id ))) {
       switch (key){
         case 'name':
@@ -122,9 +132,10 @@ constructor(private stocksService: StocksService,
               break;
             }
           }
+          console.log(this.newStock)
           this.filteredStocks.find(stock => stock.id === id).isUsed = true;
           this.stocksService.createUserStock(this.newStock).subscribe(data => {
-          console.log(data)
+            console.log(data)
           })
         }
         
