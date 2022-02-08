@@ -3,6 +3,9 @@
   <div class="container">
     <mat-card>
       <h2>Login</h2>
+      <div *ngIf="credentialsAreValid === false" class="login-error">
+        The provided user credentials are not valid.
+      </div>
       <div class="loginform">
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <mat-form-field appearance="outline">
@@ -12,7 +15,6 @@
               type="email"
               formControlName="email"
               placeholder="Email address"
-              
             />
           </mat-form-field>
           <mat-form-field appearance="outline">
@@ -22,12 +24,13 @@
               type="password"
               formControlName="password"
               placeholder="Password"
-              
             />
           </mat-form-field>
 
           <!-- <input type="submit" id="submit" value="Sign in" /> -->
-          <button type="submit" mat-raised-button color="primary">Sign in</button>
+          <button type="submit" mat-raised-button color="primary">
+            Sign in
+          </button>
         </form>
       </div>
     </mat-card>
