@@ -50,7 +50,9 @@ export class SignupComponent implements OnInit {
       console.log(this.newUserId);
     });
     if (this.userStore.currentUser && this.userStore.currentUser.email) {
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/dashboard'], {
+        state: { redirectMessage: 'You are currently signed in.' },
+      });
     }
     this.firstFormGroup = this._formBuilder.group({
       firstName: ['', Validators.required],

@@ -7,6 +7,7 @@ import { User } from '../user.model';
 import { Certificate } from '../certificate.model';
 import { CertificateService } from '../certificate.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 const { DateTime } = require('luxon');
 
@@ -16,6 +17,7 @@ const { DateTime } = require('luxon');
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit, OnDestroy {
+  redirectMessage: string | null = null;
   isLoadingUser: boolean = false;
   isLoadingAccounts: boolean = false;
   isLoadingCertificates: boolean = false;
@@ -30,12 +32,19 @@ export class DashboardComponent implements OnInit, OnDestroy {
     private userStore: UserStoreService,
     private accountService: AccountService,
     private certificateService: CertificateService,
-    private router: Router
+    private router: Router,
+    private _snackBar: MatSnackBar
   ) {}
 
   private stateCertsSubscription: any;
 
   ngOnInit(): void {
+    if (window.history.state.redirectMessage) {
+      this._snackBar.open(window.history.state.redirectMessage, 'OK', {
+        verticalPosition: 'top',
+        duration: 5000,
+      });
+    }
     this.userStore.currentUser$.subscribe((response) => {
       this.isLoadingUser = true;
       if (!response) {
@@ -74,7 +83,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
         }
       });
     if (!this.userToGreet && !this.isLoadingUser) {
-      this.router.navigate(['/signin']);
+      this.router.navigate(['/signin'], {
+        state: { redirectMessage: 'Please sign in to view your dashboard.' },
+      });
     }
   }
 
