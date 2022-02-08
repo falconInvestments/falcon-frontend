@@ -1,46 +1,20 @@
 
-<div class="wrapper">
-    <div *ngIf="userToGreet">
-      <h1>Welcome, {{ userToGreet.firstName }}!</h1>
-    </div>
     <div class="container">
+      <div class="wrapper">
+          <div class = "greet" *ngIf="userToGreet">
+            <h1>Welcome, {{ userToGreet.firstName }}!</h1>
+          </div>
+
+          <div class = "title" >
+            <h2>Confirmation of Purchase</h2>
+          </div>
       <div>
         <mat-card>
-          <h2>User info</h2>
-          <div class="info">
-            <table >
-              <tr>
-                <th>Name:</th><td>{{userToGreet ? userToGreet.firstName : 'User'}} {{userToGreet ? userToGreet.lastName : 'User'}}</td>
-              </tr>
-              <tr>
-                <th>Email:</th><td>{{userToGreet ? userToGreet.email : 'Email'}}</td>
-              </tr>
-              <ng-container >
-                <tr>
-                  <th>Account Type:</th><td>{{stocks ? accounts.label : 'type'}}</td>
-                </tr>
-                <tr>
-                  <th>Balance:</th><td>{{accounts.balance | currency}}</td>
-                </tr>
-                <tr>
-                  <th>Annual Contribution:</th><td>{{accounts.annualContribution | currency}}</td>
-                </tr>
-                <tr>
-                  <th>Account Date:</th><td>{{accounts.createdAt |  date}}</td>
-                </tr>
-              </ng-container>
-          </table>
-        </div>
-      </mat-card>
-      </div>
-      <div>
-        <mat-card>
-          <h2>Stocks Portfolio</h2>
           <table class="stocks">
             <th>Stock Name</th>
             <th>Symbol</th>
             <th>Price</th>
-            <th>Add more?</th>
+            <th>Quantity</th>
             <th>Remove</th>
             <tr *ngFor="let stock of stocks, let i = index">
               <td >{{ stock.name }}</td>
@@ -61,16 +35,38 @@
             </tr>
 
             </table>
-            <a routerLink="/stocks"> Buy more </a>
-            <div class ="calculate">
-              <h2>
-                Total at checkout: {{calculateTotal() | currency}}
-              </h2>
-              <!-- <h2>{{removeDuplicates()}}</h2> -->
-              <button (click)="purchase()"  >Confirm purchase</button>
-            </div>
+            <a routerLink="/stocks">+ </a> <a routerLink="/stocks">Add another stock </a>
           </mat-card>
-        
         </div>
+          <div class ="checkout">
+            <h2>
+              Total at checkout: {{calculateTotal() | currency}}
+            </h2>
+          </div>
+          <!-- <h2>{{removeDuplicates()}}</h2> -->
+          <div class = "confirm">
+            
+            <button  mat-raised-button color="primary" (click)="purchase()"  >Confirm purchase</button>
+          </div>
       </div>
     </div>
+    <div class="disclaimer">
+      <h5>
+        <h5>
+          Intraday prices are generally provided for stocks, ETFs, and options on a delayed basis during market hours. Prices are delayed at least 20 minutes. If an intraday price is not available, the price displayed will reflect the previous business day's close. For mutual funds and fixed income holdings, the prices displayed are generally the previous business day's closing price.
+      Market information is provided by Thomson Reuters. 
+      </h5>
+      <h5>
+        Additional information about prices for other products and outside investments
+        These funds do not actually exist at this price point. This is not a real brokerage.
+        Disclaimer
+      </h5>
+      <h5>
+        *Note on account protection: Securities in your brokerage account are held in custody nothing - there is no real accounts or offerings from this website, a division of Falcon Investment Kappa
+        
+        Your "cost basis" related to any security you hold refers to the price you paid for that security and can be adjusted by items such as return of capital, commission or transaction fees. Please see https://investor.vanguard.com/taxes/cost-basis/ for more detailed information on cost basis. When "covered" securities are sold, Vanguard reports the cost basis to you and the IRS; however, when "noncovered" securities are sold, Vanguard does not report the cost basis to the IRS. You are responsible for tracking and reporting the cost basis of your securities. In cases where the cost basis of a security is unknown, Vanguard will assume a cost basis of zero, therefore, the lot’s gain will be equal to the proceeds. Please see https://investor.vanguard.com/taxes/cost-basis/covered-noncovered for more detailed information on "covered" and "noncovered" securities. Vanguard does not provide tax advice please contact your tax advisor with questions related to cost basis or other tax matters.
+        Please do not contact us as we are only web developers
+      </h5>
+      </h5>
+      
+      </div>

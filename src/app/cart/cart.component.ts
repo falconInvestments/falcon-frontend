@@ -10,6 +10,9 @@ import { getTranslationDeclStmts } from '@angular/compiler/src/render3/view/temp
 import { count } from 'console';
 import {MatInputModule} from '@angular/material/input';
 import { Router } from '@angular/router';
+import { PurchaseConfirmationDialogComponent } from '../purchase-confirmation-dialog/purchase-confirmation-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-cart',
@@ -37,7 +40,8 @@ accounts: Account[] | any = [];
     private userStore: UserStoreService,
     private accountService: AccountService,
     private stocksService: StocksService,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -117,7 +121,7 @@ accounts: Account[] | any = [];
   
 purchase(){
   
-  alert("purchase confirmed")
+  const dialogRef = this.dialog.open(PurchaseConfirmationDialogComponent);
   for(let i =0; i<this.counter.length; i++){
     this.stocks[i].quantity = this.stocks[i].quantity * this.counter[i]
     this.stocks.forEach(stock =>
@@ -127,9 +131,17 @@ purchase(){
         stock.isPurchased = true
         this.stocksService.updateUserStock(stock).subscribe(payload => console.log(payload))
       })
+   dialogRef.afterClosed().subscribe((result) => {
+     if(result===true) {
 
-    setTimeout(() => this.router.navigate(['/dashboard']), 1000);
+        setTimeout(() => this.router.navigate(['/dashboard']), 1000);
+     }
+
+   })
   }
 }
 
+toStock(){
+  location.assign("localhost:4200/stocks")
+}
 }
