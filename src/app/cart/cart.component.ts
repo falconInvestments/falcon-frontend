@@ -9,6 +9,7 @@ import { User } from '../user.model';
 import { getTranslationDeclStmts } from '@angular/compiler/src/render3/view/template';
 import { count } from 'console';
 import {MatInputModule} from '@angular/material/input';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -22,7 +23,6 @@ export class CartComponent implements OnInit {
 
 userToGreet: User | null= null;  
 accounts: Account[] | any = [];
-
   stocks:any[] = [];
   users: User[] = [];
   filteredStocks: any[] = [];
@@ -30,11 +30,14 @@ accounts: Account[] | any = [];
   accountId: number = 0; 
   sessionId: number = 0;
   counter: any[] = []
+  cartData: any[] = []
+
 
   constructor(
     private userStore: UserStoreService,
     private accountService: AccountService,
-    private stocksService: StocksService
+    private stocksService: StocksService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -57,10 +60,11 @@ accounts: Account[] | any = [];
       .filter( (x: { accountId: number; }) => x.accountId === this.accountId )
       .reduce((prev: { sessionId: number; }, current: { sessionId: number; }) => (prev.sessionId > current.sessionId) ? prev : current, 0).sessionId
       //this.sessionId = payload.sessionId;
-      console.log(this.sessionId)
+      // console.log(this.sessionId)
       this.stocks = payload.filter( (x: { accountId: number, sessionId: number; }) => x.accountId === this.accountId && x.sessionId === this.sessionId)
-      this.stocks.forEach(() => this.counter.push(1))
-      console.log(this.stocks)
+      
+        this.stocks.forEach(() => this.counter.push(1))
+      // console.log(this.stocks)
     })
   }
 
@@ -73,7 +77,7 @@ accounts: Account[] | any = [];
     this.accountService.getAccounts().subscribe(payload =>{
       this.account = payload.find((acc: { newUserId: number; }) => this.userToGreet ? acc.newUserId == this.userToGreet.id : acc.newUserId == 99);
       this.accountId = this.account.id;
-      console.log(this.accountId)
+      // console.log(this.accountId)
     })
     
   }
@@ -81,10 +85,10 @@ accounts: Account[] | any = [];
   removeDuplicates(): any {
     this.stocks.forEach((item) => {
       if(this.stocks.indexOf(item < 0)) {
-        console.log(item)
+        // console.log(item)
         this.filteredStocks.push(item)
-        console.log(this.filteredStocks)
-        console.log(this.stocks)
+        // console.log(this.filteredStocks)
+        // console.log(this.stocks)
       }
 
       return this.stocks
@@ -101,17 +105,31 @@ accounts: Account[] | any = [];
     if(this.stocks){
 
       for(let i = 0; i<this.stocks.length; i++) {
-    
         total = total +  (this.stocks[i].price * this.counter[i])
       };
-  
+
     }
     console.log(this.counter)
     return total
   }
-    
+
+
+  
 purchase(){
+  
   alert("purchase confirmed")
+  for(let i =0; i<this.counter.length; i++){
+    this.stocks[i].quantity = this.stocks[i].quantity * this.counter[i]
+    this.stocks.forEach(stock =>
+      {
+        console.log(stock)
+        // stock.quantity = stock.quantity * this.counter[i]; 
+        stock.isPurchased = true
+        this.stocksService.updateUserStock(stock).subscribe(payload => console.log(payload))
+      })
+
+    setTimeout(() => this.router.navigate(['/dashboard']), 1000);
+  }
 }
 
 }

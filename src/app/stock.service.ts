@@ -21,8 +21,6 @@ export class StocksService {
   }
 
 
-  
-
   getUserStocks(): Observable<any> {
     return this.http.get(`${baseURL}/userStocks/`).pipe(delay(500));
   }
