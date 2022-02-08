@@ -1,0 +1,26 @@
+.container {
+    min-height: 80vh;
+    text-align: center;
+    .retirement {
+        display: flex;
+        justify-content: center;
+    }
+    aside {
+        width: 30vw;
+        padding: 20px;
+        mat-card {
+            padding: 30px;
+        }
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        min-width: 15vw;
+    }
+    .results {
+        height: 20vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+}
