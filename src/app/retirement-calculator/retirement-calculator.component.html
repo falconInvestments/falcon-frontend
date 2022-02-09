@@ -15,7 +15,7 @@
               type="number"
               formControlName="balance"
               placeholder="Current Balance"
-              [value]="accounts.balance"
+              [value]="accounts.balance ? accounts.balance : 0"
             />
           </mat-form-field>
           <mat-form-field appearance="outline">
@@ -51,11 +51,11 @@
           <mat-form-field appearance="fill">
             <mat-label>Estimated Tax Bracket:</mat-label>
             <mat-select formControlName="taxRate">
-              <mat-option value=0.15>Low: 15%</mat-option>
-              <mat-option value=0.20>Low-Mid: 20%</mat-option>
-              <mat-option value=0.25>Mid: 25%</mat-option>
-              <mat-option value=0.30>Mid-High: 30%</mat-option>
-              <mat-option value=0.35>High: 35%</mat-option>
+              <mat-option value="0.15">Low: 15%</mat-option>
+              <mat-option value="0.20">Low-Mid: 20%</mat-option>
+              <mat-option value="0.25">Mid: 25%</mat-option>
+              <mat-option value="0.30">Mid-High: 30%</mat-option>
+              <mat-option value="0.35">High: 35%</mat-option>
             </mat-select>
           </mat-form-field>
           <button type="submit" mat-raised-button color="primary">Check</button>
