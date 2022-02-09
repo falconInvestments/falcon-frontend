@@ -16,6 +16,8 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./signup.component.scss'],
 })
 export class SignupComponent implements OnInit {
+  emailRegx =
+    /^(([^<>+()\[\]\\.,;:\s@"-#$%&=]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,3}))$/;
   isLoadingAuth: boolean = false;
   userResponse: any = null;
   newUser: User = { id: 0, firstName: '', lastName: '', email: '' };
@@ -57,7 +59,7 @@ export class SignupComponent implements OnInit {
     this.firstFormGroup = this._formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.pattern(this.emailRegx)]],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
     });
