@@ -23,6 +23,7 @@ import { NewsComponent } from './news/news.component';
 import { MutualfundComponent } from './mutualfund/mutualfund.component';
 import { PurchaseConfirmationDialogComponent } from './purchase-confirmation-dialog/purchase-confirmation-dialog.component';
 import { AdvisorComponent } from './advisor/advisor.component';
+import { RetirementCalculatorComponent } from './retirement-calculator/retirement-calculator.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { AdvisorComponent } from './advisor/advisor.component';
   CartComponent,
   PurchaseConfirmationDialogComponent,
   MutualfundComponent,
-  AdvisorComponent
+  AdvisorComponent,
+  RetirementCalculatorComponent
 ],
   imports: [
     BrowserModule,
