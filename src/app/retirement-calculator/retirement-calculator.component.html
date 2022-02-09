@@ -15,7 +15,7 @@
               type="number"
               formControlName="balance"
               placeholder="Current Balance"
-              [value]="accounts.balance ? accounts.balance : 0"
+              [value]="accounts && accounts.balance ? accounts.balance : 0"
             />
           </mat-form-field>
           <mat-form-field appearance="outline">
@@ -25,7 +25,11 @@
               type="number"
               formControlName="annualContribution"
               placeholder="6,000"
-              [value]="accounts.annualContribution"
+              [value]="
+                accounts && accounts.annualContribution
+                  ? accounts.annualContribution
+                  : 0
+              "
             />
           </mat-form-field>
           <mat-form-field appearance="outline">
