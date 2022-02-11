@@ -12,6 +12,7 @@ import { EtfsComponent } from './etfs/etfs.component';
 import { CartComponent } from './cart/cart.component';
 import { AdvisorComponent } from './advisor/advisor.component';
 import { RetirementCalculatorComponent } from './retirement-calculator/retirement-calculator.component';
+import { FeedbackComponent } from './feedback/feedback.component';
 
 const routes: Routes = [
   {path: "", redirectTo: 'home', pathMatch: 'full'},
@@ -26,7 +27,8 @@ const routes: Routes = [
   { path: 'etfs', component: EtfsComponent},
   { path: "cart", component: CartComponent},
   { path: 'advisor', component: AdvisorComponent},
-  { path: 'retirement', component: RetirementCalculatorComponent}
+  { path: 'retirement', component: RetirementCalculatorComponent},
+  { path: 'feedback', component: FeedbackComponent}
 ];
 
 @NgModule({

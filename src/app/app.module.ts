@@ -24,6 +24,7 @@ import { MutualfundComponent } from './mutualfund/mutualfund.component';
 import { PurchaseConfirmationDialogComponent } from './purchase-confirmation-dialog/purchase-confirmation-dialog.component';
 import { AdvisorComponent } from './advisor/advisor.component';
 import { RetirementCalculatorComponent } from './retirement-calculator/retirement-calculator.component';
+import { FeedbackComponent } from './feedback/feedback.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { RetirementCalculatorComponent } from './retirement-calculator/retiremen
   PurchaseConfirmationDialogComponent,
   MutualfundComponent,
   AdvisorComponent,
-  RetirementCalculatorComponent
+  RetirementCalculatorComponent,
+  FeedbackComponent
 ],
   imports: [
     BrowserModule,

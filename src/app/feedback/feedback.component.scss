@@ -1,0 +1,39 @@
+.feedback-container {
+    max-width: 350px;
+    border: 2px solid black;
+    margin: auto;
+}
+
+.instructions {
+    background-color: rgba(107,107,107,0.2);
+    border-bottom: 1px solid black;
+}
+
+.profession {
+    width: 340px;
+}
+
+//md-18 - black = inactive, yellow = active
+.material-icons {
+    font-size: 18px;
+}
+
+.inputFeedback {
+    width:340px;
+}
+.complete {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.submit {
+    font-size: large;
+    background-color: #1d3557;
+    color: white;
+}
+
+.skip {
+    font-size: small;
+    background-color: grey;
+    color: white;
+}
