@@ -1,66 +1,70 @@
-.etf-table  {
-    display: flex;
-    flex-direction: column;
-    // justify-content: center;
-    align-items: center;
-    // min-height: 80vh;
+.etf-table {
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  align-items: center;
+  // min-height: 80vh;
 }
 
 mat-table {
-    width: 60%;
+  width: 60%;
 }
 
-th, td {
-    font-size: 16px
+th,
+td {
+  font-size: 16px;
 }
 
-.mat-column-name  {
-    flex: 0 0 30%;
+.mat-column-name {
+  flex: 0 0 30%;
 }
 
 .mat-column-ticker {
-    flex: 0 0 9%;
+  flex: 0 0 9%;
 }
 
-
-.mat-column-price, .mat-column-expenseRatio, .mat-column-inceptionDate {
-    flex: 0 0 15%;
+.mat-column-price,
+.mat-column-expenseRatio,
+.mat-column-inceptionDate {
+  flex: 0 0 15%;
 }
 
-mat-cell, td.mat-cell, th.mat-header-cell {
-    border-bottom-style: none
+mat-cell,
+td.mat-cell,
+th.mat-header-cell {
+  border-bottom-style: none;
 }
 
 mat-paginator {
-    width: 60%;
-    text-align: center;
+  width: 60%;
+  text-align: center;
 }
 
 .portfolio-display {
-    border: 1px solid black;
-    max-width: 50rem;
-    margin: 3rem auto;
-    background-color: #E9E5D6;
+  border: 1px solid black;
+  max-width: 50rem;
+  margin: 3rem auto;
+  background-color: #e9e5d6;
 }
 
-header, .row {
-    display: flex;  /* aligns all child elements (flex items) in a row */
+header,
+.row {
+  display: flex; /* aligns all child elements (flex items) in a row */
 }
-  
+
 .col {
-    flex: 1;        /* distributes space on the line equally among items */
-    margin: 1rem
+  flex: 1; /* distributes space on the line equally among items */
+  margin: 1rem;
 }
 
 h3 {
-    margin: 0;
-
+  margin: 0;
 }
 
 h2 {
-    text-align: center;
+  text-align: center;
 }
 
-#blocked {
-background-color: #ACB992;
+.blocked {
+  background-color: #acb992;
 }

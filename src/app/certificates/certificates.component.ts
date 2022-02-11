@@ -64,6 +64,26 @@ export class CertificatesComponent implements OnInit, OnDestroy {
     this.getCertificatesSubscription.unsubscribe();
   }
 
+  sellCD(id: number) {
+    const sellCertificateSubscription = this.certificateService
+      .removeCertificate(id)
+      .subscribe((response) => {
+        if (response.status === 'success') {
+          sellCertificateSubscription.unsubscribe();
+          if (this.userStore.currentUser) {
+            this.certificateService.fetchUserCertificates(
+              this.userStore.currentUser.id
+            );
+            this.isLoadingCertificates = true;
+            setTimeout(() => {
+              this.isLoadingCertificates = false;
+              this.router.navigate(['/certificates']);
+            }, 1000);
+          }
+        }
+      });
+  }
+
   buyCD(): void {
     this.router.onSameUrlNavigation = 'reload';
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
