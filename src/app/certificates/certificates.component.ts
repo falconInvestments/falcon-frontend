@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Certificate } from '../certificate.model';
 import { CertificateService } from '../certificate.service';
 import { PurchaseConfirmationDialogComponent } from '../purchase-confirmation-dialog/purchase-confirmation-dialog.component';
+import { SellConfirmationDialogComponent } from '../sell-confirmation-dialog/sell-confirmation-dialog.component';
 import { UserStoreService } from '../user-store.service';
 
 const { DateTime } = require('luxon');
@@ -64,24 +65,31 @@ export class CertificatesComponent implements OnInit, OnDestroy {
     this.getCertificatesSubscription.unsubscribe();
   }
 
-  sellCD(id: number) {
-    const sellCertificateSubscription = this.certificateService
-      .removeCertificate(id)
-      .subscribe((response) => {
-        if (response.status === 'success') {
-          sellCertificateSubscription.unsubscribe();
-          if (this.userStore.currentUser) {
-            this.certificateService.fetchUserCertificates(
-              this.userStore.currentUser.id
-            );
-            this.isLoadingCertificates = true;
-            setTimeout(() => {
-              this.isLoadingCertificates = false;
-              this.router.navigate(['/certificates']);
-            }, 1000);
-          }
-        }
-      });
+  sellCD(id: number): void {
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    const sellDialogRef = this.dialog.open(SellConfirmationDialogComponent);
+    sellDialogRef.afterClosed().subscribe((result) => {
+      if (result === true) {
+        const sellCertificateSubscription = this.certificateService
+          .removeCertificate(id)
+          .subscribe((response) => {
+            if (response.status === 'success') {
+              sellCertificateSubscription.unsubscribe();
+              if (this.userStore.currentUser) {
+                this.certificateService.fetchUserCertificates(
+                  this.userStore.currentUser.id
+                );
+                this.isLoadingCertificates = true;
+                setTimeout(() => {
+                  this.isLoadingCertificates = false;
+                  this.router.navigate(['/certificates']);
+                }, 1000);
+              }
+            }
+          });
+      }
+    });
   }
 
   buyCD(): void {
@@ -98,8 +106,10 @@ export class CertificatesComponent implements OnInit, OnDestroy {
       this.today.value.getDate()
     ).plus({ months: this.lengthOfCd });
 
-    const dialogRef = this.dialog.open(PurchaseConfirmationDialogComponent);
-    dialogRef.afterClosed().subscribe((result) => {
+    const purchaseDialogRef = this.dialog.open(
+      PurchaseConfirmationDialogComponent
+    );
+    purchaseDialogRef.afterClosed().subscribe((result) => {
       if (result === true) {
         if (this.userStore.currentUser && this.userStore.currentUser.id) {
           const newCertObj: {
