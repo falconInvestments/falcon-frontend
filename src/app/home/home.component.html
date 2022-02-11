@@ -10,178 +10,97 @@
     <img src="../assets/images/family.jpg" alt="Family of five laying in the grass posing and smiling." />
   </section>
   <section class="accounts">
-    <h2>Account Types:</h2>
-    <div>
-      <aside class="ira">
-        <h3>Individual Retirement Accounts</h3>
-        <ul>
-          <li>Traditional IRA</li>
-          <li>Roth IRA</li>
-          <li>Spousal IRA</li>
-        </ul>
-        <p>
-          Investing in an IRA is a great opportunity to kickstart your early
-          retirement with tax-free growth or a tax-deferred basis.
-        </p>
-        <a routerLink="/signup">Open Account</a>
-      </aside>
-      <aside>
-        <h3>Other Accounts</h3>
-        <ul>
-          <li>Brokerage</li>
-          <li>529 Savings</li>
-          <li>UGMA/UTMA</li>
-        </ul>
-        <p>
-          Enjoy a variety of products to choose your style of investment that
-          suits you, from stock investing to college savings.
-        </p>
-        <a routerLink="/signup">Open Account</a>
-      </aside>
+    <div class="account-wrapper">
+      <div class="account-types">
+        <aside class="ira">
+          <h2>Account Types:</h2>
+          <h3>Individual Retirement Accounts</h3>
+          <ul>
+            <li>Traditional IRA</li>
+            <li>Roth IRA</li>
+            <li>Spousal IRA</li>
+          </ul>
+          <p>
+            Investing in an IRA is a great opportunity to kickstart your early
+            retirement with tax-free growth or a tax-deferred basis.
+          </p>
+          <a routerLink="/signup">Open Account</a>
+        </aside>
+        <aside>
+          <h3>Other Accounts</h3>
+          <ul>
+            <li>Brokerage</li>
+            <li>529 Savings</li>
+            <li>UGMA/UTMA</li>
+          </ul>
+          <p>
+            Enjoy a variety of products to choose your style of investment that
+            suits you, from stock investing to college savings.
+          </p>
+          <a routerLink="/signup">Open Account</a>
+        </aside>
+      </div>
     </div>
   </section>
 </main>
 
-<h3 id="inv-prod">Investment Products:</h3>
-<mat-tab-group dynamicHeight animationDuration="1500ms">
-  <mat-tab label="Stocks">
-    <div class="investment">
-      <div class="inv-container">
-        <mat-icon aria-hidden="false" aria-label="Example money icon"
-          >attach_money</mat-icon
-        >
-        <h3>High-quality trade execution</h3>
-        <p>
-          We’re constantly working to give you the best price on trades, and
-          those efforts are reflected in our effective over quoted spread (E/Q)
-          of 11.64%.* E/Q is the industry measurement for trade quality: the
-          lower the percentage, the better.
-        </p>
-        <a routerLink="/stocks"
-          ><button mat-raised-button>See Stocks</button></a
-        >
-      </div>
-      <div class="inv-container">
-        <div>
-          <mat-icon>assessment</mat-icon>
-          <h3>Start Investing!</h3>
+<section class="investments">
+  <h2 id="inv-prod">Investment Products:</h2>
+  <mat-tab-group dynamicHeight animationDuration="1500ms" color="warn">
+    <mat-tab label="Stocks">
+      <div class="stocks">
+        <div class="inv-container">
+          <h3>Invest in Stocks</h3>
+          <mat-icon aria-label="Example money icon">attach_money</mat-icon>
           <p>
-            You don’t need thousands of dollars to start investing in a stock.
-            You can buy a stock at its market price per share, and you only need
-            enough money in your settlement fund to cover the cost of the stocks
-            you want to buy.
+            We're constantly working to give you the best price on trades, and
+            those efforts are reflected in our effective over quoted spread (E/Q)
+            of 11.64%.* E/Q is the industry measurement for trade quality: the
+            lower the percentage, the better.
           </p>
+          <a routerLink="/stocks">See Stocks</a>
         </div>
+        <img src="../../assets/images/stocks.jpg" alt="calculator">
       </div>
-    </div>
-  </mat-tab>
-
-  <mat-tab label="Mutual Funds">
-    <div class="investment">
-      <div class="inv-container">
-        <mat-icon>grade</mat-icon>
-        <h2>Choose the right Mutual Funds for you!</h2>
-        <p>
-          Enjoy the benefits of diversification, tax efficiency, and low costs
-          with index mutual funds.
-        </p>
-        <a routerLink="/mutualfunds"
-          ><button mat-raised-button>See Funds</button></a
-        >
-      </div>
-      <div class="inv-container">
-        <div>
-          <mat-icon>trending_up</mat-icon>
-          <mat-icon>assessment</mat-icon>
-          <h3>What’s a mutual fund?</h3>
+    </mat-tab>
+  
+    <mat-tab label="Mutual Funds">
+      <div class="stocks">
+        <img src="../../assets/images/growth.jpg" alt="Growth picture">
+        <div class="inv-container">
+          <h3>Mutual Funds</h3>
+          <mat-icon>grade</mat-icon>
           <p>
             A mutual fund is a pooled collection of assets that invests in
             stocks, bonds, and other securities.
+            You can enjoy the benefits of diversification, tax efficiency, and low costs
+            with index mutual funds.
           </p>
+          <a routerLink="/mutualfunds">See Funds</a>
         </div>
       </div>
-    </div>
-  </mat-tab>
-
-  <mat-tab label="ETFs">
-    <div class="investment">
-      <div class="inv-container">
-        <mat-icon>group</mat-icon>
-        <h3>ETFs</h3>
-        <p>
-          ETFs (exchange-traded funds) combine the diversification of mutual
-          funds with lower investment minimum and real-time pricing. An ETF is a
-          collection of hundreds or thousands of stocks or bonds, managed by
-          experts, in a single fund that trades on major stock exchanges, like
-          the New York Stock Exchange and NASDAQ.
-        </p>
-        <a routerLink="/etfs"><button mat-raised-button>See ETFs</button></a>
-      </div>
-      <div class="inv-container">
-        <div>
-          <mat-icon>person</mat-icon>
-          <h3>Get started with ETFs</h3>
+    </mat-tab>
+  
+    <mat-tab label="ETFs">
+      <div class="stocks">
+        <div class="inv-container">
+          <h3>ETFs</h3>
+          <mat-icon>group</mat-icon>
           <p>
-            A strategy is the general or specific approach to investing based
-            off your goals, risk tolerance, and time horizon. See what’s best
-            for you. Build a fully diversified portfolio with our 4 total market
-            ETFs that cover nearly all aspects of the U.S. and international
-            stock and bond markets.
+            ETFs (exchange-traded funds) combine the diversification of mutual
+            funds with lower investment minimum and real-time pricing. An ETF is a
+            collection of hundreds or thousands of stocks, managed by
+            experts, in a single fund that trades on major stock exchanges.
           </p>
+          <a routerLink="/etfs">See ETFs</a>
         </div>
+        <img src="../../assets/images/saving.jpg" alt="">
       </div>
-    </div>
-  </mat-tab>
-</mat-tab-group>
+    </mat-tab>
+  </mat-tab-group>
+</section>
+<section class="news">
+  <h2 >Latest News:</h2>
+  <app-news></app-news>
+</section>
 
-<!-- <section class="investments">
-  <h2>Investment Products:</h2>
-  <div>
-    <aside class="stocks">
-      <h3>Stocks</h3>
-      <mat-icon aria-hidden="false" aria-label="Example money icon">attach_money</mat-icon>
-      <p>
-        Choose from thousands of stocks to buy and sell for your personal
-        portfolio
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde
-        temporibus sit porro adipisci sed, eius voluptatum saepe vero ut
-        nesciunt minima mollitia est labore fugiat. Reiciendis nostrum
-        exercitationem repellendus quae!
-      </p>
-      <a href="#">See Stocks</a>
-    </aside>
-    <aside class="mutual-funds">
-      <h3>Mutual Funds</h3>
-      <mat-icon aria-hidden="false" aria-label="Example payments icon">payments</mat-icon>
-      <p>
-        Choose from thousands of stocks to buy and sell for your personal
-        portfolio
-      </p>
-      <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum dolor
-        porro illo maiores accusantium culpa provident odit veniam! Corrupti
-        expedita mollitia in minima! Distinctio, repudiandae. Impedit atque
-        obcaecati unde dolorum!
-      </p>
-      <a href="#">See Mutual Funds</a>
-    </aside>
-    <aside class="etfs">
-      <h3>ETFs</h3>
-      <mat-icon aria-hidden="false" aria-label="Example account balance icon">account_balance</mat-icon>
-      <p>
-        Choose from thousands of stocks to buy and sell for your personal
-        portfolio
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ad qui
-        consequatur rerum debitis dolorem, non, natus voluptas nisi obcaecati
-        minima vitae asperiores facilis numquam, at excepturi quam nam est?
-      </p>
-      <a href="#">See ETFs</a>
-    </aside>
-  </div>
-</section> -->
-
-<app-news></app-news>

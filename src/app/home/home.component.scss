@@ -1,93 +1,130 @@
 .welcome {
   display: flex;
-  min-height: 400px;
+  min-height: 450px;
   background-color: #ede7d0;
   justify-content: space-around;
   align-items: center;
+  flex-wrap: nowrap;
   padding: 20px;
+  div {
+    margin: 0 20px;
+    min-width: 40vw;
+    max-width: 60vw;
+  }
   img {
+    min-width: 450px;
     max-width: 600px;
     border: 1px solid black;
     border-radius: 15px;
+    box-shadow: 1px 1px 1px black;
   }
 }
 
 .accounts {
-  min-height: 400px;
+  padding: 40px 120px;
   background-color: #549369;
-  padding: 10px 20px 40px 20px;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
-  margin-bottom: 3rem;
-  h2 {
-    padding: 20px;
-    font-size: 36px;
-    margin-left: 30px;
-  }
-  div {
-    display: flex;
-    justify-content: space-evenly;
-    .ira {
-      border-right: 1px solid black;
-    }
-    aside {
-      padding: 5px 60px 30px 60px;
-      text-align: left;
+  min-height: 450px;
+  .account-wrapper {
+    background-color: rgba(255, 255, 255, 0.898);
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 40px 20px;
+    .account-types {
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      li {
+      justify-content: center;
+      align-items: flex-end;
+      width: 70vw;
+      margin: auto;
+      aside {
+        padding: 0 80px;
         text-align: left;
-      }
-      a {
-        text-decoration: none;
-        color: white;
-        background-color: #1d3557;
-        padding: 7px;
-        border-radius: 5px;
-        width: 130px;
-        text-align: center;
-      }
-      a:hover {
-        background-color: #3336908e;
+        line-height: 26px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font-family: "Merriweather", serif;
+        h3 {
+          font-family: "Merriweather", serif;
+          font-size: 20px;
+        }
+
+        a {
+          margin: 10px 0;
+        }
+        a:hover {
+          background-color: #3336908e;
+        }
       }
     }
   }
 }
+.ira h2, .investments h2, .news h2 {
+  padding: 10px 70px 20px 0;
+  font-size: 36px;
+  font-family: "Playfair Display", serif;
+  border-bottom: 1px solid black;
+  display: inline-block;
+  }
 
 .investments {
   min-height: 400px;
-  background-color: #ede7d0;
-  padding: 10px 20px 40px 20px;
+  padding: 20px 40px;
   h2 {
-    padding: 20px;
-    font-size: 36px;
-    margin-left: 30px;
+   padding-right: 200px;
+    margin-left: 70px;
+    margin-bottom: 60px;
   }
-  div {
-    display: flex;
-    justify-content: space-evenly;
-    .mutual-funds {
-      border-right: 1px solid black;
-      border-left: 1px solid black;
+  mat-tab-group {
+    margin: 0 30px;
+    background-color: #034f3ad5;
+    ::ng-deep .mat-tab-label {
+      color: white;
     }
-    aside {
-      padding: 40px;
-      text-align: center;
+    .stocks {
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      a {
-        text-decoration: none;
-        color: white;
-        background-color: #1d3557;
-        padding: 7px;
+      justify-content: space-around;
+      align-items: flex-start;
+      background-color: rgba(255, 255, 255, 0.972);
+      padding: 50px;
+      .inv-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        height: auto;
+        p {
+          width: 500px;
+          margin: 40px auto;
+
+          line-height: 22px;
+        }
+      }
+      img {
+        max-height: 350px;
+        border: 1px solid black;
         border-radius: 5px;
       }
-      a:hover {
-        background-color: #3336908e;
-      }
     }
+  }
+  ::ng-deep .mat-tab-label-active {
+    color: white;
+    background-color: #034f3ad5;
+  }
+  ::ng-deep .mat-tab-header {
+    border-bottom-style: none;
+  }
+}
+
+.news {
+  min-height: 450px;
+  border-top: 1px solid black;
+  h2 {
+    margin-top: 30px;
+    margin-left: 70px;
+    padding: 10px;
+    padding-right: 200px;
   }
 }
 
@@ -102,65 +139,59 @@ h3 {
 }
 
 mat-icon {
-  margin: 20px auto 30px auto;
-  font-size: 30px;
+  margin: 10px 0;
+  font-size: 40px;
 }
 
-
-
-
-
-#inv-prod {
-  margin-left: 4rem;
-}
-
-
-mat-tab-group {
-  height: 500px;
-  margin: 0 50px 1rem;
-  mat-tab {
-      width: 80%;
-    }
-  .investment {
-    height: 100%;
-    margin: 0;
-    // width: 500px;
-
-  }
-  .investment p {
-    width: 600px;
-    margin: 20px auto 30px auto;
-  }
-}
-.investment {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.inv-container {
-  flex: 50%;
-  height: auto;
-}
-
-
-
-::ng-deep mat-tab-body {
-  text-align: center;
-}
-
-
-
-button {
-  background-color: #1d3557;
+section a {
+  text-decoration: none;
   color: white;
-  font-family: serif;
-  text-align: center;
-  // padding: 3px 5px;
+  background-color: #1d3557;
+  padding: 7px;
+  border-radius: 5px;
   width: 130px;
-  font-size: 19px;
+  text-align: center;
+  &:hover {
+    background-color: #3336908e;
+  }
 }
 
-button:hover {
-  background-color: #3336908e;
+@media only screen and (max-width: 900px) {
+  .welcome {
+    min-height: 350px ;
+    div {
+      h2 {
+        font-size: 24px;
+      }
+      p {
+        font-size: 14px;
+      }
+    }
+    img {
+      min-width: 100px;
+      max-width: 400px;
+
+    }
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .welcome {
+    min-height: 150px;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    div {
+      h2 {
+        font-size: 18px;
+      }
+      p {
+        font-size: 12px;
+      }
+    }
+    img {
+      min-width: 50px;
+      max-width: 250px;
+    }
+  }
 }
