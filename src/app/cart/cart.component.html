@@ -1,10 +1,6 @@
 
     <div class="container">
       <div class="wrapper">
-          <div class = "greet" *ngIf="userToGreet">
-            <h1>Welcome, {{ userToGreet.firstName }}!</h1>
-          </div>
-
           <div class = "title" >
             <h2>Confirmation of Purchase</h2>
           </div>
@@ -39,14 +35,14 @@
           </mat-card>
         </div>
           <div class ="checkout">
-            <h2>
+            <h3>
               Total at checkout: {{calculateTotal() | currency}}
-            </h2>
+            </h3>
           </div>
           <!-- <h2>{{removeDuplicates()}}</h2> -->
           <div class = "confirm">
             
-            <button  mat-raised-button color="primary" (click)="purchase()"  >Confirm purchase</button>
+            <button  mat-raised-button color="primary" (click)="purchase()"  >Confirm Purchase</button>
           </div>
       </div>
     </div>

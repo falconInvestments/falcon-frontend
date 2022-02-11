@@ -3,11 +3,20 @@
     flex-direction: column;
     // justify-content: center;
     align-items: center;
+    h2 {
+        padding: 30px;
+        margin: 0 100px;
+        font-size: 40px;
+        border-bottom: 1px solid black;
+        display: block;
+        text-align: center;
+        line-height: 34px;
+      }
 }
 
 mat-table {
     min-width: 40%;
-    margin: auto;
+    margin-top: 50px;
 }
 .mat-column-stockname {
     flex: 0 0 50%;

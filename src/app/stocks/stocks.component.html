@@ -1,5 +1,5 @@
 <div class="stocks">
-  <h1>Falcon Investments Stocks</h1>
+  <h2>Stocks</h2>
   <mat-spinner *ngIf="isLoadingStocks"></mat-spinner>
   <mat-table [dataSource]="dataSource">
     <!-- User name Definition -->
@@ -51,9 +51,9 @@
 </mat-paginator>
 </div>
 
-<button mat-raised-button color="primary" routerLink="/cart" id="cart-button">
+<a class="btn" routerLink="/cart" id="cart-button">
   Preview Order
-</button>
+</a>
 <div class="disclaimer">
   <h5>
     <h5>

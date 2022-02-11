@@ -1,12 +1,11 @@
 <div class="container">
-  <h1>Retirement Calculator</h1>
-  <h2>Welcome, {{ userToGreet ? userToGreet.firstName : "User" }}</h2>
+  <h2>Retirement Calculator</h2>
   <p>Enter your IRA information below to see how much money you can make!</p>
 
   <div class="retirement">
     <aside>
       <mat-card>
-        <h3>Account Details:</h3>
+        <h3>Account Details:</h3><hr>
         <form [formGroup]="calcForm" (ngSubmit)="onSubmit()">
           <mat-form-field appearance="outline">
             <mat-label>Principal Balance:</mat-label>
@@ -68,7 +67,7 @@
     </aside>
     <aside>
       <mat-card>
-        <h3>Results:</h3>
+        <h3>Results:</h3><hr>
         <div class="results">
           <p>Results are based on retirement at age 65.</p>
           <p>In {{ years }} years you will make:</p>
