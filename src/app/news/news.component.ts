@@ -9,7 +9,7 @@ import { ArticleService } from '../article.service';
 })
 export class NewsComponent implements OnInit {
   articles: Article[] = []
-
+  isArticles: boolean = false;
   
   
   constructor(private articleService:ArticleService) { }
@@ -18,6 +18,7 @@ export class NewsComponent implements OnInit {
     // this.articleService.getArticles().subscribe((res) => {
     //   this.articles = res.data
     //   console.log(res)
+    //   this.isArticles = true;
     // })
   }
 

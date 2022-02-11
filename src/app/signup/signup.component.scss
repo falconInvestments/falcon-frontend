@@ -1,45 +1,69 @@
 .container {
+  margin: 30px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  mat-horizontal-stepper {
+  mat-card {
+    min-width: 30vw;
     max-width: 40vw;
+    border-radius: 15px;
+    background-color: #549369;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
   }
-  form {
+  .loginform {
     display: flex;
     flex-direction: column;
-
-    padding: 20px;
-    //background-color: #fdcd93;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    max-width: 25vw;
     border: 1px solid black;
-    border-radius: 5px;
-    margin: 40px;
+    border-radius: 10px;
+    padding: 20px;
+
     h2 {
+      padding: 10px 1rem 20px 0;
+      font-size: 30px;
+      font-family: "Playfair Display", serif;
+      border-bottom: 1px solid black;
       text-align: center;
+      margin: auto;
     }
-    .input-field {
-      position: relative;
-      margin-top: 2rem;
+    mat-horizontal-stepper {
+      max-width: 40vw;
+    }
+    form {
       display: flex;
-      justify-content: space-between;
-      input,
-      label {
-        padding: 0.8rem;
+      flex-direction: column;
+
+      margin: 20px 40px;
+      h2 {
+        text-align: center;
       }
-    }
-    .input-field:first-child {
-      margin-bottom: 1.5rem;
-    }
-    #submit {
-      background: linear-gradient(to left, #4776e6, #8e54e9);
-      color: white;
-      border-radius: 4px;
-      margin-top: 2rem;
-      padding: 0.4rem;
-    }
-    #submit:hover {
-      background: linear-gradient(to left, #4777e6d4, #8e54e9d4);
+      .input-field {
+        position: relative;
+        margin-top: 2rem;
+        display: flex;
+        justify-content: space-between;
+        input,
+        label {
+          padding: 0.8rem;
+        }
+      }
+      .input-field:first-child {
+        margin-bottom: 1.5rem;
+      }
+      #submit {
+        background: linear-gradient(to left, #4776e6, #8e54e9);
+        color: white;
+        border-radius: 4px;
+        margin-top: 2rem;
+        padding: 0.4rem;
+      }
+      #submit:hover {
+        background: linear-gradient(to left, #4777e6d4, #8e54e9d4);
+      }
     }
   }
 }

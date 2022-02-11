@@ -31,3 +31,20 @@ p {
     background-color: rgba(255, 255, 255, 0.638);
   }
 }
+
+.btn {
+  text-decoration: none;
+  color: white;
+  background-color: #1d3557;
+  padding: 7px;
+  border-radius: 5px;
+  width: 130px;
+  text-align: center;
+  font-family: "Merriweather", serif;
+  font-size: 16px;
+  display: inline-block;
+  margin: auto;
+  &:hover {
+    background-color: #3336908e;
+  }
+}

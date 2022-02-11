@@ -2,14 +2,17 @@
 <mat-toolbar>
   <mat-toolbar-row>
     <div class="left-bar">
+      <img src="../assets/images/falcon-i-green-v2.png" alt="Falcon Logo" routerLink="/home">
       <h1 class="logo" routerLink="home">Falcon Investments</h1>
-    </div>
-    <span class="menu-spacer"></span>
-    <div>
-      <a mat-button routerLink="/home">Home </a>
-      <a mat-button routerLink="/signin">Login </a>
-      <a mat-button routerLink="/signup">Create Account </a>
-      <a mat-button routerLink="/dashboard">Dashboard </a>
+    </div> 
+
+    <div class="nav">
+      <div class="mobile-nav">
+        <a mat-button routerLink="/home">Home </a>
+        <a mat-button routerLink="/signin">Login </a>
+        <a mat-button routerLink="/signup">Create Account </a>
+        <a mat-button routerLink="/dashboard">Dashboard </a>
+      </div>
       <button mat-icon-button>
         <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
       </button>
@@ -22,6 +25,11 @@
 <mat-sidenav-container>
   <mat-sidenav #sidenav position="end">
     <mat-nav-list>
+      <div class="mobile-link">
+        <a mat-list-item routerLink="/signin" class="mobile-link">Login </a>
+        <a mat-list-item routerLink="/dashboard" class="mobile-link">Dashboard </a>
+        <a mat-list-item routerLink="/signup" class="mobile-link">Create Account </a>
+      </div>
       <a mat-list-item routerLink="/stocks"> Stocks </a>
       <a mat-list-item routerLink="/mutualfunds"> Mutual Funds </a>
       <a mat-list-item routerLink="/certificates"> Certificates of Deposit </a>
