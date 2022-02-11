@@ -6,7 +6,7 @@
     <div class="user-info">
       <mat-card>
         <mat-spinner *ngIf="isLoadingUser"></mat-spinner>
-        <h2>User info</h2>
+        <h2>User info</h2><hr>
         <div class="info">
           <table>
             <tr>
@@ -52,6 +52,19 @@
         </div>
       </mat-card>
     </div>
+
+    <div class="spacer">
+      <mat-card>
+        <h2>Quick Links:</h2>
+        <hr>
+        <ul>
+          <li>Need Help? - <a routerLink="/advisor">Advisor</a></li>
+          <li>See Future Savings? - <a routerLink="/retirement">Retirement Calculator</a></li>
+          <li>Leave a Review. - <a routerLink="/feedback">Feedback</a></li>
+        </ul>
+      </mat-card>
+    </div>
+
     <div class="investment">
       <mat-card class="investment-card">
         <mat-spinner *ngIf="isLoadingAccounts"></mat-spinner>
@@ -74,18 +87,20 @@
                 <td>{{ investment.expenseRatio }}</td>
                 <td>{{ investment.nAV | currency }}</td>
                 <td>{{ investment.inceptionDate | date }}</td>
-                <button
-                  (click)="deleteInvestment(investment.id, i)"
-                  mat-mini-fab
-                  color="primary"
-                  aria-label="icon button with a plus icon"
-                >
-                  <mat-icon>delete</mat-icon>
-                </button>
+                <td>
+                  <button
+                    (click)="deleteInvestment(investment.id, i)"
+                    mat-mini-fab
+                    color="primary"
+                    aria-label="icon button with a plus icon"
+                  >
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </td>
               </tr>
             </table>
-            <a routerLink="/mutualfunds">Add Mutual Funds</a>
-            <a routerLink="/etfs">Add ETFs</a>
+            <a class="btn" routerLink="/mutualfunds">Add Mutual Funds</a>
+            <a class="btn" routerLink="/etfs">Add ETFs</a>
           </mat-tab>
           <mat-tab label="Stocks">
             <table class="investments">
@@ -100,22 +115,24 @@
                 <td>{{ stock.symbol }}</td>
                 <td>{{ stock.price }}</td> 
                 <td>{{ stock.quantity }}</td>
-                <button
-                (click)="deleteStock(stock.id, i)"
-                  mat-mini-fab
-                  color="primary"
-                  aria-label="icon button with a trash icon"
-                >
-                  <mat-icon>delete</mat-icon>
-                </button>
+                <td>
+                  <button
+                  (click)="deleteStock(stock.id, i)"
+                    mat-mini-fab
+                    color="primary"
+                    aria-label="icon button with a trash icon"
+                  >
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </td>
               </tr>
             </table>
-            <a routerLink="/stocks">Add Stocks</a>
+            <a class="btn" routerLink="/stocks">Add Stocks</a>
           </mat-tab>
         </mat-tab-group>
       </mat-card>
     </div>
-    <div class="spacer"></div>
+
     <div class="cd">
       <mat-card class="cd-card">
         <mat-spinner *ngIf="isLoadingCertificates"></mat-spinner>
@@ -148,7 +165,7 @@
             </td>
           </tr>
         </table>
-        <a routerLink="/certificates">Add Brokered CD</a>
+        <a class="btn" routerLink="/certificates">Add Brokered CD</a>
       </mat-card>
     </div>
   </div>
