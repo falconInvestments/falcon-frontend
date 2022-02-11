@@ -6,8 +6,19 @@
     justify-content: center;
     margin: 0 auto;
     padding: 0px;
+    h2 {
+        padding: 40px;
+        margin: 20px 0 50px 0;
+        font-size: 40px;
+        border-bottom: 1px solid black;
+        display: block;
+        text-align: center;
+        line-height: 34px;
+      }
 }
-
+h3 {
+    font-size: 24px;
+}
 
 mat-card {
     margin-bottom: 10px;
