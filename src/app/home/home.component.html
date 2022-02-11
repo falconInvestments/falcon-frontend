@@ -46,7 +46,7 @@
 
 <section class="investments">
   <h2 id="inv-prod">Investment Products:</h2>
-  <mat-tab-group dynamicHeight animationDuration="1500ms" color="warn">
+  <mat-tab-group dynamicHeight animationDuration="1500ms" color="warn" [selectedIndex]="btnNextPrev.index">
     <mat-tab label="Stocks">
       <div class="stocks">
         <div class="inv-container">
@@ -61,15 +61,17 @@
           <a routerLink="/stocks">See Stocks</a>
         </div>
         <img src="../../assets/images/stocks.jpg" alt="calculator">
+        <button mat-icon-button [disabled]="btnNextPrev.next" (click)="navig('next')"><mat-icon>navigate_next</mat-icon></button>
       </div>
     </mat-tab>
   
     <mat-tab label="Mutual Funds">
       <div class="stocks">
+        <button mat-icon-button [disabled]="btnNextPrev.prev" (click)="navig('prev')"><mat-icon>navigate_before</mat-icon></button>
         <img src="../../assets/images/growth.jpg" alt="Growth picture">
         <div class="inv-container">
           <h3>Mutual Funds</h3>
-          <mat-icon>grade</mat-icon>
+          <mat-icon>account_balance</mat-icon>
           <p>
             A mutual fund is a pooled collection of assets that invests in
             stocks, bonds, and other securities.
@@ -78,19 +80,20 @@
           </p>
           <a routerLink="/mutualfunds">See Funds</a>
         </div>
+        <button mat-icon-button [disabled]="btnNextPrev.next" (click)="navig('next')"><mat-icon>navigate_next</mat-icon></button>
       </div>
     </mat-tab>
   
     <mat-tab label="ETFs">
       <div class="stocks">
+        <button mat-icon-button [disabled]="btnNextPrev.prev" (click)="navig('prev')"><mat-icon>navigate_before</mat-icon></button>
         <div class="inv-container">
           <h3>ETFs</h3>
-          <mat-icon>group</mat-icon>
+          <mat-icon>payments</mat-icon>
           <p>
             ETFs (exchange-traded funds) combine the diversification of mutual
             funds with lower investment minimum and real-time pricing. An ETF is a
-            collection of hundreds or thousands of stocks, managed by
-            experts, in a single fund that trades on major stock exchanges.
+            collection of stocks in a single fund that trades on major stock exchanges.
           </p>
           <a routerLink="/etfs">See ETFs</a>
         </div>
@@ -100,7 +103,9 @@
   </mat-tab-group>
 </section>
 <section class="news">
-  <h2 >Latest News:</h2>
-  <app-news></app-news>
+  <div class="news-container">
+    <h2 >Latest News:</h2>
+    <app-news></app-news>
+  </div>
 </section>
 

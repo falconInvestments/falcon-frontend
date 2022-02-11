@@ -14,9 +14,6 @@
   img {
     min-width: 450px;
     max-width: 600px;
-    border: 1px solid black;
-    border-radius: 15px;
-    box-shadow: 1px 1px 1px black;
   }
 }
 
@@ -45,13 +42,10 @@
         flex-direction: column;
         justify-content: space-between;
         font-family: "Merriweather", serif;
-        h3 {
-          font-family: "Merriweather", serif;
-          font-size: 20px;
-        }
 
         a {
           margin: 10px 0;
+          align-self: center;
         }
         a:hover {
           background-color: #3336908e;
@@ -61,31 +55,34 @@
   }
 }
 .ira h2, .investments h2, .news h2 {
-  padding: 10px 70px 20px 0;
+  padding: 10px 1rem 20px 0;
   font-size: 36px;
   font-family: "Playfair Display", serif;
   border-bottom: 1px solid black;
   display: inline-block;
-  }
+  line-height: 34px;
+}
 
 .investments {
   min-height: 400px;
   padding: 20px 40px;
+  background-color: #d8a576d4;
   h2 {
    padding-right: 200px;
     margin-left: 70px;
-    margin-bottom: 60px;
+    margin-bottom: 30px;
   }
   mat-tab-group {
-    margin: 0 30px;
+    margin: 10px 30px 70px 30px;
     background-color: #034f3ad5;
     ::ng-deep .mat-tab-label {
       color: white;
     }
     .stocks {
+      height: 350px;
       display: flex;
       justify-content: space-around;
-      align-items: flex-start;
+      align-items: center;
       background-color: rgba(255, 255, 255, 0.972);
       padding: 50px;
       .inv-container {
@@ -97,14 +94,13 @@
         p {
           width: 500px;
           margin: 40px auto;
-
           line-height: 22px;
         }
       }
       img {
-        max-height: 350px;
-        border: 1px solid black;
-        border-radius: 5px;
+        min-width: 250px;
+        max-width: 450px;
+        
       }
     }
   }
@@ -118,13 +114,23 @@
 }
 
 .news {
-  min-height: 450px;
+  min-height: 500px;
   border-top: 1px solid black;
-  h2 {
-    margin-top: 30px;
-    margin-left: 70px;
-    padding: 10px;
-    padding-right: 200px;
+  .news-container {
+    background-color: #549369;
+    width: 85vw;
+    margin: 60px auto;
+    border: 1px solid black;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 650px;
+    h2 {
+      margin-top: 50px;
+      padding: 10px 100px;
+      text-align: center;
+    }
   }
 }
 
@@ -134,13 +140,14 @@ h2 {
 }
 
 h3 {
-  font-size: 24px;
-  font-family: "Playfair Display", serif;
+  font-family: "Merriweather", serif;
+  font-size: 22px;
 }
 
 mat-icon {
-  margin: 10px 0;
   font-size: 40px;
+  text-align: center;
+  width: 100px;
 }
 
 section a {
@@ -154,6 +161,11 @@ section a {
   &:hover {
     background-color: #3336908e;
   }
+}
+img {
+  border: 1px solid black;
+  border-radius: 15px;
+  box-shadow: 1px 1px 1px black;
 }
 
 @media only screen and (max-width: 900px) {
