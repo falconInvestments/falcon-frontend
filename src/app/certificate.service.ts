@@ -70,4 +70,8 @@ export class CertificateService {
   }): Observable<any> {
     return this.http.post(certificatesUrl, newCertObj);
   }
+
+  removeCertificate(certificateId: number): Observable<any> {
+    return this.http.delete(certificatesUrl + `/${certificateId}`);
+  }
 }

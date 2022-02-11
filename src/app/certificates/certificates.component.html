@@ -1,8 +1,12 @@
+<div id="grayedOut" *ngIf="isLoadingCertificates"></div>
+
 <h1>Certificates of deposit</h1>
 
 <mat-tab-group>
   <mat-tab label="My CDs">
-    <mat-spinner *ngIf="isLoadingCertificates"></mat-spinner>
+    <div class="container">
+      <mat-spinner *ngIf="isLoadingCertificates"></mat-spinner>
+    </div>
     <span *ngIf="!isSignedIn">Sign in to purchase a brokered CD.</span>
     <span *ngIf="isSignedIn && userCertificates.length === 0"
       >There are no CDs to display yet.</span
@@ -10,7 +14,7 @@
     <mat-card *ngFor="let certificate of userCertificates">
       <mat-card-title
         ><h4>
-          {{ certificate.name ? '"' + certificate.name + '"' : "Unnamed CD" }}
+          {{ certificate.name ? '"' + certificate.name + '"' : "(Unnamed CD)" }}
         </h4></mat-card-title
       >
       <strong>
@@ -31,7 +35,16 @@
             (numMonths(certificate.startDate, certificate.maturityDate) / 12)
             | currency: "USD"
         }}</strong></em
-      ><br />
+      ><br /><br />
+      <em>Brokered CDs may be sold before maturity.</em><br />
+      <button
+        class="sell-button"
+        mat-raised-button
+        color="primary"
+        (click)="sellCD(certificate.id)"
+      >
+        Sell this CD?
+      </button>
     </mat-card>
   </mat-tab>
 
