@@ -1,4 +1,9 @@
 mat-card {
   margin-bottom: 20px;
   max-width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: rgba(3, 79, 57, 0.3);
 }
