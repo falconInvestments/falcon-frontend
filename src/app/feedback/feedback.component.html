@@ -6,14 +6,14 @@
         please take the time to fill out this optional questionnaire on your experience creating an account with us.
     </div>
     <form [formGroup]="feedbackForm">
-        <mat-form-field>
+        <mat-form-field appearance="fill" class="profession">
             <mat-label>Are you a financial professional?</mat-label>
             <mat-select formControlName="questionOne">
                 <mat-option required value="true">Yes</mat-option>
                 <mat-option required value="false">No</mat-option>
             </mat-select>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field appearance="fill" class="two">
             <mat-label>Overall, how satisfied were you with opening your account? 1-5</mat-label>
             <mat-select formControlName="questionTwo">
                 <mat-option required value="5">Very Satisfied</mat-option>
@@ -23,7 +23,7 @@
                 <mat-option required value="1">Very Dissatified</mat-option>
             </mat-select>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field appearance="fill" class="three">
             <mat-label>How easy was it to open an account with us? 1-5</mat-label>
             <mat-select formControlName="questionThree">
                 <mat-option required value="5">Very Easy</mat-option>
@@ -33,7 +33,7 @@
                 <mat-option required value="1">Very Hard</mat-option>
             </mat-select>
         </mat-form-field>
-        <mat-form-field appearance="fill" class="inputFeedback">
+        <mat-form-field appearance="fill" class="input">
             <mat-label>Tell us how we can improve the sign-up process:</mat-label>
             <textarea matInput formControlName="questionFour"></textarea>
         </mat-form-field>
@@ -42,9 +42,12 @@
             <button class="skip">skip</button>
         </div>
     </form>
-    <div *ngIf="isSubmitted">Thank You for feedback and being a loyal customer!</div>
 </div>
-
+<div class="thankyou" *ngIf="isSubmitted">
+    <p>
+        Thank You for feedback and being a loyal customer!
+    </p>
+</div>
 <!-- <div>
     <p>Overall, how satisfied were you with opening your account? 1-5</p>
     <button class="material-icons" formControlName="questionTwo" [style.color]="custom1" 

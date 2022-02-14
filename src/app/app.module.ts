@@ -25,26 +25,28 @@ import { PurchaseConfirmationDialogComponent } from './purchase-confirmation-dia
 import { AdvisorComponent } from './advisor/advisor.component';
 import { RetirementCalculatorComponent } from './retirement-calculator/retirement-calculator.component';
 import { FeedbackComponent } from './feedback/feedback.component';
+import { SellConfirmationDialogComponent } from './sell-confirmation-dialog/sell-confirmation-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent, 
-  SignupComponent, 
-  SigninComponent, 
-  HomeComponent, 
-  DashboardComponent, 
-  StocksComponent, 
-  SignoutButtonComponent, 
-  MutualFundsComponent, 
-  CertificatesComponent, 
-  EtfsComponent, 
-  NewsComponent,
-  CartComponent,
-  PurchaseConfirmationDialogComponent,
-  MutualfundComponent,
-  AdvisorComponent,
-  RetirementCalculatorComponent,
-  FeedbackComponent
+    SignupComponent, 
+    SigninComponent, 
+    HomeComponent, 
+    DashboardComponent, 
+    StocksComponent, 
+    SignoutButtonComponent, 
+    MutualFundsComponent, 
+    CertificatesComponent, 
+    EtfsComponent, 
+    NewsComponent,
+    CartComponent,
+    PurchaseConfirmationDialogComponent,
+    MutualfundComponent,
+    AdvisorComponent,
+    RetirementCalculatorComponent,
+    FeedbackComponent,
+    SellConfirmationDialogComponent
 ],
   imports: [
     BrowserModule,

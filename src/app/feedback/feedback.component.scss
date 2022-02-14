@@ -1,7 +1,9 @@
 .feedback-container {
-    max-width: 350px;
+    max-width: 550px;
     border: 2px solid black;
-    margin: auto;
+    margin: 25px auto;
+    padding: 5px;
+    background-color: white;
 }
 
 .instructions {
@@ -9,8 +11,8 @@
     border-bottom: 1px solid black;
 }
 
-.profession {
-    width: 340px;
+.profession, .two, .three, .input {
+    width: 545px;
 }
 
 //md-18 - black = inactive, yellow = active
@@ -18,9 +20,6 @@
     font-size: 18px;
 }
 
-.inputFeedback {
-    width:340px;
-}
 .complete {
     display: flex;
     flex-direction: row;
